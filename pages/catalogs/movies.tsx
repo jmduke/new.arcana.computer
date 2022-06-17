@@ -11,7 +11,7 @@ const filters = [
   {
     id: "favorites",
     label: "Favorite movies",
-    filter: (i: Item) => book.rating > 8,
+    filter: (i: Item) => i.rating > 8,
   },
 ];
 

@@ -32,7 +32,7 @@ const BaseCatalog = ({ title, rss, preamble, filters, items }) => {
 
 type Entry = {
   id: string;
-  description: string;
+  description: any;
   date: number;
 };
 
@@ -88,7 +88,6 @@ export async function getStaticProps() {
         mdxOptions: {
           remarkPlugins: [remarkFootnotes],
           rehypePlugins: [],
-          providerImportSource: "@mdx-js/react",
         },
       }),
     },

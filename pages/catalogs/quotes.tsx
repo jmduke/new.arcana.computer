@@ -21,7 +21,7 @@ const QuotesCatalog = ({ preamble, items }) => (
 
 type Quote = {
   id: string;
-  description: string;
+  description: any;
   date: number;
   source:
     | {
@@ -49,6 +49,13 @@ const mungeRecord = async (record: any, content: any[]): Promise<Quote> => {
   };
 };
 
+export function isKeyOfObject<T>(
+  key: string | number | symbol,
+  obj: T
+): key is keyof T {
+  return key in obj;
+}
+
 const filters = [
   {
     id: "all",
@@ -58,12 +65,28 @@ const filters = [
   {
     id: "books",
     label: "From books",
-    filter: (i: Quote) => i.source && i.source.type === "Book",
+    filter: (i: Quote) => {
+      if (!i.source) {
+        return false;
+      }
+      if (!("type" in i.source)) {
+        return false;
+      }
+      return i.source.type === "Book";
+    },
   },
   {
     id: "tweets",
     label: "Tweets",
-    filter: (i: Quote) => i.source_url && i.source_url.includes("twitter"),
+    filter: (i: Quote) => {
+      if (!i.source) {
+        return false;
+      }
+      if (!("url" in i.source)) {
+        return false;
+      }
+      return i.source.url.includes("twitter");
+    },
   },
 ];
 
@@ -80,7 +103,6 @@ export async function getStaticProps() {
         mdxOptions: {
           remarkPlugins: [remarkFootnotes],
           rehypePlugins: [],
-          providerImportSource: "@mdx-js/react",
         },
       }),
     },

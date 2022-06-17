@@ -9,7 +9,7 @@ const WIPNotice = ({ todos }) => (
     Hello! This page is a draft. Feel free and poke around, but there are
     significant structural and contentual pieces yet to be implemented. Mind the
     proverbial construction noise, and feel free to subscribe here to get
-    notified once it's completed:
+    notified once it&apos;s completed:
     <div className="py-2">
       <SubscribeForm />
     </div>

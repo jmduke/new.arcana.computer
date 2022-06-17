@@ -34,7 +34,7 @@ const BaseCatalog = ({ title, rss, preamble, filters, items }) => {
 type Press = {
   id: string;
   title: string;
-  description: string;
+  description: any;
   date: number;
   url: string;
 };
@@ -79,7 +79,6 @@ export async function getStaticProps() {
         mdxOptions: {
           remarkPlugins: [remarkFootnotes],
           rehypePlugins: [],
-          providerImportSource: "@mdx-js/react",
         },
       }),
     },

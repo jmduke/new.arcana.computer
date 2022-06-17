@@ -6,7 +6,7 @@ const TABLE_ID = "app5RDJQQni8Itd2D";
 export const fetchAllRecords = async (table: string): Promise<any[]> => {
   Airtable.configure({ apiKey: API_KEY });
   const base = Airtable.base(TABLE_ID);
-  const records = new Promise((resolve, reject) => {
+  const records = new Promise((resolve: (value: any[]) => void, reject) => {
     let allRecords = [];
     base(table)
       .select({

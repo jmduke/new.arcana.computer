@@ -8,7 +8,7 @@ import remarkFootnotes from "remark-footnotes";
 type Word = {
   id: string;
   title: string;
-  description: string;
+  description: any;
   date: number;
   source:
     | {
@@ -73,7 +73,6 @@ export async function getStaticProps() {
         mdxOptions: {
           remarkPlugins: [remarkFootnotes],
           rehypePlugins: [],
-          providerImportSource: "@mdx-js/react",
         },
       }),
     },

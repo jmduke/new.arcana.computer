@@ -11,7 +11,7 @@ const filters = [
   {
     id: "favorites",
     label: "Favorite games",
-    filter: (i: Item) => book.rating > 8,
+    filter: (i: Item) => i.rating > 8,
   },
 ];
 

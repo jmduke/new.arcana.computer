@@ -1,12 +1,11 @@
-import type { MDXModule } from "mdx/types";
-
 export type Item = {
   id: string;
   title: string;
   type: Type;
   rating?: number;
-  date?: string;
-  description?: MDXModule;
+  date?: number;
+  // Can't get the right MDXModule type here.
+  description?: any;
   year?: number;
   genre?: string;
   author?: string;

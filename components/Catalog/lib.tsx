@@ -13,7 +13,6 @@ const getStaticPropsFactory = (preamble: string, type: Type) => {
           mdxOptions: {
             remarkPlugins: [remarkFootnotes],
             rehypePlugins: [],
-            providerImportSource: "@mdx-js/react",
           },
         }),
       },
