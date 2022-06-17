@@ -1,0 +1,3 @@
+const LEFTHAND_COLUMN_SIZE = "12rem";
+
+export { LEFTHAND_COLUMN_SIZE };

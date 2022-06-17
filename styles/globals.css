@@ -1,16 +1,31 @@
-html,
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #fcf9f4;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.footnotes > h2 {
+  display: none;
 }
 
-* {
-  box-sizing: border-box;
+/* Yes, this is a hack because I don't know an easy way to do it in Tailwind */
+blockquote a {
+  display: block;
+  text-align: right;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
+  margin-top: 0.25rem !important;
+}
+
+blockquote p {
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
+}
+
+blockquote p:last-of-type {
+  margin-bottom: 0;
 }
