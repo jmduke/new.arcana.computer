@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>arcana.computer</title>
+        <title>books · arcana.computer</title>
         <link>https://arcana.computer</link>
-        <description>Justin Duke's website</description>
-        <lastBuildDate>Sun, 19 Jun 2022 20:00:15 GMT</lastBuildDate>
+        <description>Justin Duke's books catalog</description>
+        <lastBuildDate>Sun, 19 Jun 2022 20:02:26 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Feed for node.js</generator>
+        <copyright>2022 Justin Duke</copyright>
         <item>
             <title><![CDATA[Four Thousand Weeks]]></title>
             <link>https://arcana.computer/catalogs/books</link>
@@ -3334,48 +3335,56 @@ before the news comes.</p>
             <title><![CDATA[East of Eden]]></title>
             <link>https://arcana.computer/catalogs/books</link>
             <guid>https://arcana.computer/catalogs/books</guid>
+            <pubDate>Sun, 19 Jun 2022 20:02:26 GMT</pubDate>
             <author>me@jmduke.com (Justin Duke)</author>
         </item>
         <item>
             <title><![CDATA[To the Lighthouse]]></title>
             <link>https://arcana.computer/catalogs/books</link>
             <guid>https://arcana.computer/catalogs/books</guid>
+            <pubDate>Sun, 19 Jun 2022 20:02:26 GMT</pubDate>
             <author>me@jmduke.com (Justin Duke)</author>
         </item>
         <item>
             <title><![CDATA[Anatomy of Criticism]]></title>
             <link>https://arcana.computer/catalogs/books</link>
             <guid>https://arcana.computer/catalogs/books</guid>
+            <pubDate>Sun, 19 Jun 2022 20:02:26 GMT</pubDate>
             <author>me@jmduke.com (Justin Duke)</author>
         </item>
         <item>
             <title><![CDATA[Some Graphic and Semigraphic Displays]]></title>
             <link>https://arcana.computer/catalogs/books</link>
             <guid>https://arcana.computer/catalogs/books</guid>
+            <pubDate>Sun, 19 Jun 2022 20:02:26 GMT</pubDate>
             <author>me@jmduke.com (Justin Duke)</author>
         </item>
         <item>
             <title><![CDATA[Search Versus Re-search]]></title>
             <link>https://arcana.computer/catalogs/books</link>
             <guid>https://arcana.computer/catalogs/books</guid>
+            <pubDate>Sun, 19 Jun 2022 20:02:26 GMT</pubDate>
             <author>me@jmduke.com (Justin Duke)</author>
         </item>
         <item>
             <title><![CDATA[Algorithms to Live By]]></title>
             <link>https://arcana.computer/catalogs/books</link>
             <guid>https://arcana.computer/catalogs/books</guid>
+            <pubDate>Sun, 19 Jun 2022 20:02:26 GMT</pubDate>
             <author>me@jmduke.com (Justin Duke)</author>
         </item>
         <item>
             <title><![CDATA[The Signal and the Noise]]></title>
             <link>https://arcana.computer/catalogs/books</link>
             <guid>https://arcana.computer/catalogs/books</guid>
+            <pubDate>Sun, 19 Jun 2022 20:02:26 GMT</pubDate>
             <author>me@jmduke.com (Justin Duke)</author>
         </item>
         <item>
             <title><![CDATA[ChatOps]]></title>
             <link>https://arcana.computer/catalogs/books</link>
             <guid>https://arcana.computer/catalogs/books</guid>
+            <pubDate>Sun, 19 Jun 2022 20:02:26 GMT</pubDate>
             <author>me@jmduke.com (Justin Duke)</author>
         </item>
     </channel>

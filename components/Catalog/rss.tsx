@@ -19,6 +19,7 @@ export const generate = async (items: Item[], name: string) => {
     favicon: `${SITE_URL}/favicon.ico`,
     updated: date,
     generator: "Feed for node.js",
+    copyright: "2022 Justin Duke",
     author: AUTHOR,
     feedLinks: {
       rss2: `${SITE_URL}/rss/${name}.xml`,
@@ -34,7 +35,7 @@ export const generate = async (items: Item[], name: string) => {
       content: item.htmlDescription || "",
       author: [AUTHOR],
       contributor: [AUTHOR],
-      date: item.date ? new Date(item.date) : "",
+      date: item.date ? new Date(item.date) : new Date(),
     });
   });
   fs.mkdirSync("./public/rss", { recursive: true });
