@@ -7,6 +7,7 @@ import Ul from "../components/Markdown/Ul";
 import H1 from "../components/Markdown/H1";
 import H2 from "../components/Markdown/H2";
 import H3 from "../components/Markdown/H3";
+import Wikilink from "../components/Markdown/Wikilink";
 import A from "../components/Markdown/A";
 import Ol from "../components/Markdown/Ol";
 import Pre from "../components/Markdown/Pre";
@@ -32,6 +33,7 @@ function App({ Component, pageProps }) {
             ol: Ol,
             a: A,
             blockquote: Blockquote,
+            del: Wikilink,
           }}
         >
           <Component {...pageProps} />

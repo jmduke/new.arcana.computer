@@ -3,7 +3,7 @@ import { fetchAllRecords } from "lib/airtable";
 import { Item } from "lib/data";
 import { serialize } from "next-mdx-remote/serialize";
 import { mungeRecord as mungeContentRecord } from "../../lib/content";
-import remarkFootnotes from "remark-footnotes";
+import remarkGfm from "remark-gfm";
 
 const Preamble = `
 I collect quotes like trading cards. I don’t have a strong criteria for inclusion in this list: if the quote was remarkable in any way (a clever turn of phrase, an interesting concept, a pithy aphorism, a useful insight, a beautiful piece of diction) I’ll add it here. At some point I might try and make this entire enterprise a little more organize with tags and such, but that seems unnecessary while the number of quotes is still less than a thousand: it is hard to displace the ergonomics of Command & F.
@@ -101,7 +101,7 @@ export async function getStaticProps() {
       items,
       preamble: await serialize(Preamble, {
         mdxOptions: {
-          remarkPlugins: [remarkFootnotes],
+          remarkPlugins: [remarkGfm],
           rehypePlugins: [],
         },
       }),

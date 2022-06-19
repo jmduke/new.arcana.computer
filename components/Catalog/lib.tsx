@@ -1,5 +1,5 @@
 import { Type } from "../../lib/data";
-import remarkFootnotes from "remark-footnotes";
+import remarkGfm from "remark-gfm";
 
 import { serialize } from "next-mdx-remote/serialize";
 import { fetch } from "../../lib/content";
@@ -14,7 +14,7 @@ const getStaticPropsFactory = (preamble: string, type: Type, path: string) => {
         items,
         preamble: await serialize(preamble, {
           mdxOptions: {
-            remarkPlugins: [remarkFootnotes],
+            remarkPlugins: [remarkGfm],
             rehypePlugins: [],
           },
         }),

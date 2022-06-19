@@ -3,7 +3,7 @@ import { fetchAllRecords } from "lib/airtable";
 import { Item } from "lib/data";
 import { serialize } from "next-mdx-remote/serialize";
 import { mungeRecord as mungeContentRecord } from "../../lib/content";
-import remarkFootnotes from "remark-footnotes";
+import remarkGfm from "remark-gfm";
 
 type Word = {
   id: string;
@@ -71,7 +71,7 @@ export async function getStaticProps() {
       items,
       preamble: await serialize(Preamble, {
         mdxOptions: {
-          remarkPlugins: [remarkFootnotes],
+          remarkPlugins: [remarkGfm],
           rehypePlugins: [],
         },
       }),

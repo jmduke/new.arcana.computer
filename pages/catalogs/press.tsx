@@ -1,6 +1,6 @@
 import { fetchAllRecords } from "lib/airtable";
 import { serialize } from "next-mdx-remote/serialize";
-import remarkFootnotes from "remark-footnotes";
+import remarkGfm from "remark-gfm";
 import Catalog from "components/Catalog/Catalog";
 import { MDXRemote } from "next-mdx-remote";
 import TextColophon from "components/Catalog/TextColophon";
@@ -77,7 +77,7 @@ export async function getStaticProps() {
       }),
       preamble: await serialize(Preamble, {
         mdxOptions: {
-          remarkPlugins: [remarkFootnotes],
+          remarkPlugins: [remarkGfm],
           rehypePlugins: [],
         },
       }),

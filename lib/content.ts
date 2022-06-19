@@ -2,19 +2,13 @@ import type { Item, Type } from "./data";
 import { serialize } from "next-mdx-remote/serialize";
 import { fetchAllRecords } from "./airtable";
 import { marked } from "marked";
-
-function slugify(text) {
-  return text
-    .toString() // Cast to string (optional)
-    .normalize("NFKD") // The normalize() using NFKD method returns the Unicode Normalization Form of a given string.
-    .toLowerCase() // Convert the string to lowercase letters
-    .trim() // Remove whitespace from both sides of a string (optional)
-    .replace(/\s+/g, "-") // Replace spaces with -
-    .replace(/[^\w\-]+/g, "") // Remove all non-word chars
-    .replace(/\-\-+/g, "-"); // Replace multiple - with single -
-}
+import remarkGfm from "remark-gfm";
+import slugify from "./slugify";
 
 const mungeRecord = async (record: any): Promise<Item> => {
+  const summary = record.fields.Summary
+    ? record.fields.Summary.replace(/\[\[/g, "~~").replace(/\]\]/g, "~~")
+    : null;
   return {
     id: record.id,
     slug: slugify(record.fields.Name),
@@ -23,10 +17,13 @@ const mungeRecord = async (record: any): Promise<Item> => {
     author: record.fields.Author || null,
     rating: record.fields.Rating || null,
     date: record.fields.Date ? Date.parse(record.fields.Date) : null,
-    description: (await serialize(record.fields.Summary)) || null,
-    htmlDescription: record.fields.Summary
-      ? marked.parse(record.fields.Summary)
-      : "",
+    description:
+      (await serialize(summary, {
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+        },
+      })) || null,
+    htmlDescription: record.fields.Summary ? marked.parse(summary) : "",
     year: record.fields.Year || null,
     genre: record.fields.Genre ? record.fields.Genre[0] : null,
     image: record.fields.Image ? record.fields.Image[0].url : null,
