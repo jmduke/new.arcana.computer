@@ -1,8 +1,7 @@
 import type { Item, Type } from "./data";
-import { serialize } from "next-mdx-remote/serialize";
 import { fetchAllRecords } from "./airtable";
+import { compile } from "components/Catalog/lib";
 import { marked } from "marked";
-import remarkGfm from "remark-gfm";
 import slugify from "./slugify";
 
 const mungeRecord = async (record: any): Promise<Item> => {
@@ -17,12 +16,7 @@ const mungeRecord = async (record: any): Promise<Item> => {
     author: record.fields.Author || null,
     rating: record.fields.Rating || null,
     date: record.fields.Date ? Date.parse(record.fields.Date) : null,
-    description:
-      (await serialize(summary, {
-        mdxOptions: {
-          remarkPlugins: [remarkGfm],
-        },
-      })) || null,
+    description: (await compile(summary)) || null,
     htmlDescription: record.fields.Summary ? marked.parse(summary) : "",
     year: record.fields.Year || null,
     genre: record.fields.Genre ? record.fields.Genre[0] : null,

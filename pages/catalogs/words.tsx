@@ -1,9 +1,8 @@
 import Catalog from "../../components/Catalog/IncrementingCatalog";
 import { fetchAllRecords } from "lib/airtable";
 import { Item } from "lib/data";
-import { serialize } from "next-mdx-remote/serialize";
 import { mungeRecord as mungeContentRecord } from "../../lib/content";
-import remarkGfm from "remark-gfm";
+import { compile } from "components/Catalog/lib";
 
 type Word = {
   id: string;
@@ -49,7 +48,7 @@ const mungeRecord = async (record: any, content: any[]): Promise<Word> => {
   return {
     id: record.id,
     description: record.fields.Definition
-      ? await serialize(record.fields.Definition)
+      ? await compile(record.fields.Definition)
       : null,
     date: record.fields.Date ? Date.parse(record.fields.Date) : null,
     title: record.fields.Name,
@@ -69,12 +68,7 @@ export async function getStaticProps() {
   return {
     props: {
       items,
-      preamble: await serialize(Preamble, {
-        mdxOptions: {
-          remarkPlugins: [remarkGfm],
-          rehypePlugins: [],
-        },
-      }),
+      preamble: await compile(Preamble),
     },
   };
 }

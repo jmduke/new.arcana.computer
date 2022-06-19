@@ -1,16 +1,18 @@
 import slugify from "lib/slugify";
+import { useRouter } from "next/router";
 
 const Wikilink = (props) => {
-  const path = window.location.pathname;
-  const [_, __, catalog, ___] = path.split("/");
+  const { asPath } = useRouter();
+
+  const [_, __, catalog, ___] = asPath.split("/");
 
   return (
     <a
-      className="text-brand underline cursor-pointer"
+      className="hover:text-brand cursor-pointer bg-red-100 px-1 inline-block"
       {...props}
       href={`/catalogs/${catalog}/${slugify(props.children)}`}
     >
-      {props.children}
+      {props.children}&nbsp;↗
     </a>
   );
 };

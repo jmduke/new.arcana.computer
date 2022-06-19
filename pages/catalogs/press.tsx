@@ -1,9 +1,9 @@
 import { fetchAllRecords } from "lib/airtable";
 import { serialize } from "next-mdx-remote/serialize";
-import remarkGfm from "remark-gfm";
 import Catalog from "components/Catalog/Catalog";
 import { MDXRemote } from "next-mdx-remote";
 import TextColophon from "components/Catalog/TextColophon";
+import { compile } from "components/Catalog/lib";
 
 const BaseCatalog = ({ title, rss, preamble, filters, items }) => {
   return (
@@ -75,12 +75,7 @@ export async function getStaticProps() {
       items: items.sort((a, b) => {
         return b.date - a.date;
       }),
-      preamble: await serialize(Preamble, {
-        mdxOptions: {
-          remarkPlugins: [remarkGfm],
-          rehypePlugins: [],
-        },
-      }),
+      preamble: await compile(Preamble),
     },
   };
 }

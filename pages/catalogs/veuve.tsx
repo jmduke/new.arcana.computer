@@ -1,10 +1,9 @@
 import { fetchAllRecords } from "lib/airtable";
-import { serialize } from "next-mdx-remote/serialize";
-import remarkGfm from "remark-gfm";
 
 import Catalog from "components/Catalog/Catalog";
 import { MDXRemote } from "next-mdx-remote";
 import TextColophon from "components/Catalog/TextColophon";
+import { compile } from "components/Catalog/lib";
 
 const BaseCatalog = ({ title, rss, preamble, filters, items }) => {
   return (
@@ -71,7 +70,7 @@ const mungeRecord = async (record: any): Promise<Entry> => {
   return {
     id: record.id,
     description: record.fields.Definition
-      ? await serialize(record.fields.Definition)
+      ? await compile(record.fields.Definition)
       : null,
     date: record.fields.Date ? Date.parse(record.fields.Date) : null,
   };
@@ -85,12 +84,7 @@ export async function getStaticProps() {
   return {
     props: {
       items,
-      preamble: await serialize(Preamble, {
-        mdxOptions: {
-          remarkPlugins: [remarkGfm],
-          rehypePlugins: [],
-        },
-      }),
+      preamble: await compile(Preamble),
     },
   };
 }
