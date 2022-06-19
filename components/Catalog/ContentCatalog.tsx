@@ -2,6 +2,7 @@ import ColophonItem from "./ColophonItem";
 import Catalog from "./Catalog";
 import Icon from "../Icon";
 import { MDXRemote } from "next-mdx-remote";
+import Link from "next/link";
 
 const ContentColophon = ({ item }) => (
   <div>
@@ -12,7 +13,7 @@ const ContentColophon = ({ item }) => (
   </div>
 );
 
-const ContentCatalog = ({ title, rss, preamble, filters, items }) => {
+const ContentCatalog = ({ title, rss, preamble, filters, items, name }) => {
   return (
     <Catalog
       title={title}
@@ -23,7 +24,11 @@ const ContentCatalog = ({ title, rss, preamble, filters, items }) => {
       lefthandComponent={(item) => <ContentColophon item={item} />}
       righthandComponent={(item) => (
         <div className="flex-1">
-          <div className="text-2xl font-bold">{item.title}</div>
+          <Link href={`/catalogs/${name}/${item.slug}`}>
+            <div className="text-2xl font-bold cursor-pointer">
+              {item.title}
+            </div>
+          </Link>
           <div className="my-4 text-lg">
             {item.description && <MDXRemote {...item.description} />}
           </div>

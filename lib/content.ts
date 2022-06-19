@@ -3,9 +3,21 @@ import { serialize } from "next-mdx-remote/serialize";
 import { fetchAllRecords } from "./airtable";
 import { marked } from "marked";
 
+function slugify(text) {
+  return text
+    .toString() // Cast to string (optional)
+    .normalize("NFKD") // The normalize() using NFKD method returns the Unicode Normalization Form of a given string.
+    .toLowerCase() // Convert the string to lowercase letters
+    .trim() // Remove whitespace from both sides of a string (optional)
+    .replace(/\s+/g, "-") // Replace spaces with -
+    .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+    .replace(/\-\-+/g, "-"); // Replace multiple - with single -
+}
+
 const mungeRecord = async (record: any): Promise<Item> => {
   return {
     id: record.id,
+    slug: slugify(record.fields.Name),
     title: record.fields.Name,
     type: record.fields.Type || null,
     author: record.fields.Author || null,

@@ -32,6 +32,7 @@ const MovieCatalog = ({ preamble, items }) => (
   <Catalog
     title="Movies"
     rss="/rss/movies.xml"
+    name="movies"
     preamble={preamble}
     items={items}
     filters={filters}

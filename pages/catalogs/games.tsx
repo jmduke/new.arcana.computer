@@ -29,6 +29,7 @@ const GamesCatalog = ({ preamble, items }) => (
   <Catalog
     title="Games"
     rss="/rss/games.xml"
+    name="games"
     preamble={preamble}
     items={items}
     filters={filters}

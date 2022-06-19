@@ -1,6 +1,7 @@
 export type Item = {
   id: string;
   title: string;
+  slug: string;
   type: Type;
   rating?: number;
   date?: number;

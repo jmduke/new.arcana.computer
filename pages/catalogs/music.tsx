@@ -30,6 +30,7 @@ const MusicCatalog = ({ preamble, items }) => (
   <Catalog
     title="Music"
     rss="/rss/music.xml"
+    name="music"
     preamble={preamble}
     items={items}
     filters={filters}
