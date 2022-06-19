@@ -1,6 +1,7 @@
 import type { Item, Type } from "./data";
 import { serialize } from "next-mdx-remote/serialize";
 import { fetchAllRecords } from "./airtable";
+import { marked } from "marked";
 
 const mungeRecord = async (record: any): Promise<Item> => {
   return {
@@ -11,6 +12,9 @@ const mungeRecord = async (record: any): Promise<Item> => {
     rating: record.fields.Rating || null,
     date: record.fields.Date ? Date.parse(record.fields.Date) : null,
     description: (await serialize(record.fields.Summary)) || null,
+    htmlDescription: record.fields.Summary
+      ? marked.parse(record.fields.Summary)
+      : "",
     year: record.fields.Year || null,
     genre: record.fields.Genre ? record.fields.Genre[0] : null,
     image: record.fields.Image ? record.fields.Image[0].url : null,

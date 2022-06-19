@@ -51,7 +51,7 @@ const BookCatalog = ({ preamble, items }) => (
   />
 );
 
-const getStaticProps = getStaticPropsFactory(Preamble, "Book");
+const getStaticProps = getStaticPropsFactory(Preamble, "Book", "books");
 export { getStaticProps };
 
 export default BookCatalog;

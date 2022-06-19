@@ -65,10 +65,10 @@ const Catalog = ({
         {items
           .filter(activeFilter ? activeFilter.filter : () => true)
           .map((item) => (
-            <div key={item.id} className="flex space-x-8 items-start">
+            <div key={item.id} className="md:flex md:space-x-8 md:items-start">
               <div
                 style={{ maxWidth: LEFTHAND_COLUMN_SIZE }}
-                className="space-y-2 sticky top-16"
+                className="space-y-2 md:sticky top-16 inline-block float-left mr-8"
               >
                 {lefthandComponent(item)}
               </div>

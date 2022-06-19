@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+
 const FOOTER_STRINGS = [
   "𝑺𝑬𝑬 𝒀𝑶𝑼 𝑺𝑷𝑨𝑪𝑬 𝑪𝑶𝑾𝑩𝑶𝒀...",
   "Thank you and be well.",
@@ -7,13 +9,15 @@ const FOOTER_STRINGS = [
   "You deserve a high five.",
 ];
 
-const sample = (array: string[]) =>
-  array[Math.floor(Math.random() * array.length)];
+const Footer = () => {
+  const router = useRouter();
+  const path = router.pathname;
 
-const Footer = () => (
-  <div className="max-w-prose mx-auto text-center text-gray-700 py-10">
-    © 2022 Justin Duke • {sample(FOOTER_STRINGS)}
-  </div>
-);
+  return (
+    <div className="max-w-prose mx-auto text-center text-gray-700 py-10">
+      © 2022 Justin Duke • {FOOTER_STRINGS[path.length - 1]}
+    </div>
+  );
+};
 
 export default Footer;

@@ -6,6 +6,7 @@ export type Item = {
   date?: number;
   // Can't get the right MDXModule type here.
   description?: any;
+  htmlDescription?: string;
   year?: number;
   genre?: string;
   author?: string;

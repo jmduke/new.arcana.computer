@@ -38,7 +38,7 @@ const MovieCatalog = ({ preamble, items }) => (
   />
 );
 
-const getStaticProps = getStaticPropsFactory(Preamble, "Movie");
+const getStaticProps = getStaticPropsFactory(Preamble, "Movie", "movies");
 export { getStaticProps };
 
 export default MovieCatalog;
