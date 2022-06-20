@@ -15,8 +15,29 @@ import Blockquote from "../components/Markdown/Blockquote";
 import "littlefoot/dist/littlefoot.css";
 import Script from "next/script";
 import Footer from "components/Scaffolding/Footer";
+import * as Fathom from "fathom-client";
+
+const FATHOM_TRACKING_CODE = "PTBGXOPS";
+const PRODUCTION_DOMAIN = "arcana.computer";
 
 function App({ Component, pageProps }) {
+  const router = useRouter();
+
+  // Cargo-culted from https://vercel.com/guides/deploying-nextjs-using-fathom-analytics-with-vercel.
+  useEffect(() => {
+    Fathom.load(FATHOM_TRACKING_CODE, {
+      includedDomains: [PRODUCTION_DOMAIN],
+    });
+
+    function onRouteChangeComplete() {
+      Fathom.trackPageview();
+    }
+    router.events.on("routeChangeComplete", onRouteChangeComplete);
+    return () => {
+      router.events.off("routeChangeComplete", onRouteChangeComplete);
+    };
+  }, [router.events]);
+
   return (
     <div className="bg-background">
       <Header />
