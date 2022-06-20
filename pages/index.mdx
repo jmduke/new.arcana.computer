@@ -1,5 +1,7 @@
 import TableOfContents from "../components/TableOfContents";
+import CurrentlyWidget from "../components/CurrentlyWidget";
 import SubscribeForm from "../components/SubscribeForm";
+import Widget from "../components/Widget";
 
 Hello! <strong>arcana dot computer</strong> is a weblog from <strong>Justin Duke</strong>. (That's me.)
 
@@ -11,7 +13,9 @@ I run [Buttondown](https://buttondown.email) and [ Spoonbill](https://spoonbill.
   of merchants
 - running and scaling Stripe's Product Quality initiative
 
-I also have a [very nice Corgi puppy](https://www.instagram.com/itstellybelly) and mentor aspiring technologists in partnership with [Unloop](https://www.un-loop.org). With what precious time remains, I generally am either playing video games with [my fiancé](https://www.instagram.com/burtonhf/), watching basketball, or writing for this very web site.
+I also have a [very nice Corgi puppy](https://www.instagram.com/itstellybelly) and mentor aspiring technologists in partnership with [Unloop](https://www.un-loop.org). With what precious time remains, I generally am probably reading or writing or playing some video games. Here's what I've currently got on tap:
+
+<CurrentlyWidget />
 
 If you're
 interested in subscribing to monthly updates from this project, you should subscribe below or via the [omnibus RSS feed](/rss/omnibus.xml):
@@ -27,8 +31,21 @@ You're welcome to peruse them, of course, and you might also enjoy [my shorter, 
 
 <TableOfContents />
 
-Lastly, if you're interested in chatting, you can find me on [Twitter](https://twitter.com/jmduke) or reach out over [email](mailto:me@jmduke.com).
-I love getting random tweets and emails, I promise.
+Lastly, if you're interested in chatting, please reach out. I am in general much happier to answer an email or DM than jump on a call.
+
+<Widget
+  label="Contact"
+  items={[
+    {
+      left: "Twitter",
+      right: <a href="https://twitter.com/jmduke">@jmduke</a>,
+    },
+    {
+      left: "Email",
+      right: <a href="mailto:me@jmduke.com">me@jmduke.com</a>,
+    },
+  ]}
+/>
 
 import MarkdownPage from "components/MarkdownPage";
 export const meta = {

@@ -16,6 +16,8 @@ import "littlefoot/dist/littlefoot.css";
 import Script from "next/script";
 import Footer from "components/Scaffolding/Footer";
 import * as Fathom from "fathom-client";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const FATHOM_TRACKING_CODE = "PTBGXOPS";
 const PRODUCTION_DOMAIN = "arcana.computer";

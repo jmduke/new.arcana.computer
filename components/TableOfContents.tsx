@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Widget from "./Widget";
 
 type Status = "placeholder" | "draft" | "published";
 
@@ -75,22 +76,27 @@ const LINKS: Section[] = [
     ],
   },
   {
-    title: "Industry",
+    title: "My projects",
     items: [
       {
-        title: "Advice to new grads",
-        href: "/industry/advice-to-new-grads",
-        status: "published",
+        title: "Barback",
+        href: "/projects/barback",
+        status: "placeholder",
       },
       {
-        title: "Getting a job",
-        href: "/industry/getting-a-job",
-        status: "draft",
+        title: "Buttondown",
+        href: "/projects/buttondown",
+        status: "placeholder",
       },
       {
-        title: "Being productive",
-        href: "/industry/being-productive",
-        status: "draft",
+        title: "Spoonbill",
+        href: "/projects/spoonbill",
+        status: "placeholder",
+      },
+      {
+        title: "Floradora",
+        href: "/projects/floradora",
+        status: "placeholder",
       },
     ],
   },
@@ -105,6 +111,16 @@ const LINKS: Section[] = [
       {
         title: "Test-ish driven development",
         href: "/engineering/testish-driven-development",
+        status: "placeholder",
+      },
+    ],
+  },
+  {
+    title: "Miscellany",
+    items: [
+      {
+        title: "About",
+        href: "/about",
         status: "placeholder",
       },
     ],
@@ -130,63 +146,57 @@ const LINKS: Section[] = [
     ],
   },
   {
-    title: "Miscellany",
+    title: "Industry",
     items: [
       {
-        title: "About",
-        href: "/about",
-        status: "placeholder",
-      },
-    ],
-  },
-  {
-    title: "My projects",
-    items: [
-      {
-        title: "Barback",
-        href: "/projects/barback",
-        status: "placeholder",
+        title: "Advice to new grads",
+        href: "/industry/advice-to-new-grads",
+        status: "published",
       },
       {
-        title: "Buttondown",
-        href: "/projects/buttondown",
-        status: "placeholder",
+        title: "Getting a job",
+        href: "/industry/getting-a-job",
+        status: "draft",
       },
       {
-        title: "Spoonbill",
-        href: "/projects/spoonbill",
-        status: "placeholder",
-      },
-      {
-        title: "Floradora",
-        href: "/projects/floradora",
-        status: "placeholder",
+        title: "Being productive",
+        href: "/industry/being-productive",
+        status: "draft",
       },
     ],
   },
 ];
 
 const TableOfContents = () => (
-  <div className="grid grid-cols-2 gap-8 my-8">
-    {LINKS.map((section) => (
-      <div
-        key={section.title}
-        className="bg-subtle rounded-lg p-3 border border-solid border-gray-400"
-      >
-        <div className="font-bold">{section.title}</div>
-        {section.items.map((item) => (
-          <div
-            className={
-              {
-                placeholder: "text-gray-500",
-                published: "underline",
-                draft: "text-gray-500 underline",
-              }[item.status]
-            }
-            key={item.title}
-          >
-            <Link href={item.href}>{item.title}</Link>
-          </div>
+  <div className="grid grid-cols-2 grid-flow-rows-dense gap-4 my-8">
+    {[
+      [0, 2],
+      [2, 6],
+    ].map(([start, end]) => (
+      <div key={start}>
+        {LINKS.slice(start, end).map((section) => (
+          <Widget
+            label={section.title}
+            key={section.title}
+            items={section.items.map((item) => {
+              return {
+                left: (
+                  <div
+                    className={
+                      {
+                        placeholder: "text-gray-500",
+                        published: "underline",
+                        draft: "text-gray-500 underline",
+                      }[item.status]
+                    }
+                    key={item.title}
+                  >
+                    <Link href={item.href}>{item.title}</Link>
+                  </div>
+                ),
+              };
+            })}
+          />
         ))}
       </div>
     ))}

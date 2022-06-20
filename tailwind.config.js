@@ -10,6 +10,8 @@ module.exports = {
         background: "#fcf9f4",
         brand: "#dc0909",
         subtle: "#edeae6",
+        subtler: "#141e3025",
+        subtlest: "#141e3050",
       },
     },
   },
