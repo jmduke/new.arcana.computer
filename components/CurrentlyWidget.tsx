@@ -25,7 +25,7 @@ const CurrentlyWidget = () => {
       items={CURRENT_ITEMS.map((i) => ({
         left: i.type,
         right: (
-          <div className="flex flex-col">
+          <div className="flex-1 flex flex-col">
             {i.items.map((subitem) => (
               <div className="font-bold flex-1 text-right" key={subitem}>
                 {subitem}

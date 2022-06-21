@@ -11,7 +11,7 @@ module.exports = {
         brand: "#dc0909",
         subtle: "#edeae6",
         subtler: "#141e3025",
-        subtlest: "#141e3050",
+        subtlest: "#141e3005",
       },
     },
   },

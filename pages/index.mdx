@@ -31,6 +31,51 @@ You're welcome to peruse them, of course, and you might also enjoy [my shorter, 
 
 <TableOfContents />
 
+If you're interested in a full _professional history_, as they say, you can find it right here:
+
+<Widget
+  label="Resume"
+  items={[
+    {
+      left: "2018 — 2022",
+      right: (
+        <div className="flex-1 ml-4 mb-2">
+          <strong>Stripe</strong>
+          <div>
+            Built out and marketed Sigma. Took Sigma's technology and used it to
+            power the Stripe dashboard. Built out a team & interviewed around a
+            thousand people. Ran Product Quality.
+          </div>
+        </div>
+      ),
+    },
+    {
+      left: "2016 — 2018",
+      right: (
+        <div className="flex-1 ml-4 mb-2">
+          <strong>TenantBase</strong>
+          <div>
+            First technical hire at a seed-stage CRE startup. Reported to the
+            CTO. Grew the team. Wrote lots of code.
+          </div>
+        </div>
+      ),
+    },
+    {
+      left: "2013 — 2016",
+      right: (
+        <div className="flex-1 ml-4 mb-2">
+          <strong>Amazon</strong>
+          <div>
+            Built data pipelines for Kindle. Wrote a lot of six-pagers. Learned
+            about PubSub.
+          </div>
+        </div>
+      ),
+    },
+  ]}
+/>
+
 Lastly, if you're interested in chatting, please reach out. I am in general much happier to answer an email or DM than jump on a call.
 
 <Widget
@@ -38,11 +83,19 @@ Lastly, if you're interested in chatting, please reach out. I am in general much
   items={[
     {
       left: "Twitter",
-      right: <a href="https://twitter.com/jmduke">@jmduke</a>,
+      right: (
+        <div className="flex-1 text-right">
+          <a href="https://twitter.com/jmduke">@jmduke</a>
+        </div>
+      ),
     },
     {
       left: "Email",
-      right: <a href="mailto:me@jmduke.com">me@jmduke.com</a>,
+      right: (
+        <div className="flex-1 text-right">
+          <a href="mailto:me@jmduke.com">me@jmduke.com</a>
+        </div>
+      ),
     },
   ]}
 />
