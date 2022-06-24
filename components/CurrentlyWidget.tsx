@@ -1,32 +1,38 @@
 import Widget from "./Widget";
 
-const CURRENT_ITEMS = [
-  {
-    type: "Reading",
-    catalog: "books",
-    items: ["Middlemarch", "LaserWriter II"],
-  },
-  {
-    type: "Watching",
-    catalog: "television",
-    items: ["Tokyo Vice", "Legend of the Galactic Heroes", "Spy x Family"],
-  },
-  {
-    type: "Playing",
-    catalog: "games",
-    items: ["Crystal Project"],
-  },
-];
+type CurrentItem = {
+  verb: string;
+  title: string;
+};
 
-const CurrentlyWidget = () => {
+type CurrentItemGroup = {
+  verb: string;
+  titles: string[];
+};
+
+const groupItems = (items: CurrentItem[]) => {
+  const verbToItems: { [verb: string]: CurrentItem[] } = {};
+  items.map((item) => {
+    if (!verbToItems[item.verb]) {
+      verbToItems[item.verb] = [];
+    }
+    verbToItems[item.verb].push(item);
+  });
+  return Object.entries(verbToItems).map(([verb, items]) => ({
+    verb,
+    titles: items.map((item) => item.title),
+  }));
+};
+
+const CurrentlyWidget = ({ items }) => {
   return (
     <Widget
       label="Currently"
-      items={CURRENT_ITEMS.map((i) => ({
-        left: i.type,
+      items={groupItems(items).map((i) => ({
+        left: i.verb,
         right: (
           <div className="flex-1 flex flex-col">
-            {i.items.map((subitem) => (
+            {i.titles.map((subitem) => (
               <div className="font-bold flex-1 text-right" key={subitem}>
                 {subitem}
               </div>

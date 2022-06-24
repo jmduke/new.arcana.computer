@@ -10,6 +10,13 @@ body {
   display: none;
 }
 
+@font-face {
+  font-family: "Souvenir";
+  src: url("/fonts/souvenir.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+}
+
 /* Yes, this is a hack because I don't know an easy way to do it in Tailwind */
 blockquote a {
   display: block;

@@ -1,11 +1,11 @@
-const Wrapper = ({ children }) => (
+const Wrapper = ({ width, children }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="h-6 w-6"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
-    style={{ width: "18px" }}
+    style={{ width: width || "18px" }}
   >
     {children}
   </svg>
@@ -39,7 +39,7 @@ const Check = () => (
 );
 
 const Tag = () => (
-  <Wrapper>
+  <Wrapper width={"12px"}>
     <path
       strokeLinecap="round"
       strokeLinejoin="round"

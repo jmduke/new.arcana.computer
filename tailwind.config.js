@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        serif: ["Souvenir"],
+      },
       colors: {
         background: "#fcf9f4",
         brand: "#dc0909",

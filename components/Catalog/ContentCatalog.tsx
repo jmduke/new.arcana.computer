@@ -9,7 +9,6 @@ const ContentColophon = ({ item }) => (
     <img src={item.image} alt={item.title} className="rounded-lg" />
     {item.author && <ColophonItem icon={<Icon.Author />} value={item.author} />}
     <ColophonItem icon={<Icon.Calendar />} value={item.year} />
-    {item.genre && <ColophonItem icon={<Icon.Tag />} value={item.genre} />}
   </div>
 );
 
@@ -36,6 +35,12 @@ const ContentCatalog = ({ title, rss, preamble, filters, items, name }) => {
             {item.rating}/10 •{" "}
             {item.date && new Date(item.date).toLocaleDateString()}
           </div>
+
+          {item.genre && (
+            <div className="rounded-full bg-subtle text-sm inline-block px-3">
+              <ColophonItem icon={<Icon.Tag />} value={item.genre} />
+            </div>
+          )}
         </div>
       )}
     />

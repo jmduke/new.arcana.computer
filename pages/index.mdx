@@ -2,6 +2,9 @@ import TableOfContents from "../components/TableOfContents";
 import CurrentlyWidget from "../components/CurrentlyWidget";
 import SubscribeForm from "../components/SubscribeForm";
 import Widget from "../components/Widget";
+import { fetchAllRecords } from "lib/airtable";
+import fs from "fs";
+import currently from "../public/currently.json";
 
 Hello! <strong>arcana dot computer</strong> is a weblog from <strong>Justin Duke</strong>. (That's me.)
 
@@ -15,7 +18,7 @@ I run [Buttondown](https://buttondown.email) and [ Spoonbill](https://spoonbill.
 
 I also have a [very nice Corgi puppy](https://www.instagram.com/itstellybelly) and mentor aspiring technologists in partnership with [Unloop](https://www.un-loop.org). With what precious time remains, I generally am probably reading or writing or playing some video games. Here's what I've currently got on tap:
 
-<CurrentlyWidget />
+<CurrentlyWidget items={currently} />
 
 If you're
 interested in subscribing to monthly updates from this project, you should subscribe below or via the [omnibus RSS feed](/rss/omnibus.xml):
@@ -37,7 +40,7 @@ If you're interested in a full _professional history_, as they say, you can find
   label="Resume"
   items={[
     {
-      left: "2018 — 2022",
+      left: <span className="tabular-nums">2018 — 2022</span>,
       right: (
         <div className="flex-1 ml-4 mb-2">
           <strong>Stripe</strong>
@@ -50,7 +53,7 @@ If you're interested in a full _professional history_, as they say, you can find
       ),
     },
     {
-      left: "2016 — 2018",
+      left: <span className="tabular-nums">2016 — 2018</span>,
       right: (
         <div className="flex-1 ml-4 mb-2">
           <strong>TenantBase</strong>
@@ -62,7 +65,7 @@ If you're interested in a full _professional history_, as they say, you can find
       ),
     },
     {
-      left: "2013 — 2016",
+      left: <span className="tabular-nums">2013 — 2016</span>,
       right: (
         <div className="flex-1 ml-4 mb-2">
           <strong>Amazon</strong>
@@ -105,6 +108,22 @@ export const meta = {
   title: "arcana.computer",
   date: "6/18/2022",
 };
-export default ({ children }) => (
+export default ({ items, children }) => (
   <MarkdownPage meta={meta}>{children}</MarkdownPage>
 );
+
+export async function getStaticProps() {
+  const records = await fetchAllRecords("Currently");
+  const mungedRecords = records.map((r) => {
+    return {
+      verb: r.fields.Verb,
+      title: r.fields["Name (from Content)"][0],
+    };
+  });
+  fs.writeFileSync(`./public/currently.json`, JSON.stringify(mungedRecords));
+  return {
+    props: {
+      items: mungedRecords,
+    },
+  };
+}

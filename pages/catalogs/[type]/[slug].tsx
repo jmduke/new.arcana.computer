@@ -31,7 +31,7 @@ const CatalogPage = ({ item }) => (
         )}
       </div>
     </div>
-    <div className="text-2xl font-bold">{item.title}</div>
+    <div className="text-2xl font-bold font-serif">{item.title}</div>
     <div className="my-4 text-lg">
       {item.description && <MDXRemote {...item.description} />}
     </div>
