@@ -168,7 +168,7 @@ const LINKS: Section[] = [
 ];
 
 const TableOfContents = () => (
-  <div className="grid grid-cols-2 grid-flow-rows-dense gap-8 my-8">
+  <div className="grid grid-cols-2 grid-flow-rows-dense gap-8 my-4">
     {[
       [0, 2],
       [2, 6],

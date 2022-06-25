@@ -16,7 +16,7 @@ const mungeRecord = async (record: any): Promise<Item> => {
     author: record.fields.Author || null,
     rating: record.fields.Rating || null,
     date: record.fields.Date ? Date.parse(record.fields.Date) : null,
-    description: (await compile(summary)) || null,
+    description: summary ? await compile(summary) : null,
     htmlDescription: record.fields.Summary ? marked.parse(summary) : "",
     year: record.fields.Year || null,
     genre: record.fields.Genre ? record.fields.Genre[0] : null,

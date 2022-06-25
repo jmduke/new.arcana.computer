@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         serif: ["Souvenir"],
+        sans: ["IBM Plex Sans"],
       },
       colors: {
         background: "#fcf9f4",

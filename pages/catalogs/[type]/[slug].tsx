@@ -1,10 +1,13 @@
 import { fetch } from "lib/content";
+import { fetchAllRecords } from "lib/airtable";
 
 import { MDXRemote } from "next-mdx-remote";
 import Icon from "components/Icon";
 import { Type } from "lib/data";
+import H3 from "components/Markdown/H3";
+import ColophonItem from "components/Catalog/ColophonItem";
 
-const CatalogPage = ({ item }) => (
+const CatalogPage = ({ item, quotes }) => (
   <div>
     <div className="float-left mr-8 mb-2">
       <img
@@ -13,30 +16,41 @@ const CatalogPage = ({ item }) => (
         style={{ maxWidth: "12rem" }}
         className="rounded-lg"
       />
-      <div className="rounded-lg bg-subtle mt-8 p-2 px-3">
-        {item.author && (
-          <div className="flex items-center space-x-2 text-sm">
-            <Icon.Author /> <div className=" flex-1">{item.author}</div>
-          </div>
-        )}
-        {item.year && (
-          <div className="flex items-center space-x-2 text-sm">
-            <Icon.Calendar /> <div className=" flex-1">{item.year}</div>
-          </div>
-        )}
-        {item.genre && (
-          <div className="flex items-center space-x-2 text-sm">
-            <Icon.Tag /> <div className=" flex-1">{item.genre}</div>
-          </div>
-        )}
-      </div>
     </div>
     <div className="text-2xl font-bold font-serif">{item.title}</div>
+
+    {item.author && item.year && (
+      <div className="text-lg uppercase text-gray-600">
+        {item.author} • {item.year}
+      </div>
+    )}
     <div className="my-4 text-lg">
-      {item.description && <MDXRemote {...item.description} />}
+      {item.description ? (
+        <MDXRemote {...item.description} />
+      ) : (
+        <div>No writeup yet.</div>
+      )}
     </div>
-    <div className="my-4 text-gray-700">
-      {item.rating}/10 • {item.date && new Date(item.date).toLocaleDateString()}
+    <div className="my-4 text-gray-700 space-x-4 flex">
+      <div className="flex-1">
+        {item.rating}/10 •{" "}
+        {item.date && new Date(item.date).toLocaleDateString()}
+      </div>
+      {item.genre && (
+        <div className="rounded-full bg-subtle text-sm inline-block px-3">
+          <ColophonItem icon={<Icon.Tag />} value={item.genre} />
+        </div>
+      )}
+    </div>
+    <div>
+      <H3>Highlights</H3>
+      <div className="space-y-8">
+        {quotes.map((quote, i) => (
+          <div key={i} className="text-lg">
+            <span className="bg-yellow-100">{quote}</span>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 );
@@ -50,10 +64,15 @@ const TYPE_SLUG_TO_CONTENT_TYPE: { [key: string]: Type } = {
 
 export async function getStaticProps({ params }) {
   const items = await fetch(TYPE_SLUG_TO_CONTENT_TYPE[params.type]);
+  const quotes = await fetchAllRecords("Notebook");
   const item = items.filter((i) => i.slug === params.slug)[0];
+  const relevantQuotes = quotes
+    .filter((q) => (q.fields.Source ? q.fields.Source[0] == item.id : false))
+    .map((q) => q.fields.Text);
   return {
     props: {
       item,
+      quotes: relevantQuotes,
     },
   };
 }
@@ -71,7 +90,6 @@ export async function getStaticPaths() {
       )
     )
   ).flat();
-  console.log(paths);
   return {
     paths,
     fallback: false,
