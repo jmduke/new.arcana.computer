@@ -26,15 +26,22 @@ const ContentCatalog = ({ title, rss, preamble, filters, items, name }) => {
               {item.author} • {item.year}
             </div>
           )}
+          {item.genre && (
+            <div className="my-2">
+              <Tag value={item.genre} />
+            </div>
+          )}
           <div className="my-4 text-lg">
             {item.description && <MDXRemote {...item.description} />}
           </div>
           <div className="my-4 text-gray-700">
-            {item.rating}/10 •{" "}
-            {item.date && new Date(item.date).toLocaleDateString()}
+            <div className="flex-1">
+              <div className="text-brand text-xl">
+                {"✭".repeat(Math.round(item.rating / 2))}
+              </div>
+              {item.date && new Date(item.date).toLocaleDateString()}
+            </div>
           </div>
-
-          {item.genre && <Tag value={item.genre} />}
         </div>
       )}
     />

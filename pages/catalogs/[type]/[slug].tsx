@@ -1,21 +1,20 @@
+import ImageColophon from "components/Catalog/SourceImage";
 import H1 from "components/Markdown/H1";
 import H3 from "components/Markdown/H3";
 import Tag from "components/Tag";
 import { fetchAllRecords } from "lib/airtable";
-import { LEFTHAND_COLUMN_SIZE } from "lib/constants";
 import { fetch } from "lib/content";
 import { Type } from "lib/data";
 import { MDXRemote } from "next-mdx-remote";
+import Head from "node_modules/next/head";
 
 const CatalogPage = ({ item, quotes }) => (
   <div>
+    <Head>
+      <title>{item.title}</title>
+    </Head>
     <div className="float-left mr-8 mb-2">
-      <img
-        src={item.image}
-        alt={item.title}
-        style={{ maxWidth: LEFTHAND_COLUMN_SIZE }}
-        className="rounded-lg"
-      />
+      <ImageColophon image={item.image} />
     </div>
     <H1>{item.title}</H1>
 
@@ -24,6 +23,7 @@ const CatalogPage = ({ item, quotes }) => (
         {item.author} • {item.year}
       </div>
     )}
+    <div className="my-4">{item.genre && <Tag value={item.genre} />}</div>
     <div className="my-4 text-lg">
       {item.description ? (
         <MDXRemote {...item.description} />
@@ -33,10 +33,11 @@ const CatalogPage = ({ item, quotes }) => (
     </div>
     <div className="my-4 text-gray-700 space-x-4 flex">
       <div className="flex-1">
-        {item.rating}/10 •{" "}
+        <div className="text-brand text-xl">
+          {"✭".repeat(Math.round(item.rating / 2))}
+        </div>
         {item.date && new Date(item.date).toLocaleDateString()}
       </div>
-      {item.genre && <Tag value={item.genre} />}
     </div>
     {quotes.length > 0 && (
       <div>
