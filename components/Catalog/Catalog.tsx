@@ -1,11 +1,26 @@
+import { LEFTHAND_COLUMN_SIZE } from "lib/constants";
+import Head from "next/head";
+import Link from "next/link";
+import { MDXRemote } from "next-mdx-remote";
 import React from "react";
+
 import Icon from "../../components/Icon";
 import H1 from "../../components/Markdown/H1";
 import Notice from "../../components/Notice";
-import { MDXRemote } from "next-mdx-remote";
-import Link from "next/link";
-import { LEFTHAND_COLUMN_SIZE } from "lib/constants";
-import Head from "next/head";
+
+type CatalogProps = {
+  title: string;
+  rss: string;
+  preamble: any;
+  filters: {
+    id: string;
+    label: string;
+    filter: (item: any) => boolean;
+  }[];
+  items: any[];
+  lefthandComponent?: (item: any) => React.ReactNode;
+  righthandComponent?: (item: any) => React.ReactNode;
+};
 
 const Catalog = ({
   title,
@@ -15,7 +30,7 @@ const Catalog = ({
   items,
   lefthandComponent,
   righthandComponent,
-}) => {
+}: CatalogProps) => {
   const [filter, setFilter] = React.useState("all");
   const activeFilter = filters.find((f) => f.id === filter);
 
@@ -66,12 +81,14 @@ const Catalog = ({
           .filter(activeFilter ? activeFilter.filter : () => true)
           .map((item) => (
             <div key={item.id} className="md:flex md:space-x-8 md:items-start">
-              <div
-                style={{ maxWidth: LEFTHAND_COLUMN_SIZE }}
-                className="space-y-2 md:sticky top-16 inline-block float-left mr-8"
-              >
-                {lefthandComponent(item)}
-              </div>
+              {lefthandComponent && (
+                <div
+                  style={{ maxWidth: LEFTHAND_COLUMN_SIZE }}
+                  className="space-y-2 md:sticky top-16 inline-block float-left mr-8"
+                >
+                  {lefthandComponent(item)}
+                </div>
+              )}
               {righthandComponent(item)}
             </div>
           ))}

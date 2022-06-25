@@ -1,6 +1,7 @@
-import Icon from "./Icon";
 import { LEFTHAND_COLUMN_SIZE } from "lib/constants";
 import Head from "next/head";
+
+import Icon from "./Icon";
 
 const MarkdownPage = ({ meta, children }) => (
   <div>

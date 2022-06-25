@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { LEFTHAND_COLUMN_SIZE } from "lib/constants";
+import Link from "next/link";
 
 export const Header = () => {
   return (

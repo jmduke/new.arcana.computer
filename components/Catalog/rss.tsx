@@ -1,6 +1,6 @@
 import { Feed } from "feed";
-import { Item } from "lib/data";
 import fs from "fs";
+import { Item } from "lib/data";
 
 const SITE_URL = "https://arcana.computer";
 const AUTHOR = {

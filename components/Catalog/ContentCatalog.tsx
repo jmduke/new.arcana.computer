@@ -1,19 +1,9 @@
-import ColophonItem from "./ColophonItem";
-import Catalog from "./Catalog";
-import Icon from "../Icon";
-import { MDXRemote } from "next-mdx-remote";
+import Tag from "components/Tag";
 import Link from "next/link";
-import TextColophon from "./TextColophon";
+import { MDXRemote } from "next-mdx-remote";
 
-const ContentColophon = ({ item }) => (
-  <div>
-    {item.image ? (
-      <img src={item.image} alt={item.title} className="rounded-lg" />
-    ) : (
-      <TextColophon>No image.</TextColophon>
-    )}
-  </div>
-);
+import Catalog from "./Catalog";
+import ImageColophon from "./SourceImage";
 
 const ContentCatalog = ({ title, rss, preamble, filters, items, name }) => {
   return (
@@ -23,7 +13,7 @@ const ContentCatalog = ({ title, rss, preamble, filters, items, name }) => {
       preamble={preamble}
       filters={filters}
       items={items}
-      lefthandComponent={(item) => <ContentColophon item={item} />}
+      lefthandComponent={(item) => <ImageColophon image={item.image} />}
       righthandComponent={(item) => (
         <div className="flex-1">
           <Link href={`/catalogs/${name}/${item.slug}`}>
@@ -44,11 +34,7 @@ const ContentCatalog = ({ title, rss, preamble, filters, items, name }) => {
             {item.date && new Date(item.date).toLocaleDateString()}
           </div>
 
-          {item.genre && (
-            <div className="rounded-full bg-subtle text-sm inline-block px-3">
-              <ColophonItem icon={<Icon.Tag />} value={item.genre} />
-            </div>
-          )}
+          {item.genre && <Tag value={item.genre} />}
         </div>
       )}
     />

@@ -1,11 +1,11 @@
-import { fetch } from "lib/content";
-import { fetchAllRecords } from "lib/airtable";
-
-import { MDXRemote } from "next-mdx-remote";
-import Icon from "components/Icon";
-import { Type } from "lib/data";
+import H1 from "components/Markdown/H1";
 import H3 from "components/Markdown/H3";
-import ColophonItem from "components/Catalog/ColophonItem";
+import Tag from "components/Tag";
+import { fetchAllRecords } from "lib/airtable";
+import { LEFTHAND_COLUMN_SIZE } from "lib/constants";
+import { fetch } from "lib/content";
+import { Type } from "lib/data";
+import { MDXRemote } from "next-mdx-remote";
 
 const CatalogPage = ({ item, quotes }) => (
   <div>
@@ -13,11 +13,11 @@ const CatalogPage = ({ item, quotes }) => (
       <img
         src={item.image}
         alt={item.title}
-        style={{ maxWidth: "12rem" }}
+        style={{ maxWidth: LEFTHAND_COLUMN_SIZE }}
         className="rounded-lg"
       />
     </div>
-    <div className="text-2xl font-bold font-serif">{item.title}</div>
+    <H1>{item.title}</H1>
 
     {item.author && item.year && (
       <div className="text-lg uppercase text-gray-600">
@@ -36,22 +36,20 @@ const CatalogPage = ({ item, quotes }) => (
         {item.rating}/10 •{" "}
         {item.date && new Date(item.date).toLocaleDateString()}
       </div>
-      {item.genre && (
-        <div className="rounded-full bg-subtle text-sm inline-block px-3">
-          <ColophonItem icon={<Icon.Tag />} value={item.genre} />
+      {item.genre && <Tag value={item.genre} />}
+    </div>
+    {quotes.length > 0 && (
+      <div>
+        <H3>Highlights</H3>
+        <div className="space-y-8">
+          {quotes.map((quote, i) => (
+            <div key={i} className="text-lg">
+              <span className="bg-yellow-100">{quote}</span>
+            </div>
+          ))}
         </div>
-      )}
-    </div>
-    <div>
-      <H3>Highlights</H3>
-      <div className="space-y-8">
-        {quotes.map((quote, i) => (
-          <div key={i} className="text-lg">
-            <span className="bg-yellow-100">{quote}</span>
-          </div>
-        ))}
       </div>
-    </div>
+    )}
   </div>
 );
 

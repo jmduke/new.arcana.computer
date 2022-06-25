@@ -1,6 +1,7 @@
+import { Item } from "lib/data";
+
 import Catalog from "../../components/Catalog/ContentCatalog";
 import { getStaticPropsFactory } from "../../components/Catalog/lib";
-import { Item } from "lib/data";
 
 const filters = [
   {

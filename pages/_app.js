@@ -1,23 +1,25 @@
-import Header from "../components/Scaffolding/Header";
-import { MDXProvider } from "@mdx-js/react";
-import P from "../components/Markdown/P";
 import "../styles/globals.css";
-import Li from "../components/Markdown/Li";
-import Ul from "../components/Markdown/Ul";
-import H1 from "../components/Markdown/H1";
-import H2 from "../components/Markdown/H2";
-import H3 from "../components/Markdown/H3";
-import Wikilink from "../components/Markdown/Wikilink";
-import A from "../components/Markdown/A";
-import Ol from "../components/Markdown/Ol";
-import Pre from "../components/Markdown/Pre";
-import Blockquote from "../components/Markdown/Blockquote";
 import "littlefoot/dist/littlefoot.css";
-import Script from "next/script";
+
+import { MDXProvider } from "@mdx-js/react";
 import Footer from "components/Scaffolding/Footer";
 import * as Fathom from "fathom-client";
 import { useRouter } from "next/router";
+import Script from "next/script";
 import { useEffect } from "react";
+
+import A from "../components/Markdown/A";
+import Blockquote from "../components/Markdown/Blockquote";
+import H1 from "../components/Markdown/H1";
+import H2 from "../components/Markdown/H2";
+import H3 from "../components/Markdown/H3";
+import Li from "../components/Markdown/Li";
+import Ol from "../components/Markdown/Ol";
+import P from "../components/Markdown/P";
+import Pre from "../components/Markdown/Pre";
+import Ul from "../components/Markdown/Ul";
+import Wikilink from "../components/Markdown/Wikilink";
+import Header from "../components/Scaffolding/Header";
 
 const FATHOM_TRACKING_CODE = "PTBGXOPS";
 const PRODUCTION_DOMAIN = "arcana.computer";

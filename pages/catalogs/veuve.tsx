@@ -1,9 +1,8 @@
-import { fetchAllRecords } from "lib/airtable";
-
 import Catalog from "components/Catalog/Catalog";
-import { MDXRemote } from "next-mdx-remote";
 import TextColophon from "components/Catalog/TextColophon";
-import { compile } from "components/Catalog/lib";
+import { fetchAllRecords } from "lib/airtable";
+import compile from "lib/compile";
+import { MDXRemote } from "next-mdx-remote";
 
 const BaseCatalog = ({ title, rss, preamble, filters, items }) => {
   return (

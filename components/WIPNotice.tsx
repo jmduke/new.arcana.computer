@@ -1,5 +1,5 @@
-import SubscribeForm from "./SubscribeForm";
 import Icon from "./Icon";
+import SubscribeForm from "./SubscribeForm";
 import Widget from "./Widget";
 
 const WIPNotice = ({ todos }) => (

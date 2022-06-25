@@ -1,8 +1,8 @@
-import Catalog from "./Catalog";
 import { MDXRemote } from "next-mdx-remote";
-import TextColophon from "./TextColophon";
 import Link from "node_modules/next/link";
-import { Type } from "lib/data";
+
+import Catalog from "./Catalog";
+import ImageColophon from "./SourceImage";
 
 const CONTENT_TYPE_TO_TYPE_SLUG: { [key: string]: string } = {
   Book: "books",
@@ -19,17 +19,9 @@ const IncrementingCatalog = ({ title, rss, preamble, filters, items }) => {
       preamble={preamble}
       filters={filters}
       items={items}
-      lefthandComponent={(item) =>
-        item.source && item.source.image ? (
-          <img
-            src={item.source.image}
-            alt={item.source.image}
-            className="rounded-lg"
-          />
-        ) : (
-          <TextColophon>No image.</TextColophon>
-        )
-      }
+      lefthandComponent={(item) => (
+        <ImageColophon image={item.source && item.source.image} />
+      )}
       righthandComponent={(item) => (
         <div className="flex-1">
           {item.title && <div className="text-lg font-bold">{item.title}</div>}

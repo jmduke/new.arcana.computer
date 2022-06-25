@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import Widget from "./Widget";
 
 type Status = "placeholder" | "draft" | "published";
@@ -54,9 +55,9 @@ const LINKS: Section[] = [
         status: "placeholder",
       },
       {
-        title: "Microblog",
-        href: "/catalogs/snippets",
-        status: "placeholder",
+        title: "Blog",
+        href: "/blog",
+        status: "published",
       },
       {
         title: "Veuve Clicquot",

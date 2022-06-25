@@ -3,7 +3,17 @@ import Airtable from "airtable";
 const API_KEY = "keyX4yPY1qYqq1pad";
 const TABLE_ID = "app5RDJQQni8Itd2D";
 
-export const fetchAllRecords = async (table: string): Promise<any[]> => {
+type Table =
+  | "Notebook"
+  | "Dictionary"
+  | "Content"
+  | "Currently"
+  | "Veuve"
+  | "Press"
+  | "Snippets"
+  | "Years";
+
+export const fetchAllRecords = async (table: Table): Promise<any[]> => {
   Airtable.configure({ apiKey: API_KEY });
   const base = Airtable.base(TABLE_ID);
   const records = new Promise((resolve: (value: any[]) => void, reject) => {

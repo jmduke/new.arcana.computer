@@ -1,17 +1,8 @@
-import { Type } from "../../lib/data";
-import remarkGfm from "remark-gfm";
+import compile from "lib/compile";
 
-import { serialize } from "next-mdx-remote/serialize";
 import { fetch } from "../../lib/content";
+import { Type } from "../../lib/data";
 import { generate as generateRSS } from "./rss";
-
-export const compile = async (text: string) =>
-  await serialize(text, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [],
-    },
-  });
 
 const getStaticPropsFactory = (preamble: string, type: Type, path: string) => {
   async function getStaticProps() {

@@ -1,7 +1,8 @@
-import type { Item, Type } from "./data";
-import { fetchAllRecords } from "./airtable";
-import { compile } from "components/Catalog/lib";
 import { marked } from "marked";
+
+import { fetchAllRecords } from "./airtable";
+import compile from "./compile";
+import type { Item, Type } from "./data";
 import slugify from "./slugify";
 
 const mungeRecord = async (record: any): Promise<Item> => {
