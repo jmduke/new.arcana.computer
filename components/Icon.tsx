@@ -1,4 +1,9 @@
-const Wrapper = ({ width, children }) => (
+type IconProps = {
+  width?: string;
+  children: React.ReactNode;
+};
+
+const Wrapper = ({ width, children }: IconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="h-6 w-6"
