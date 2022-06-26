@@ -58,9 +58,11 @@ export const mungeRecord = async (record: any): Promise<Blog> => {
 
 export async function getStaticProps() {
   const rawRecords = await fetchAllRecords("Snippets");
-  const items = await Promise.all(
-    rawRecords.map(async (record) => await mungeRecord(record))
-  );
+  const items = [
+    ...(await Promise.all(
+      rawRecords.map(async (record) => await mungeRecord(record))
+    )),
+  ].sort((a, b) => b.date - a.date);
   return {
     props: {
       items,
