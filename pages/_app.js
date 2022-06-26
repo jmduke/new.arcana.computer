@@ -35,6 +35,7 @@ function App({ Component, pageProps }) {
 
     function onRouteChangeComplete() {
       Fathom.trackPageview();
+      littlefoot.littlefoot();
     }
     router.events.on("routeChangeComplete", onRouteChangeComplete);
     return () => {

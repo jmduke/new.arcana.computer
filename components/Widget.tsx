@@ -1,6 +1,6 @@
 const Widget = ({ label, items }) => {
   return (
-    <div className="my-8">
+    <div className="my-4 lg:my-8">
       <div className="rounded-t-lg bg-subtler border-solid border-subtler border border-b-0 uppercase font-bold text-sm py-2 px-4">
         {label}
       </div>

@@ -47,7 +47,7 @@ const LINKS: Section[] = [
       {
         title: "Project ideas",
         href: "/catalog/project-ideas",
-        status: "placeholder",
+        status: "published",
       },
       {
         title: "Press",
@@ -169,7 +169,7 @@ const LINKS: Section[] = [
 ];
 
 const TableOfContents = () => (
-  <div className="grid grid-cols-2 grid-flow-rows-dense gap-8 my-4">
+  <div className="grid grid-cols-2 grid-flow-rows-dense gap-4 lg:gap-8 my-4">
     {[
       [0, 2],
       [2, 6],

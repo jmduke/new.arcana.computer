@@ -80,7 +80,10 @@ const Catalog = ({
         {items
           .filter(activeFilter ? activeFilter.filter : () => true)
           .map((item) => (
-            <div key={item.id} className="md:flex md:space-x-8 md:items-start">
+            <div
+              key={item.id}
+              className="md:flex md:space-x-8 md:items-start clear-left"
+            >
               {lefthandComponent && (
                 <div
                   style={{ maxWidth: LEFTHAND_COLUMN_SIZE }}

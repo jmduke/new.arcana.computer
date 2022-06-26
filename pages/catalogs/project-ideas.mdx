@@ -1,0 +1,48 @@
+# Project ideas
+
+I have a lot of ideas. Most of them are reasonable and, I think, meager — my mind gravitates towards things that are:
+
+1. "finishable" in a meaningful sense
+2. iteratively better than current solutions rather than completely new things
+3. have an obvious path to small profitability but no obvious path to venture-scale outcome
+
+This is my _actual_ list of project ideas, not some sanitized list for public consumption. If I start something new,
+it's going to come from here! Please take these things; my desire to build them is far outweighed by my desire for them
+to exist. (And if you do, [email me](mailto:me@jmduke.com) so I can play around with it.)
+
+(Along that whole _actual_ list, not sanitized list thing — some of these might be a bit inscrutable. Apologies, but just ask for clarification!)
+
+### The ideas
+
+1. A hosted and rated instance of [queryparser](https://github.com/uber/queryparser), which is a very useful tool for data organizations that very few people use because standing up and deploying Haskell is incredibly annoying.
+2. s1.fyi
+3. Hard copies of PEP
+4. **[ListenNotes](https://www.listennotes.com/) for newsletters.** In general, I think the metadata & infrastructure layer for newsletters is very much in its infancy: similar to where podcasts were a decade or so ago.
+5. Bedsprout
+6. **Plaid for DNS providers**. It's incredibly annoying to manage DNS records for SaaS apps like [Buttondown](https://buttondown.email) where you need to ask users to set records; even very technical ones will run into esoteric issues.
+7. A simple app that hooks into your GitHub repository, parses your Pipfile/Gemfile/etc, and emails you periodically with information about new major and minor releases that are of interest to you.
+8. A microsite that is an easier and more interesting display of [the biggest tech mergers of all time](https://www.pcmag.com/news/the-biggest-tech-mergers-and-acquisitions-of-all-time).
+9. A blog for "pro tips". My [former employer](https://stripe.com) had a Slack channel for this — aptly named #protips — and the number of very small but useful things I learned from lurking there was incredibly high.
+10. A blog (or network of blogs) centered around easy writing & reading of friction logs.
+11. “How much does this meeting cost” hooked into levels.fyi
+12. An analytics & insights layer on top of GitHub Issues.
+13. A nicer way to [find your representatives and their voting history](https://www.commoncause.org/find-your-representative/).
+14. An app that, given an image, pulls out the fonts used in the image. [^2]
+15. An app that is like blank.page but auto-appends the timestamp for taking meeting notes
+16. A local-first web app for tracking periodicity-heavy workouts like SBS 2.0.
+17. A basic SaaS app wrapper around Google's Postmaster APIs. [^1]
+18. A safari extension to force you to add accessibility before tweeting images
+19. [Locket.camera](https://locket.camera/), but for sharing your calendar with someone. Me and my fiance (and I'm sure countless couples around the world) have a morning routine of texting each other a screenshot of our calendar; this would ameliorate that.
+20. A more pleasant version of [TwitchTracker](https://twitchtracker.com/statistics), the data for which is freely and ergonomically offered by [Twitch](https://dev.twitch.tv/docs/api/reference).
+
+[^1]: In general, I am bullish on the genre of app that is "take an annoying but incredibly useful API offered by Google and make it pleasant to interact with." For example, [Briefmetrics.](https://briefmetrics.com/)
+[^2]: Googling reveals that this already exists, but simply does not work. The web is littered with tools that were made ten years ago that can be trivially made much better and faster.
+
+import MarkdownPage from "components/MarkdownPage";
+export const meta = {
+  date: "6/26/2022",
+  title: "Project ideas",
+};
+export default ({ children }) => (
+  <MarkdownPage meta={meta}>{children}</MarkdownPage>
+);

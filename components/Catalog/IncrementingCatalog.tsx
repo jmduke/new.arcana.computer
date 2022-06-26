@@ -40,7 +40,8 @@ const IncrementingCatalog = ({ title, rss, preamble, filters, items }) => {
                 }/${item.source.slug}`}
               >
                 <span className="text-brand underline cursor-pointer">
-                  {item.source.title}
+                  {item.source.title}{" "}
+                  {item.source.author && `(${item.source.author})`}
                 </span>
               </Link>
             ) : (
