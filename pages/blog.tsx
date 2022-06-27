@@ -1,8 +1,11 @@
 import BaseCatalog from "components/Catalog/Catalog";
+import { generate as generateRSS } from "components/Catalog/rss";
 import H2 from "components/Markdown/H2";
 import { fetchAllRecords } from "lib/airtable";
 import compile from "lib/compile";
+import { SITE_URL } from "lib/constants";
 import slugify from "lib/slugify";
+import { marked } from "marked";
 import { MDXRemote } from "next-mdx-remote";
 import Link from "node_modules/next/link";
 
@@ -10,9 +13,12 @@ type Blog = {
   id: string;
   title: string;
   description: any;
+  htmlDescription: string;
   date: number;
   slug: string;
 };
+
+const RSS_PATH = "/rss/blog.xml";
 
 const Preamble = `
 For topics that aren't quite essays but aren't quite tweets, either. (A self-imposed rule: no entry here should take longer than ten minutes to write and publish.)
@@ -22,7 +28,7 @@ const Blog = ({ preamble, items }) => {
   return (
     <BaseCatalog
       title="Blog"
-      rss="/rss/blog.xml"
+      rss={RSS_PATH}
       preamble={preamble}
       filters={[]}
       items={items}
@@ -50,6 +56,7 @@ export const mungeRecord = async (record: any): Promise<Blog> => {
     description: record.fields.Content
       ? await compile(record.fields.Content)
       : null,
+    htmlDescription: marked.parse(record.fields.Content),
     date: record.fields.Date ? Date.parse(record.fields.Date) : null,
     title: record.fields.Name,
     slug: slugify(record.fields.Name),
@@ -63,6 +70,17 @@ export async function getStaticProps() {
       rawRecords.map(async (record) => await mungeRecord(record))
     )),
   ].sort((a, b) => b.date - a.date);
+  await generateRSS(
+    items.map((i) => {
+      return {
+        title: i.title,
+        date: new Date(i.date),
+        html: i.htmlDescription,
+        url: `${SITE_URL}/blog/${i.slug}`,
+      };
+    }),
+    "blog"
+  );
   return {
     props: {
       items,

@@ -1,5 +1,5 @@
 import H1 from "components/Markdown/H1";
-import SubscribeForm from "components/SubscribeForm";
+import SubscribeFormWidget from "components/SubscribeFormWidget";
 import Tag from "components/Tag";
 import Widget from "components/Widget";
 import { fetchAllRecords } from "lib/airtable";
@@ -49,14 +49,7 @@ const CatalogPage = ({ item }) => (
       </div>
       {item.tags && <Tag value={item.tags} />}
     </div>
-    <div className="my-4 lg:my-8">
-      <div className="rounded-t-lg bg-subtler border-solid border-subtler border border-b-0 uppercase font-bold text-sm py-2 px-4">
-        Want to read more?
-      </div>
-      <div className="bg-subtle p-4 border-solid border-subtler border border-t-0 rounded-b-lg">
-        <SubscribeForm />
-      </div>
-    </div>
+    <SubscribeFormWidget />
   </div>
 );
 

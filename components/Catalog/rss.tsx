@@ -1,15 +1,21 @@
 import { Feed } from "feed";
 import fs from "fs";
-import { Item } from "lib/data";
+import { SITE_URL } from "lib/constants";
 
-const SITE_URL = "https://arcana.computer";
 const AUTHOR = {
   name: "Justin Duke",
   email: "me@jmduke.com",
   link: "https://twitter.com/jmduke",
 };
 
-export const generate = async (items: Item[], name: string) => {
+type RSSItem = {
+  title: string;
+  html: string;
+  url: string;
+  date: Date;
+};
+
+export const generate = async (items: RSSItem[], name: string) => {
   const date = new Date();
   const feed = new Feed({
     title: `${name} · arcana.computer`,
@@ -26,16 +32,15 @@ export const generate = async (items: Item[], name: string) => {
     },
   });
   items.map((item) => {
-    const url = `${SITE_URL}/catalogs/${name}`;
     feed.addItem({
       title: item.title || "",
-      id: url,
-      link: url,
-      description: item.htmlDescription || "",
-      content: item.htmlDescription || "",
+      id: item.url,
+      link: item.url,
+      description: item.html,
+      content: item.html,
       author: [AUTHOR],
       contributor: [AUTHOR],
-      date: item.date ? new Date(item.date) : new Date(),
+      date: item.date,
     });
   });
   fs.mkdirSync("./public/rss", { recursive: true });

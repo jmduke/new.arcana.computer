@@ -1,7 +1,7 @@
 import ImageColophon from "components/Catalog/SourceImage";
 import H1 from "components/Markdown/H1";
 import H3 from "components/Markdown/H3";
-import SubscribeForm from "components/SubscribeForm";
+import SubscribeFormWidget from "components/SubscribeFormWidget";
 import Tag from "components/Tag";
 import { fetchAllRecords } from "lib/airtable";
 import { fetch } from "lib/content";
@@ -52,14 +52,7 @@ const CatalogPage = ({ item, quotes }) => (
         </div>
       </div>
     )}
-    <div className="my-4 lg:my-8">
-      <div className="rounded-t-lg bg-subtler border-solid border-subtler border border-b-0 uppercase font-bold text-sm py-2 px-4">
-        Want to read more?
-      </div>
-      <div className="bg-subtle p-4 border-solid border-subtler border border-t-0 rounded-b-lg">
-        <SubscribeForm />
-      </div>
-    </div>
+    <SubscribeFormWidget />
   </div>
 );
 
