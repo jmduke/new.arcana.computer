@@ -14,7 +14,7 @@ export type Item = {
   image?: string;
 };
 
-export type Type = "Book" | "Game" | "Movie" | "Album";
+export type Type = "Book" | "Game" | "Movie" | "Album" | "Play" | "Television";
 
 export type Book = Item & {
   author: string;
