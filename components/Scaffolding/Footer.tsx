@@ -14,7 +14,7 @@ const Footer = () => {
   const path = router.pathname;
 
   return (
-    <div className="max-w-prose mx-auto text-center text-gray-700 py-10">
+    <div className="max-w-scaffold mx-auto text-center text-gray-700 py-10">
       © 2022 Justin Duke •{" "}
       {FOOTER_STRINGS[(path.length - 1) % FOOTER_STRINGS.length]}
     </div>

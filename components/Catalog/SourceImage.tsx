@@ -2,7 +2,7 @@ import { LEFTHAND_COLUMN_SIZE } from "lib/constants";
 
 import TextColophon from "./TextColophon";
 
-const ImageColophon = ({ image }) =>
+const ImageColophon = ({ image, alt }) =>
   image ? (
     <img
       src={image}
@@ -11,7 +11,7 @@ const ImageColophon = ({ image }) =>
       style={{ maxWidth: LEFTHAND_COLUMN_SIZE }}
     />
   ) : (
-    <TextColophon>No image.</TextColophon>
+    <TextColophon>{alt}</TextColophon>
   );
 
 export default ImageColophon;

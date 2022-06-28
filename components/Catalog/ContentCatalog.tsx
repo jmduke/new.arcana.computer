@@ -1,3 +1,5 @@
+import H2 from "components/Markdown/H2";
+import H3 from "components/Markdown/H3";
 import Tag from "components/Tag";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote";
@@ -13,13 +15,29 @@ const ContentCatalog = ({ title, rss, preamble, filters, items, name }) => {
       preamble={preamble}
       filters={filters}
       items={items}
-      lefthandComponent={(item) => <ImageColophon image={item.image} />}
+      lefthandComponent={(item) => (
+        <Link href={`/catalogs/${name}/${item.slug}`}>
+          <div className="cursor-pointer relative group">
+            <a className="group-hover:brightness-0">
+              <ImageColophon image={item.image} alt={item.title} />
+            </a>
+            <div className="absolute top-4 bottom-4 left-8 right-8 invisible group-hover:visible">
+              <div className="items-center text-center flex h-48">
+                <div className="m-auto text-white">
+                  <H3>{item.title}</H3>
+                  <div className="text-brand">
+                    {"✭".repeat(Math.round(item.rating / 2))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Link>
+      )}
       righthandComponent={(item) => (
         <div className="flex-1">
           <Link href={`/catalogs/${name}/${item.slug}`}>
-            <div className="text-2xl font-bold cursor-pointer font-serif">
-              {item.title}
-            </div>
+            <H2>{item.title}</H2>
           </Link>
           {item.author && item.year && (
             <div className="text-lg uppercase text-gray-600">

@@ -5,7 +5,13 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    maxWidth: {
+      scaffold: "38rem",
+    },
     extend: {
+      spacing: {
+        oversize: "64rem",
+      },
       fontFamily: {
         serif: ["Souvenir"],
         sans: ["IBM Plex Sans"],

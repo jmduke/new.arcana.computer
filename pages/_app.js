@@ -46,7 +46,7 @@ function App({ Component, pageProps }) {
   return (
     <div className="bg-background">
       <Header />
-      <div className="max-w-prose md:mx-auto mx-4">
+      <div className="max-w-scaffold md:mx-auto mx-4">
         <MDXProvider
           components={{
             h1: H1,
