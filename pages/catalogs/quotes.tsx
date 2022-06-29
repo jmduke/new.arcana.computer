@@ -85,7 +85,7 @@ const filters = [
       if (!("url" in i.source)) {
         return false;
       }
-      return i.source.url.includes("twitter");
+      return i.source.url && i.source.url.includes("twitter");
     },
   },
 ];

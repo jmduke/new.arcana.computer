@@ -22,6 +22,26 @@ const Star = () => (
   </Wrapper>
 );
 
+const Grid = () => (
+  <Wrapper>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+    />
+  </Wrapper>
+);
+
+const List = () => (
+  <Wrapper>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M4 6h16M4 10h16M4 14h16M4 18h16"
+    />
+  </Wrapper>
+);
+
 const Chip = () => (
   <Wrapper>
     <path
@@ -82,6 +102,16 @@ const Calendar = () => (
   </Wrapper>
 );
 
+const Collection = () => (
+  <Wrapper>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+    />
+  </Wrapper>
+);
+
 const ExternalLink = () => (
   <Wrapper>
     <path
@@ -113,6 +143,9 @@ const exports = {
   ExternalLink,
   RSS,
   Book,
+  Grid,
+  List,
+  Collection,
 };
 
 export default exports;

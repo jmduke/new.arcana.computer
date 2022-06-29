@@ -1,3 +1,4 @@
+import { Listbox } from "@headlessui/react";
 import { LEFTHAND_COLUMN_SIZE } from "lib/constants";
 import Head from "next/head";
 import Link from "next/link";
@@ -24,6 +25,17 @@ type CatalogProps = {
 
 type DisplayMode = "list" | "grid";
 
+const DISPLAY_MODES = [
+  {
+    mode: "list",
+    icon: <Icon.List />,
+  },
+  {
+    mode: "grid",
+    icon: <Icon.Grid />,
+  },
+];
+
 const Catalog = ({
   title,
   rss,
@@ -33,8 +45,10 @@ const Catalog = ({
   lefthandComponent,
   righthandComponent,
 }: CatalogProps) => {
-  const [filter, setFilter] = React.useState("all");
-  const activeFilter = filters.find((f) => f.id === filter);
+  const [filter, setFilter] = React.useState(
+    filters.find((f) => f.id === "all").label
+  );
+  const activeFilter = filters.find((f) => f.label === filter);
   const [mode, setMode] = React.useState("list");
 
   return (
@@ -57,48 +71,50 @@ const Catalog = ({
       </Notice>
       <MDXRemote {...preamble} />
       {filters.length > 0 && (
-        <div className="bg-subtle rounded-lg py-2 px-4 text-sm flex">
-          <div className="flex-1">
-            <div className="flex">
-              <strong className="mr-2">Display as:</strong>
-              <div className="flex space-x-2">
-                {["grid", "list"].map((f) => (
-                  <label
-                    htmlFor={f}
-                    key={f}
-                    className="flex items-center space-x-1"
-                  >
-                    <input
-                      type="radio"
-                      name="mode"
-                      id={f}
-                      checked={f === mode}
-                      onChange={() => setMode(f)}
-                    />
-                    <div className="capitalize">{f}</div>
-                  </label>
-                ))}
-              </div>
+        <div className="bg-subtle rounded-lg py-2 px-4 text-sm flex relative">
+          <div>
+            <div className="relative">
+              <Listbox value={mode} onChange={setMode}>
+                <Listbox.Button>
+                  <div className="hover:bg-subtler relative flex items-center space-x-2 capitalize border border-subtler border-solid px-3 py-1 rounded-lg">
+                    {DISPLAY_MODES.find((m) => m.mode === mode)?.icon}
+                    <div>{mode}</div>
+                  </div>
+                </Listbox.Button>
+                <Listbox.Options className="w-full absolute mt-2 overflow-auto bg-subtle border border-subtler border-solid px-3 py-1 rounded-lg z-10">
+                  {DISPLAY_MODES.map((dm) => (
+                    <Listbox.Option key={dm.mode} value={dm.mode}>
+                      <div className="flex items-center space-x-2 capitalize cursor-pointer hover:bg-subtler">
+                        {dm.icon}
+                        <div>{dm.mode}</div>
+                      </div>
+                    </Listbox.Option>
+                  ))}
+                </Listbox.Options>
+              </Listbox>
             </div>
           </div>
-          <div className="space-x-2 flex">
-            <strong>Filter to:</strong>
-            {filters.map((f) => (
-              <label
-                htmlFor={f.id}
-                key={f.id}
-                className="flex items-center space-x-1"
-              >
-                <input
-                  type="radio"
-                  name="filter"
-                  id={f.id}
-                  checked={f.id === filter}
-                  onChange={() => setFilter(f.id)}
-                />
-                <div>{f.label}</div>
-              </label>
-            ))}
+
+          <div className="flex-1"></div>
+
+          <div className="relative">
+            <Listbox value={filter} onChange={setFilter}>
+              <Listbox.Button>
+                <div className="hover:bg-subtler relative flex items-center space-x-2 capitalize border border-subtler border-solid px-3 py-1 rounded-lg">
+                  <Icon.Collection />
+                  <div>{filter}</div>
+                </div>
+              </Listbox.Button>
+              <Listbox.Options className="w-full absolute mt-2 overflow-auto bg-subtle border border-subtler border-solid px-3 py-1 rounded-lg z-10">
+                {filters.map((f) => (
+                  <Listbox.Option key={f.id} value={f.label}>
+                    <div className="flex items-center space-x-2 capitalize cursor-pointer hover:bg-subtler">
+                      <div>{f.label}</div>
+                    </div>
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </Listbox>
           </div>
         </div>
       )}
