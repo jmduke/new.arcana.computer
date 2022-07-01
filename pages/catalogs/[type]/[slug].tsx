@@ -15,7 +15,7 @@ const CatalogPage = ({ item, quotes }) => (
       <title>{item.title}</title>
     </Head>
     <div className="float-left mr-8 mb-2">
-      <ImageColophon image={item.image} />
+      <ImageColophon image={item.image} alt={item.title} />
     </div>
     <H1>{item.title}</H1>
 

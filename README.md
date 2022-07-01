@@ -1,34 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# new.arcana.computer
 
-## Getting Started
+(At some point, I'll archive the [old site](https://github.com/jmduke/arcana.computer) and rename this one.)
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
+- This is built primarily using [Next.js](https://nextjs.org/).
+- I use [Tailwind CSS](https://tailwindcss.com/) for styling and a healthy dose of [Heroicons](http://heroicons.com) for icons.
+- This site is deployed through [Vercel](https://vercel.com/).
+- Almost all of the data is either authored using [MDX](http://mdxjs.com); structured content like my content catalogs are stored in [Airtable](http://airtable.com).
+
+## Usage
+
+This application requires Node 16.
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+$ git clone https://github.com/jmduke/new.arcana.computer.git
+$ cd new.arcana.computer
+$ npm install
+$ npm run dev
+```

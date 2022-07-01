@@ -20,7 +20,10 @@ const IncrementingCatalog = ({ title, rss, preamble, filters, items }) => {
       filters={filters}
       items={items}
       lefthandComponent={(item) => (
-        <ImageColophon image={item.source && item.source.image} />
+        <ImageColophon
+          image={item.source && item.source.image}
+          alt={item.title}
+        />
       )}
       righthandComponent={(item) => (
         <div className="flex-1">
