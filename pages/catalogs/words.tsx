@@ -36,6 +36,7 @@ const WordsCatalog = ({ preamble, items }) => (
     preamble={preamble}
     items={items}
     filters={[]}
+    name="words"
   />
 );
 

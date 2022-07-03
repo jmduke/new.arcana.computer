@@ -11,7 +11,14 @@ const CONTENT_TYPE_TO_TYPE_SLUG: { [key: string]: string } = {
   Album: "music",
 };
 
-const IncrementingCatalog = ({ title, rss, preamble, filters, items }) => {
+const IncrementingCatalog = ({
+  title,
+  rss,
+  preamble,
+  filters,
+  items,
+  name,
+}) => {
   return (
     <Catalog
       title={title}
@@ -43,12 +50,22 @@ const IncrementingCatalog = ({ title, rss, preamble, filters, items }) => {
                 }/${item.source.slug}`}
               >
                 <span className="text-brand underline cursor-pointer">
-                  {item.source.title}{" "}
-                  {item.source.author && `(${item.source.author})`}
+                  {item.source.title}
+                  {item.source.author && ` (${item.source.author})`}
                 </span>
               </Link>
             ) : (
               item.source.name
+            )}{" "}
+            {item.date && item.name && (
+              <Link href={`/catalogs/${name}/${item.name}`}>
+                <span>
+                  ·{" "}
+                  <span className="cursor-pointer">
+                    {new Date(item.date).toLocaleDateString()}
+                  </span>
+                </span>
+              </Link>
             )}
           </div>
         </div>

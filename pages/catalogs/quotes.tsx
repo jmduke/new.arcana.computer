@@ -16,6 +16,7 @@ const QuotesCatalog = ({ preamble, items }) => (
     preamble={preamble}
     items={items}
     filters={filters}
+    name="quotes"
   />
 );
 
@@ -23,6 +24,7 @@ type Quote = {
   id: string;
   description: any;
   date: number;
+  name: string;
   source:
     | {
         name: string;
@@ -31,7 +33,10 @@ type Quote = {
     | Item;
 };
 
-const mungeRecord = async (record: any, content: any[]): Promise<Quote> => {
+export const mungeRecord = async (
+  record: any,
+  content: any[]
+): Promise<Quote> => {
   const sourceId = record.fields.Source ? record.fields.Source[0] : null;
   const source = sourceId
     ? content.filter((c) => c.id === sourceId)[0]
@@ -41,6 +46,7 @@ const mungeRecord = async (record: any, content: any[]): Promise<Quote> => {
   return {
     id: record.id,
     description: await compile(record.fields.Text),
+    name: record.fields.Name,
     date: record.fields.Date ? Date.parse(record.fields.Date) : null,
     source: source || {
       name: record.fields.Author || null,

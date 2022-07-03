@@ -45,8 +45,9 @@ const Catalog = ({
   lefthandComponent,
   righthandComponent,
 }: CatalogProps) => {
+  const defaultFilter = filters.find((f) => f.id === "all");
   const [filter, setFilter] = React.useState(
-    filters.find((f) => f.id === "all").label
+    defaultFilter ? defaultFilter.label : "all"
   );
   const activeFilter = filters.find((f) => f.label === filter);
   const [mode, setMode] = React.useState("list");
