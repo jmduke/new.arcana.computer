@@ -8,7 +8,7 @@ const AUTHOR = {
   link: "https://twitter.com/jmduke",
 };
 
-type RSSItem = {
+export type RSSItem = {
   title: string;
   html: string;
   url: string;

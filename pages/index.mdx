@@ -3,8 +3,11 @@ import CurrentlyWidget from "../components/CurrentlyWidget";
 import SubscribeForm from "../components/SubscribeForm";
 import Widget from "../components/Widget";
 import { fetchAllRecords } from "lib/airtable";
+import { fetchAll } from "lib/content";
 import fs from "fs";
 import currently from "../public/currently.json";
+import { generate as generateRSS } from "lib/rss";
+import { convertItemToRSS } from "components/Catalog/lib";
 
 Hello! <strong>arcana dot computer</strong> is a weblog from <strong>Justin Duke</strong>. (That's me.)
 
@@ -121,6 +124,7 @@ export async function getStaticProps() {
     };
   });
   fs.writeFileSync(`./public/currently.json`, JSON.stringify(mungedRecords));
+  await generateRSS((await fetchAll()).map(convertItemToRSS), "omnibus");
   return {
     props: {
       items: mungedRecords,

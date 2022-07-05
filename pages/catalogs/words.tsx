@@ -1,9 +1,8 @@
+import Catalog from "components/Catalog/IncrementingCatalog";
 import { fetchAllRecords } from "lib/airtable";
 import compile from "lib/compile";
 import { mungeRecord as mungeContentRecord } from "lib/content";
 import { Item } from "lib/data";
-
-import Catalog from "../../components/Catalog/IncrementingCatalog";
 
 type Word = {
   id: string;

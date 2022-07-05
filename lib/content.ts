@@ -25,16 +25,18 @@ const mungeRecord = async (record: any): Promise<Item> => {
   };
 };
 
-const fetch = async (type: Type): Promise<Item[]> => {
+const fetchAll = async (): Promise<Item[]> => {
   const records = await fetchAllRecords("Content");
   const items = await Promise.all(
     records.map(async (record) => mungeRecord(record))
   );
-  return items
-    .filter((item) => item.type === type)
-    .sort(function (a, b) {
-      return b.date - a.date;
-    });
+  return items.sort(function (a, b) {
+    return b.date - a.date;
+  });
 };
 
-export { fetch, mungeRecord };
+const fetch = async (type: Type): Promise<Item[]> => {
+  return (await fetchAll()).filter((item) => item.type === type);
+};
+
+export { fetch, fetchAll, mungeRecord };

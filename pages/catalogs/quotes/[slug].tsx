@@ -1,9 +1,8 @@
 import DetailPage from "components/DetailPage";
 import { fetchAllRecords } from "lib/airtable";
 import { CONTENT_TYPE_TO_TYPE_SLUG } from "lib/data";
+import { munge, Quote } from "lib/quotes";
 import Link from "node_modules/next/link";
-
-import { mungeRecord } from "../quotes";
 
 const CatalogPage = ({ item }) => (
   <DetailPage
@@ -49,7 +48,7 @@ export async function getStaticProps({ params }) {
   const rawContent = await fetchAllRecords("Content");
   const rawRecords = await fetchAllRecords("Notebook");
   const items = await Promise.all(
-    rawRecords.map(async (record) => mungeRecord(record, rawContent))
+    rawRecords.map(async (record) => munge(record, rawContent))
   );
   const item = items.filter((i) => i.name == params.slug)[0];
   return {
@@ -73,7 +72,7 @@ export async function getStaticPaths() {
   const rawContent = await fetchAllRecords("Content");
   const rawRecords = await fetchAllRecords("Notebook");
   const items = await Promise.all(
-    rawRecords.map(async (record) => mungeRecord(record, rawContent))
+    rawRecords.map(async (record) => munge(record, rawContent))
   );
   const paths = items.map((item) => `/catalogs/quotes/${item.name}`);
   return {

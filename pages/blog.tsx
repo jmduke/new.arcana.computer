@@ -1,10 +1,10 @@
 import BaseCatalog from "components/Catalog/Catalog";
-import { generate as generateRSS } from "components/Catalog/rss";
 import H2 from "components/Markdown/H2";
 import Tag from "components/Tag";
 import { fetchAllRecords } from "lib/airtable";
 import compile from "lib/compile";
 import { SITE_URL } from "lib/constants";
+import { generate as generateRSS } from "lib/rss";
 import slugify from "lib/slugify";
 import { marked } from "marked";
 import { MDXRemote } from "next-mdx-remote";

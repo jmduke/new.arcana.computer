@@ -26,7 +26,6 @@ const PRODUCTION_DOMAIN = "arcana.computer";
 
 function App({ Component, pageProps }) {
   const router = useRouter();
-  console.log(pageProps);
 
   // Cargo-culted from https://vercel.com/guides/deploying-nextjs-using-fathom-analytics-with-vercel.
   useEffect(() => {

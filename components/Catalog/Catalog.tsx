@@ -1,7 +1,6 @@
 import { Listbox } from "@headlessui/react";
 import MetaTags from "components/Scaffolding/MetaTags";
 import { LEFTHAND_COLUMN_SIZE } from "lib/constants";
-import Head from "next/head";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote";
 import React from "react";
