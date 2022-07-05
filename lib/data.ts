@@ -19,3 +19,12 @@ export type Type = "Book" | "Game" | "Movie" | "Album" | "Play" | "Television";
 export type Book = Item & {
   author: string;
 };
+
+export const CONTENT_TYPE_TO_TYPE_SLUG: { [key in Type]: string } = {
+  Book: "books",
+  Game: "games",
+  Movie: "movies",
+  Album: "music",
+  Television: "television",
+  Play: "plays",
+};

@@ -1,15 +1,9 @@
+import { CONTENT_TYPE_TO_TYPE_SLUG } from "lib/data";
 import { MDXRemote } from "next-mdx-remote";
 import Link from "node_modules/next/link";
 
 import Catalog from "./Catalog";
 import ImageColophon from "./SourceImage";
-
-const CONTENT_TYPE_TO_TYPE_SLUG: { [key: string]: string } = {
-  Book: "books",
-  Game: "games",
-  Movie: "movies",
-  Album: "music",
-};
 
 const IncrementingCatalog = ({
   title,

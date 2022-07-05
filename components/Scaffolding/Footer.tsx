@@ -15,7 +15,14 @@ const Footer = () => {
 
   return (
     <div className="max-w-scaffold mx-auto text-center text-gray-700 py-10">
-      © 2022 Justin Duke •{" "}
+      Found an issue on this page?{" "}
+      <a
+        href="https://github.com/jmduke/new.arcana.computer/issues/new"
+        className="underline"
+      >
+        Let me know.
+      </a>
+      <br />© 2022 Justin Duke •{" "}
       {FOOTER_STRINGS[(path.length - 1) % FOOTER_STRINGS.length]}
     </div>
   );

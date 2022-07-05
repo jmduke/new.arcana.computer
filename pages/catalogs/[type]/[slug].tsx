@@ -1,70 +1,50 @@
-import ImageColophon from "components/Catalog/SourceImage";
-import H1 from "components/Markdown/H1";
+import DetailPage from "components/DetailPage";
 import H3 from "components/Markdown/H3";
-import SubscribeFormWidget from "components/SubscribeFormWidget";
-import Tag from "components/Tag";
 import { fetchAllRecords } from "lib/airtable";
 import { fetch } from "lib/content";
-import { Type } from "lib/data";
-import { MDXRemote } from "next-mdx-remote";
-import Head from "node_modules/next/head";
+import { CONTENT_TYPE_TO_TYPE_SLUG, Type } from "lib/data";
 
 const CatalogPage = ({ item, quotes }) => (
-  <div>
-    <Head>
-      <title>{item.title}</title>
-    </Head>
-    <div className="float-left mr-8 mb-2">
-      <ImageColophon image={item.image} alt={item.title} />
-    </div>
-    <H1>{item.title}</H1>
-
-    {item.author && item.year && (
-      <div className="text-lg uppercase text-gray-600">
-        {item.author} • {item.year}
-      </div>
-    )}
-    <div className="my-4">{item.genre && <Tag value={item.genre} />}</div>
-    <div className="my-4 text-lg">
-      {item.description ? (
-        <MDXRemote {...item.description} />
-      ) : (
-        <div>No writeup yet.</div>
-      )}
-    </div>
-    <div className="my-4 text-gray-700 space-x-4 flex">
-      <div className="flex-1">
+  <DetailPage
+    title={item.title}
+    subtitle={item.author && item.year && `${item.author} • ${item.year}`}
+    body={item.description}
+    image={item.image}
+    tags={item.genre}
+    colophon={
+      <div className="flex-1 flex items-center space-x-4">
+        {item.date && (
+          <div className="italic">
+            {new Date(item.date).toLocaleDateString()}
+          </div>
+        )}
         <div className="text-brand text-xl">
           {"✭".repeat(Math.round(item.rating / 2))}
         </div>
-        {item.date && new Date(item.date).toLocaleDateString()}
       </div>
-    </div>
-    {quotes.length > 0 && (
-      <div>
-        <H3>Highlights</H3>
-        <div className="space-y-8">
-          {quotes.map((quote, i) => (
-            <div key={i} className="text-lg">
-              <span className="bg-yellow-100">{quote}</span>
-            </div>
-          ))}
+    }
+    postscript={
+      quotes.length > 0 && (
+        <div>
+          <H3>Highlights</H3>
+          <div className="space-y-8">
+            {quotes.map((quote, i) => (
+              <div key={i} className="text-lg">
+                <span className="bg-yellow-100">{quote}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    )}
-    <SubscribeFormWidget />
-  </div>
+      )
+    }
+  />
 );
 
-const TYPE_SLUG_TO_CONTENT_TYPE: { [key: string]: Type } = {
-  books: "Book",
-  games: "Game",
-  movies: "Movie",
-  music: "Album",
-};
-
 export async function getStaticProps({ params }) {
-  const items = await fetch(TYPE_SLUG_TO_CONTENT_TYPE[params.type]);
+  const type = (Object.keys(CONTENT_TYPE_TO_TYPE_SLUG) as Array<Type>).find(
+    (k: Type) => CONTENT_TYPE_TO_TYPE_SLUG[k] === params.type
+  );
+  const items = await fetch(type);
   const quotes = await fetchAllRecords("Notebook");
   const item = items.filter((i) => i.slug === params.slug)[0];
   const relevantQuotes = quotes
@@ -74,6 +54,16 @@ export async function getStaticProps({ params }) {
     props: {
       item,
       quotes: relevantQuotes,
+      breadcrumbs: [
+        {
+          text: type,
+          href: `/catalogs/${params.type}`,
+        },
+        {
+          text: item.title,
+          href: `/catalogs/${params.type}/${item.slug}`,
+        },
+      ],
     },
   };
 }
@@ -81,12 +71,12 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const paths: string[] = (
     await Promise.all(
-      Object.entries(TYPE_SLUG_TO_CONTENT_TYPE).map(
-        async ([type, contentType]) => {
-          const items = await fetch(contentType);
+      (Object.entries(CONTENT_TYPE_TO_TYPE_SLUG) as Array<[Type, string]>).map(
+        async ([type, slug]) => {
+          const items = await fetch(type);
           return items
             .filter((i) => i.slug !== "")
-            .map((item) => `/catalogs/${type}/${item.slug}`);
+            .map((item) => `/catalogs/${slug}/${item.slug}`);
         }
       )
     )

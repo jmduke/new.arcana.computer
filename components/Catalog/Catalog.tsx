@@ -1,4 +1,5 @@
 import { Listbox } from "@headlessui/react";
+import MetaTags from "components/Scaffolding/MetaTags";
 import { LEFTHAND_COLUMN_SIZE } from "lib/constants";
 import Head from "next/head";
 import Link from "next/link";
@@ -54,9 +55,7 @@ const Catalog = ({
 
   return (
     <div className="space-y-8">
-      <Head>
-        <title>{title}</title>
-      </Head>
+      <MetaTags title={title} description={`My review of ${title}`} />
       <H1>{title}</H1>
       <Notice
         label={

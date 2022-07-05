@@ -1,6 +1,7 @@
 import BaseCatalog from "components/Catalog/Catalog";
 import { generate as generateRSS } from "components/Catalog/rss";
 import H2 from "components/Markdown/H2";
+import Tag from "components/Tag";
 import { fetchAllRecords } from "lib/airtable";
 import compile from "lib/compile";
 import { SITE_URL } from "lib/constants";
@@ -9,13 +10,14 @@ import { marked } from "marked";
 import { MDXRemote } from "next-mdx-remote";
 import Link from "node_modules/next/link";
 
-type Blog = {
+export type BlogPost = {
   id: string;
   title: string;
   description: any;
   htmlDescription: string;
   date: number;
   slug: string;
+  tags: string[];
 };
 
 const RSS_PATH = "/rss/blog.xml";
@@ -44,13 +46,19 @@ const Blog = ({ preamble, items }) => {
           <div className="text-lg">
             {item.description && <MDXRemote {...item.description} />}
           </div>
+          <div className="my-4 text-gray-700 space-x-4 flex">
+            <div className="flex-1">
+              {item.date && new Date(item.date).toLocaleDateString()}
+            </div>
+            {item.tags && <Tag value={item.tags} />}
+          </div>
         </div>
       )}
     />
   );
 };
 
-export const mungeRecord = async (record: any): Promise<Blog> => {
+export const mungeRecord = async (record: any): Promise<BlogPost> => {
   return {
     id: record.id,
     description: record.fields.Content
@@ -60,6 +68,7 @@ export const mungeRecord = async (record: any): Promise<Blog> => {
     date: record.fields.Date ? Date.parse(record.fields.Date) : null,
     title: record.fields.Name,
     slug: slugify(record.fields.Name),
+    tags: record.fields.Tags,
   };
 };
 

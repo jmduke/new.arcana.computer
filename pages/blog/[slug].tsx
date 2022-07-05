@@ -1,56 +1,18 @@
-import H1 from "components/Markdown/H1";
-import SubscribeFormWidget from "components/SubscribeFormWidget";
-import Tag from "components/Tag";
-import Widget from "components/Widget";
+import DetailPage from "components/DetailPage";
 import { fetchAllRecords } from "lib/airtable";
-import compile from "lib/compile";
-import slugify from "lib/slugify";
-import Head from "next/head";
-import { MDXRemote } from "next-mdx-remote";
-
-type Blog = {
-  id: string;
-  title: string;
-  description: any;
-  date: number;
-  slug: string;
-  tags: string[];
-};
-
-const mungeRecord = async (record: any): Promise<Blog> => {
-  return {
-    id: record.id,
-    description: record.fields.Content
-      ? await compile(record.fields.Content)
-      : null,
-    date: record.fields.Date ? Date.parse(record.fields.Date) : null,
-    title: record.fields.Name,
-    slug: slugify(record.fields.Name),
-    tags: record.fields.Tags,
-  };
-};
+import { mungeRecord } from "pages/blog";
 
 const CatalogPage = ({ item }) => (
-  <div>
-    <Head>
-      <title>{item.title}</title>
-    </Head>
-    <H1>{item.title}</H1>
-    <div className="my-4 text-lg">
-      {item.description ? (
-        <MDXRemote {...item.description} />
-      ) : (
-        <div>No writeup yet.</div>
-      )}
-    </div>
-    <div className="my-4 text-gray-700 space-x-4 flex">
-      <div className="flex-1">
+  <DetailPage
+    title={item.title}
+    body={item.description}
+    tags={item.tags}
+    colophon={
+      <div className="flex-1 italic">
         {item.date && new Date(item.date).toLocaleDateString()}
       </div>
-      {item.tags && <Tag value={item.tags} />}
-    </div>
-    <SubscribeFormWidget />
-  </div>
+    }
+  />
 );
 
 export async function getStaticProps({ params }) {
@@ -62,6 +24,16 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       item,
+      breadcrumbs: [
+        {
+          text: "Blog",
+          href: "/blog",
+        },
+        {
+          text: item.title,
+          href: `/blog/${item.slug}`,
+        },
+      ],
     },
   };
 }

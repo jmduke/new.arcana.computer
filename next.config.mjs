@@ -1,5 +1,5 @@
-import remarkGfm from "remark-gfm";
 import createMDX from "@next/mdx";
+import remarkGfm from "remark-gfm";
 
 const nextConfig = {
   reactStrictMode: true,
@@ -7,6 +7,10 @@ const nextConfig = {
 };
 
 const withMDX = createMDX({
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [remarkGfm],

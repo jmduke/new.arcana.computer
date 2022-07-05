@@ -26,6 +26,7 @@ const PRODUCTION_DOMAIN = "arcana.computer";
 
 function App({ Component, pageProps }) {
   const router = useRouter();
+  console.log(pageProps);
 
   // Cargo-culted from https://vercel.com/guides/deploying-nextjs-using-fathom-analytics-with-vercel.
   useEffect(() => {
@@ -44,9 +45,9 @@ function App({ Component, pageProps }) {
   }, [router.events]);
 
   return (
-    <div className="bg-background">
-      <Header />
-      <div className="max-w-scaffold md:mx-auto mx-4">
+    <div className="bg-background flex flex-col h-screen">
+      <Header breadcrumbs={pageProps.breadcrumbs} />
+      <div className="max-w-scaffold md:mx-auto mx-4 flex-grow">
         <MDXProvider
           components={{
             h1: H1,
