@@ -15,6 +15,7 @@ const IncrementingCatalog = ({
 }) => {
   return (
     <Catalog
+      allowSwitchingModes={false}
       title={title}
       rss={rss}
       preamble={preamble}

@@ -46,7 +46,7 @@ const LINKS: Section[] = [
       },
       {
         title: "Project ideas",
-        href: "/catalog/project-ideas",
+        href: "/catalogs/project-ideas",
         status: "published",
       },
       {
