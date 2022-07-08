@@ -1,4 +1,4 @@
-import Catalog from "components/Catalog/IncrementingCatalog";
+import Catalog from "components/Catalog/MiscellanyCatalog";
 import { fetchAllRecords } from "lib/airtable";
 import compile from "lib/compile";
 import { munge, Quote } from "lib/quotes";

@@ -5,14 +5,7 @@ import Link from "node_modules/next/link";
 import Catalog from "./Catalog";
 import ImageColophon from "./SourceImage";
 
-const IncrementingCatalog = ({
-  title,
-  rss,
-  preamble,
-  filters,
-  items,
-  name,
-}) => {
+const MiscellanyCatalog = ({ title, rss, preamble, filters, items, name }) => {
   return (
     <Catalog
       allowSwitchingModes={false}
@@ -69,4 +62,4 @@ const IncrementingCatalog = ({
   );
 };
 
-export default IncrementingCatalog;
+export default MiscellanyCatalog;
