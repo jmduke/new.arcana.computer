@@ -120,8 +120,8 @@ const LINKS: Section[] = [
     title: "Miscellany",
     items: [
       {
-        title: "About",
-        href: "/about",
+        title: "About this site",
+        href: "/about-this-site",
         status: "placeholder",
       },
     ],

@@ -17,6 +17,7 @@ import Li from "../components/Markdown/Li";
 import Ol from "../components/Markdown/Ol";
 import P from "../components/Markdown/P";
 import Pre from "../components/Markdown/Pre";
+import Table from "../components/Markdown/Table";
 import Ul from "../components/Markdown/Ul";
 import Wikilink from "../components/Markdown/Wikilink";
 import Header from "../components/Scaffolding/Header";
@@ -60,6 +61,7 @@ function App({ Component, pageProps }) {
             a: A,
             blockquote: Blockquote,
             del: Wikilink,
+            table: Table,
           }}
         >
           <Component {...pageProps} />
