@@ -122,7 +122,7 @@ const LINKS: Section[] = [
       {
         title: "About this site",
         href: "/about-this-site",
-        status: "placeholder",
+        status: "published",
       },
     ],
   },
