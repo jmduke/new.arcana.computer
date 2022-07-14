@@ -19,13 +19,11 @@ body {
 
 /* Yes, this is a hack because I don't know an easy way to do it in Tailwind */
 blockquote a {
-  display: block;
-  text-align: right;
   font-style: normal;
+  display: block;
   font-weight: bold;
   font-size: 1.125rem !important;
   line-height: 1.75rem !important;
-  margin-top: 0.25rem !important;
 }
 
 blockquote p {

@@ -1,0 +1,233 @@
+# About this site
+
+<Blockquote>
+  What sort of writing could you create if you worked on it (be it ever so
+  rarely) for the next 60 years? What could you do if you started now?
+  <div className="flex items-center mt-2">
+    <img
+      src="https://www.gwern.net/static/img/logo/logo-favicon-small.png"
+      class="w-8 h-8 rounded-full inline-block mr-2 border-solid border-brand border-2"
+    />{" "}
+    <A href="https://www.gwern.net/About#long-site">Gwern</A>
+  </div>
+</Blockquote>
+
+I am going through a serious disenchantment with the concept of _content_. The first time I seriously blogged it was because I was a junior in college who suddenly discovered Hacker News, and was convinced that the most expeditious way I had to break into the industry was to, like, blog about list comprehensions in Python and stuff. That turned into blogging about new Swift APIs and blogging about side projects and tweeting the same zeitgeisty things that a horde of other junior engineers were. I don't mean that as a negative thing — writing those blog posts gave me an early following, a foothold into a world in which I felt (and still feel, to some extent) an outsider, and strengthened my skills as a writer and engineer.
+
+But the process feels empty now. As I write this, a solid portion of my social graph is spending their time investing in Substack content that will be abandoned in much the same way Medium content was abandoned in 2015.
+
+Let me put this another way. Have I told you about why I stopped listening to podcasts? [^13]
+
+I used to listen to a bevy of 'em — news podcasts like [The Daily](https://www.nytimes.com/column/the-daily), tech ones like [Accidental Tech Podcast](https://atp.fm/). They weren't mindblowing, but they felt _good_ — it felt virtuous and pragmatic to keep abreast of the zeitgeist, whether that zeitgeist was cultural events or technical discussions or NBA draft rumors.
+
+One day, though, I made the mistake of accidentally messing up my syncing on my [podcatcher of choice](https://overcast.fm/) by pulling out my iPad that hadn't been touched in a few months for a plane ride. For a few bizarre moments, I caught myself listening to episodes that was three months out of date. What started out as a minor annoyance (oh no, I need to spend the next three hours doing crosswords to the sound of silence!) turned into fascination and finally into horror as I realized just how irrelevant the content was — entire swaths of how I spent my day had the shelf-life of a mere fortnight or less.
+
+Anyway, I'm getting off track. [^5] I want to do a better job of writing things and thinking about things that don't have creation dates or publication dates. _That's_ what's motivating this site.
+
+## Philosophy
+
+### Goals
+
+1. **Fast**. I want this site to be fast to load. "Page speed" is an obvious benefit in of itself, and it seems almost trivial to argue that static sites should be quick to the touch. There are parts of this site — for example, my catalogs, which aggressive pull in thousands of words and hundreds of images — that don't quite meet this bar, but simple pages such as this one do.
+2. **Accessible**. Both as an end of itself and a means to progress my abilities as an a11y-first developer, this site should be as accessible as possible. At the time of this writing, it scores a 92/100 on Lighthouse, which I'm fairly proud of. (The remaining points are coming from missing alt tags from various catalogs, which I will slowly backfill over the course of the next millenium.) (If you know of any areas where I can improve accessibility, please [email me](mailto:me@jmduke.com) and let me know!)
+3. **Durable**. I want a site that I can work on in form and content and spirit for the next twenty years. I am sure it will go through redesigns and reconceptualizations and reworks and all of that — I am not foolish enough to think that this site will ever be "finished" — but I want the soul of it to be as constant as possible.
+4. **Genuine**. It seems silly to talk about being genuine right after throwing a phrase like "the soul of [this site]" at you, but if you know me in real life you know that I am _exactly_ that level of grandoise/idiotic. So, yeah — I want this site to sound as aggressively like me as possible. There are [great sites](https://julian.com) that strive for an authorial voice; I am uninterested in that ambition.
+
+These are goals _for_ the site, but not exactly goals for myself in building it: sure, building something that is quick, durable, honest, and accessible is meritous in of itself, but anyone who has built and rebuilt their own static site knows that most of the fun is in the journey, rather than the destination. A [reader](https://svbn.me/blog/prutsen/) recently informed me of the Dutch word _prutsen_:
+
+> We have a favourite foreign word. And while we love hygge, it’s actually prutsen. It translates loosely to doing something of very little significance that only looks like work. Only to us, it’s quite significant – not the kind of significance that changes the world, but the kind that changes ours (and hopefully yours) and how we feel in it. It’s a surprisingly useful way to clear our heads. Little bits of rearranging, picking up wild pieces on dog walks and putting them in vases or bowls, prutsen the details because it makes our hearts warm and gets our creative juices flowing. [Do Inhabit](https://thedobook.co/products/do-inhabit-style-your-space-for-a-creative-and-considered-life)
+
+I have spent a lot of time bemoaning the fact that I may spend more time in a given year _building_ my site than actually populating it with content. One goal for myself is to treat this site as both a surrender and an antidote to that notion: that the joy of building the site is not something to feel guilty over, and that I should build it in a way to enhance how fun it can be to spend a quiet Thursday evening messing with Liquid filters.
+
+### Etymology
+
+Why is this site called "arcana dot computer", you ask? That is a somewhat odd name! Why wouldn't you just do firstnamelastname.com, and dispense with all this weird "naming your personal website" nonsense?
+
+Honestly, there's no good reason. I have a bad habit of buying silly domain names and this was one of them. In a prior life, I [wrote a newsletter](https://newsletter.jmduke.com) called Minor Arcana; the word "arcana" has always felt a little fun and incongruous to me, perhaps indicative of my slightly askew relationship with technology. [^7]
+
+### Prior art
+
+I am a sucker for this genre of page. I think it is really fun to read through how other
+blogging technologists (and yes, I am cringing at my employment of that term) approach building
+their software. Some particular entries I enjoy:
+
+| Writer                                                              | Reason                                     |
+| ------------------------------------------------------------------- | ------------------------------------------ |
+| [Aaron Z. Lewis](https://aaronzlewis.com)                           | Emphasis on multimedia                     |
+| [Andy Matuschak](https://notes.andymatuschak.org/About_these_notes) | Built primarily for the author             |
+| [Gwern](https://www.gwern.net/About)                                | Wonderful design; obsessive level of depth |
+| [Jonnie Hallman](https://destroytoday.com)                          | Tone & cleanliness                         |
+| [Julian Shapiro](https://www.julian.com/blog)                       | Commitment to evergreen content            |
+| [Paul Stamatiou](https://paulstamatiou.com/about-this-website)      | Nice use of affordances                    |
+
+### Drafting in public
+
+<Blockquote>
+  Think about blogging for a second: the fact that a list of posts is ordered
+  chronologically by publication date, by default, is a bug in our
+  incrementally-correct worldview. Blogging tools don't create any incentive to
+  go back and edit previous ideas or posts. Or, at the very least, the default
+  ordering has a de facto side effect of fewer people being aware of revisions
+  or reversals to previously-published ideas.{" "}
+  <div className="flex items-center mt-2">
+    <img
+      src="https://pbs.twimg.com/profile_images/1217652661962661888/WfiUNjzP_400x400.jpg"
+      class="w-8 h-8 rounded-full inline-block mr-2 border-solid border-brand border-2"
+    />{" "}
+    <A href="https://brianlovin.com/overthought/incrementally-correct-personal-websites">
+      Brian Lovin
+    </A>
+  </div>
+</Blockquote>
+
+You have probably noticed that the index page of this site has something of an aspirational table of contents:
+there are published posts, there are drafts of posts, there are outright placeholders for posts. (There are, too,
+posts that will _never_ be finished, like my catalogs of [books](/catalogs/books).) [^1] [^2]
+
+This accomplishes two things that are important to me:
+
+1. It frees this site from the shackles of "sort by creation date" publishing. I think the idea of sorting all of your
+   content by order of creation is silly and a legacy of blogging software being a CRUD database; this is not Twitter, and I want this writing to be long-form and long-lasting.
+2. It reminds me of what is left to be written about. I don't know if this site will ever be meaningfully "finished" (I suspect it will not), but being able to glance at the index page and remember that I have a whole bunch of writing about prior projects that I haven't done yet is a useful symptom in of itself.
+
+### Catalogs
+
+You know, for all the flak that we levy at the concept of "timelines", I think they are fairly useful and illustrative. The part of this site that I've spent the most time on are my various catalogs: I've cataloged the books I've read, the games I've played, the movies I've watched, and so on and so forth.
+
+There is a lot of interesting writing about spaced repetition to better recall your past. I am not super interested in that: you will not find me hunched over a bunch of Anki cards of quotes that I read in a random book 2016 so as to get my mental juices flowing or whatever. But I think there is merit in two things:
+
+1. Being able to idly scroll back to 2017 and look at all of the things you were reading and consuming and playing as a means of time travel, in much the same way it is fun to pass a city block five years after you moved away from the neighborhood
+2. Forcing yourself to _digest_ what you just spent twenty hours playing or two hours watching or whatever. [^8]
+
+## Implementation
+
+### Design
+
+Honestly, I don't think there's that much to say about the design of this site. I think it is fairly boring; if I were to describe the general philosophy behind it, I would say "use as little CSS as possible and make it as likely as possible that this site is renderable and pleasant in the year 2040." I don't know if I succeeded — I certainly have had those lofty goals in the past, and fallen desparately short — but I'd like to think that I came closer to the mark than usual. A previous iteration of this site sported less than 500 lines of CSS; it's hard to count now, because I'm using [Tailwind](https://tailwindcss.com/), but there's nothing particularly fancy or clever going on here.
+
+A brief sidebar on dark mode, by the way: when first building out this site, I had _no idea_ how many people actually used dark mode. I recognize that it's a fact of life that many people ostensibly enjoy, but it exists as a massive testing blind spot. Thankfully, SCSS makes it easy to tweak color palettes, but apologies if anything looks particularly wonky on dark mode: I am happy to fix it but I offer no promises about it not happening again in the future.
+
+### Fonts
+
+I spent a non-trivial amount of time tinkering around with fonts, eventually landing on a pair that seemed to work well in concert with one another. (Typographers reading this I'm sure are cringing.)
+
+- I use **IBM Plex Sans** (available through Google Fonts) for main body text. It's pleasant, vaguely computational, and scales pretty well to a variety of sizes.
+- I use <span className="font-serif font-bold">Souvenir</span> for headings. It gives a bit of authorial flair that I really like, especially for catalogs which need a good amount of subheadings and offsetting.
+
+### Airtable
+
+> Part spreadsheet, part database, and entirely flexible, teams use Airtable to organize their work, their way. [Airtable's slightly less generic marketing site](https://airtable.com/)
+
+Airtable is a SaaS for interacting with structured tabular data. If you’ve got a long memory, you can think of it as “Microsoft Access for millennials.”
+
+I really like Airtable. I use it to store a lot of data, mostly around content consumption:
+
+1. The [books](/catalogs/books), movies, and games I’ve consumed or plan on consuming, alongside metadata and my reviews/thoughts
+2. My [media diet](/catalogs/media-diet) for each day for the past four years
+3. A [notebook of quotes and highlights](/catalogs/quotes) that I’ve collected
+4. A [dictionary of words that I’ve learned](/catalogs/words)
+
+In general, if something I’m cataloging can or should be tied back to the content in which I encountered it, I’ll put it in Airtable.
+
+There are a lot of risks with using Airtable: I’d prefer to be using something open-source and plaintext-friendly if possible. But the advantages of Airtable — really robust filtering/searching, a UI I can use from my iPad or iPhone, and support for foreign links — outweighs the risks thus far. [^4]
+
+I think the right long-term solution here is to migrate this to either an SQLite database or a very cleverly formatted YAML scheme, but there aren’t any satisfactory solutions for doing either on iPads yet.
+
+### Next.JS
+
+For around three years, Buttondown was built on [Jekyll](https://jekyllrb.com/). I liked — like! — Jekyll a lot, and have spent around eight years tooling around with it, off and on.
+
+I ended up making the transition to Next.JS for a couple reasons:
+
+- Some of the things I was doing in Jekyll were not _‌pushing_ the limits of the framework exactly, but were certainly unergonomic. Jekyll has some plugs & primitives around "content" separate from flat files, but it's really not a blessed path; Next.JS treats dynamic content as a first-class citizen.
+- Some of the things I really _‌wanted_ to build in this site would have gone from "ehh, this is janky but possible" to "oh man I'm going to have to start reading the source to get this to work." There's nothing wrong with reading the source! But it felt like I could either spend a serious amount of effort making something janky work _‌or_ I could spend a serious amount of effort porting this to a new frontend engine and then a trivial amount of effort building the fun stuff.
+- Okay, I'll be honest: rebuilding your blog (or your personal site, or whatever) is very fun, and it's hard not to bite at the chance to do it.
+
+I like Next.JS for many of the same reasons I like React; a lot of the decisions its made jive very naturally with my mental model for programming. I like building functions that return data. I like the ability to work with Markdown through [MDX](https://mdxjs.com), and it feels like a very _‌du jour_ framework; it is not so modern that I am dealing with breaking changes every month, but it's modern enough that when I need to figure out how to do something I can find Stack Overflow answers within the past few months.
+
+### Vercel
+
+Vercel is... fine. I don't mean this in a dismissive sense; I like it! I'm a happy paying customer. I also use it for [Buttondown's documentation](https://docs.buttondown.email) and in the future I want to migrate Buttondown's marketing site to it too.
+
+But the main reason I use Vercel, both for this project and for the aforementioned ones, is just because the Next.JS integration is really good. This...is a little problematic, in the sense that I am willing to bet $20 that Vercel is in the same position ten years from now that Heroku is in today (extant, but a zombie) and I won't have a lot of non-trivial egress options.
+
+Anyway, feel free to use Vercel. They have a nice free tier; their analytics are good; the developer experience, at least for my very basic use case, is top-notch. But that's the part of this stack that feels the most _‌of the year 2022_ to me, and probably the most rickety. I am thankful that NextJS has a [purely static output](https://nextjs.org/docs/advanced-features/static-html-export) mode, so that when I am properly motivated at some point in the future I can just point this at some self-hosted box that regenerates every day.
+
+### Buttondown
+
+_Obviously_, I use [Buttondown](http://buttondown.email/) to handle newsletter subscriptions for this site.
+
+There is an irony in how little I _use_ Buttondown despite working on it so much; my goal with arcana.computer is
+to get at least a little bit better with that.
+
+### Git & GitHub
+
+Do I really need to write about why I chose Git? Are you expecting me to be, like, "well, I _considered_ Subversion, but the changeset model really doesn't jive with my editing and publishing process?"
+
+Git was the default choice. I wanted to be able to store this information somewhere that wasn't my rusty Mac Mini and I wanted to be able to publish at a regular cadence.
+
+The site, as mentioned above, is [open source](https://github.com/jmduke/new.arcana.computer) and will be for the interminable future. The commit log reflects my own rambunctious use of version control in trivial projects, which is equivalent to that of blindly smashing the Save button every few hours. There's a world in which I am reasonable and diligent and work on new posts in feature branches and merge them in once they are completed; I don't see that world merging with our own, both for reasons delineated above in terms of "drafting in public" and also the much less interesting reason of my own overwhelming sloth.
+
+### Fathom
+
+> Fathom is a simple, light-weight, privacy-first alternative to Google Analytics. So, stop scrolling through pages of reports and collecting gobs of personal data about your visitors, both of which you probably don’t need. Our website stats show up on a single, blazingly fast dashboard so you can make business decisions quickly. [Fathom's rather well-designed marketing page](https://usefathom.com)
+
+The pull quote says it all, right? I am a nosy, metrics-loving simpleton at heart and I want to see how popular this site gets. I am also not a fan of Google Analytics; there are all of the boring and valid privacy considerations, sure, but also the interface is incredibly annoying to use and more than anything else I just want a scalar that tells me how many uniques I'm getting. Fathom does that very well; I originally discovered it as the analytics engine that powers Buttondown.
+
+(There is also [Simple Analytics](https://simpleanalytics.com/), which has a nigh-identical value proposition and boasts a bevy of testimonials from folks who I generally trust. At some point it might be fun to tinker around with it, but I literally cannot think of a single reason why to switch over at this point.)
+
+## What's left
+
+Nothing is ever finished.
+
+This site is more of a garden (or a [campus](https://doriantaylor.com/agile-as-trauma)) than a real project. I do not think there is ever going to be a point at which I can step back and say "okay, this is done", and that is by design: I may strive for a sense of finality in other projects, but that's an anti-goal here.
+
+As of this writing, here's an unabridged list of what I'd like to bring to fruition over the coming years:
+
+1. More catalogs (for cocktails, for countries visited, for recommended products, and so on)
+2. "True" backlinking (I have a very silly hack in place where I use strikethroughs to convey the facade of internal links, but I'd need to do something either very gross or very clever to make those internal links bidirectional)
+3. Tag-based and status-based filtering, so that I can also display an antilibrary of all the books that I want to read but haven't, and so on.
+4. Some fun metrics about how many books I've read and how many words I've written and so on and so forth.
+
+These things may never come; I'm not sure. My own garden — in my backyard, a mere four feet by four feet — has lots of seeds that I haven't yet planted, and perhaps never will. That's okay, too.
+
+## Coda
+
+I sincerely hope you enjoyed this solipsistic lens into the site. If you've got any questions,
+please [email me](mailto:me@jmduke.com); I'm always happy to talk shop.
+
+I'd like to give thanks to the following folks (and if you're not on this list and should be, let me know):
+
+| Person          | Reason for gratitude                                                     |
+| --------------- | ------------------------------------------------------------------------ |
+| Haley Burton    | Putting up with me, just, like, in general                               |
+| Brian Lovin     | [Fixing a broken link](https://github.com/jmduke/arcana.computer/pull/1) |
+| Andrew Healey   | [Fixing a broken link](https://github.com/jmduke/arcana.computer/pull/2) |
+| Jason Li        | Pointing out dark mode issues                                            |
+| Philip C. Davis | Pointing out dark mode issues                                            |
+| Altay Demir     | Pointing out dark mode issues                                            |
+| Stefan VanBuren | Teaching me the word "prutsen"                                           |
+| Ryan            | Beta testing the second version of this site                             |
+| Joe Fabisevich  | Beta testing the second version of this site                             |
+
+Lastly, if there's anything I can convince you of: you should build a personal site, you should obsess over it, you should meticulously document it, and you should have quite a bit of fun doing so. (It's worth it.)
+
+[^1]: I resent myself for using the noun "post" here, as I think that insinuates a lack of gravitas from which I'm trying to run away.
+[^2]: I can't remember the first place where I saw this notion: the most recent one, and the one that comes to mind most immediately, is on Will Larson's [guide for staff engineers](https://staffeng.com/guides).
+[^4]: I will warn you that the iOS apps are... not particularly good, at least at the scale of content that I'm using it with, and I end up dropping down to the browser for most use cases. But at least they don't do the "you cannot use the web version at all if we detect you are on an iOS device" thing!
+[^5]: And for what it's worth, I still listen to podcasts. [Zach Lowe](https://twitter.com/zachlowe_nba) and [Dan Carlin](https://www.dancarlin.com/) are very good.
+[^6]: Like this one!
+[^7]: There is no more inspirational piece of programming writing to me than [Hexing the technical interview](https://aphyr.com/posts/341-hexing-the-technical-interview).
+[^8]: My friend Harrison calls this action "book reports for grown-ups", which I find equal parts apt and endearing.
+[^9]: Don't worry; this number is dynamically generated every time I publish this site. I'm solipstic, but I'm also rather lazy.
+[^11]: This is not an arbitrary or unfair example! I was helping a friend build a blog powered by [Next.js](https://nextjs.org/) and they were completely stymied by the inexistence of a "RSS feed generator" plugin. Next.js is a great tool and one that I look forward to finding the right use case for; I do not think "blogging as if it was 2006" is that use case.
+[^13]: A perhaps entertaining rejoinder to this section is my post [five years ago on why I liked podcasts](https://jmduke.com/2015/11/15/podcasts_are_good): "Podcasts feel good because they’re novel, and they’re disparate, and they still feel so undiscovered. I suspect this won’t always be the case – but for now, there’s nothing quite like them."
+
+import MarkdownPage from "components/MarkdownPage";
+export const meta = {
+  title: "arcana.computer",
+  date: "7/14/2022",
+};
+export default ({ items, children }) => (
+  <MarkdownPage meta={meta}>{children}</MarkdownPage>
+);
