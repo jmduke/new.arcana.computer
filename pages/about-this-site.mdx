@@ -1,8 +1,16 @@
 # About this site
 
-> What sort of writing could you create if you worked on it (be it ever so rarely) for the next 60 years?
-> What could you do if you started now?
-> [Gwern](https://www.gwern.net/About#long-site)
+<Blockquote>
+  What sort of writing could you create if you worked on it (be it ever so
+  rarely) for the next 60 years? What could you do if you started now?
+  <div className="flex items-center mt-2">
+    <img
+      src="https://www.gwern.net/static/img/logo/logo-favicon-small.png"
+      class="w-8 h-8 rounded-full inline-block mr-2 border-solid border-brand border-2"
+    />{" "}
+    <A href="https://www.gwern.net/About#long-site">Gwern</A>
+  </div>
+</Blockquote>
 
 I am going through a serious disenchantment with the concept of _content_. The first time I seriously blogged it was because I was a junior in college who suddenly discovered Hacker News, and was convinced that the most expeditious way I had to break into the industry was to, like, blog about list comprehensions in Python and stuff. That turned into blogging about new Swift APIs and blogging about side projects and tweeting the same zeitgeisty things that a horde of other junior engineers were. I don't mean that as a negative thing — writing those blog posts gave me an early following, a foothold into a world in which I felt (and still feel, to some extent) an outsider, and strengthened my skills as a writer and engineer.
 
@@ -21,7 +29,7 @@ Anyway, I'm getting off track. [^5] I want to do a better job of writing things 
 ### Goals
 
 1. **Fast**. I want this site to be fast to load. "Page speed" is an obvious benefit in of itself, and it seems almost trivial to argue that static sites should be quick to the touch. There are parts of this site — for example, my catalogs, which aggressive pull in thousands of words and hundreds of images — that don't quite meet this bar, but simple pages such as this one do.
-2. **Accessible**. Both as an end of itself and a means to progress my abilities as an a11y-first developer, this site should be as accessible as possible. At the time of this writing, it scores a 92/100 on Lighthouse, with the remaining eight points coming from my lighthouse plugin. (If you know of any areas where I can improve accessibility, please [email me](mailto:me@jmduke.com) and let me know!)
+2. **Accessible**. Both as an end of itself and a means to progress my abilities as an a11y-first developer, this site should be as accessible as possible. At the time of this writing, it scores a 92/100 on Lighthouse, which I'm fairly proud of. (The remaining points are coming from missing alt tags from various catalogs, which I will slowly backfill over the course of the next millenium.) (If you know of any areas where I can improve accessibility, please [email me](mailto:me@jmduke.com) and let me know!)
 3. **Durable**. I want a site that I can work on in form and content and spirit for the next twenty years. I am sure it will go through redesigns and reconceptualizations and reworks and all of that — I am not foolish enough to think that this site will ever be "finished" — but I want the soul of it to be as constant as possible.
 4. **Genuine**. It seems silly to talk about being genuine right after throwing a phrase like "the soul of [this site]" at you, but if you know me in real life you know that I am _exactly_ that level of grandoise/idiotic. So, yeah — I want this site to sound as aggressively like me as possible. There are [great sites](https://julian.com) that strive for an authorial voice; I am uninterested in that ambition.
 
@@ -54,7 +62,23 @@ their software. Some particular entries I enjoy:
 
 ### Drafting in public
 
-> Think about blogging for a second: the fact that a list of posts is ordered chronologically by publication date, by default, is a bug in our incrementally-correct worldview. Blogging tools don't create any incentive to go back and edit previous ideas or posts. Or, at the very least, the default ordering has a de facto side effect of fewer people being aware of revisions or reversals to previously-published ideas. [Brian Lovin](https://brianlovin.com/overthought/incrementally-correct-personal-websites)
+<Blockquote>
+  Think about blogging for a second: the fact that a list of posts is ordered
+  chronologically by publication date, by default, is a bug in our
+  incrementally-correct worldview. Blogging tools don't create any incentive to
+  go back and edit previous ideas or posts. Or, at the very least, the default
+  ordering has a de facto side effect of fewer people being aware of revisions
+  or reversals to previously-published ideas.{" "}
+  <div className="flex items-center mt-2">
+    <img
+      src="https://pbs.twimg.com/profile_images/1217652661962661888/WfiUNjzP_400x400.jpg"
+      class="w-8 h-8 rounded-full inline-block mr-2 border-solid border-brand border-2"
+    />{" "}
+    <A href="https://brianlovin.com/overthought/incrementally-correct-personal-websites">
+      Brian Lovin
+    </A>
+  </div>
+</Blockquote>
 
 You have probably noticed that the index page of this site has something of an aspirational table of contents:
 there are published posts, there are drafts of posts, there are outright placeholders for posts. (There are, too,
@@ -85,6 +109,11 @@ A brief sidebar on dark mode, by the way: when first building out this site, I h
 
 ### Fonts
 
+I spent a non-trivial amount of time tinkering around with fonts, eventually landing on a pair that seemed to work well in concert with one another. (Typographers reading this I'm sure are cringing.)
+
+- I use **IBM Plex Sans** (available through Google Fonts) for main body text. It's pleasant, vaguely computational, and scales pretty well to a variety of sizes.
+- I use <span className="font-serif font-bold">Souvenir</span> for headings. It gives a bit of authorial flair that I really like, especially for catalogs which need a good amount of subheadings and offsetting.
+
 ### Airtable
 
 > Part spreadsheet, part database, and entirely flexible, teams use Airtable to organize their work, their way. [Airtable's slightly less generic marketing site](https://airtable.com/)
@@ -106,7 +135,23 @@ I think the right long-term solution here is to migrate this to either an SQLite
 
 ### Next.JS
 
+For around three years, Buttondown was built on [Jekyll](https://jekyllrb.com/). I liked — like! — Jekyll a lot, and have spent around eight years tooling around with it, off and on.
+
+I ended up making the transition to Next.JS for a couple reasons:
+
+- Some of the things I was doing in Jekyll were not _‌pushing_ the limits of the framework exactly, but were certainly unergonomic. Jekyll has some plugs & primitives around "content" separate from flat files, but it's really not a blessed path; Next.JS treats dynamic content as a first-class citizen.
+- Some of the things I really _‌wanted_ to build in this site would have gone from "ehh, this is janky but possible" to "oh man I'm going to have to start reading the source to get this to work." There's nothing wrong with reading the source! But it felt like I could either spend a serious amount of effort making something janky work _‌or_ I could spend a serious amount of effort porting this to a new frontend engine and then a trivial amount of effort building the fun stuff.
+- Okay, I'll be honest: rebuilding your blog (or your personal site, or whatever) is very fun, and it's hard not to bite at the chance to do it.
+
+I like Next.JS for many of the same reasons I like React; a lot of the decisions its made jive very naturally with my mental model for programming. I like building functions that return data. I like the ability to work with Markdown through [MDX](https://mdxjs.com), and it feels like a very _‌du jour_ framework; it is not so modern that I am dealing with breaking changes every month, but it's modern enough that when I need to figure out how to do something I can find Stack Overflow answers within the past few months.
+
 ### Vercel
+
+Vercel is... fine. I don't mean this in a dismissive sense; I like it! I'm a happy paying customer. I also use it for [Buttondown's documentation](https://docs.buttondown.email) and in the future I want to migrate Buttondown's marketing site to it too.
+
+But the main reason I use Vercel, both for this project and for the aforementioned ones, is just because the Next.JS integration is really good. This...is a little problematic, in the sense that I am willing to bet $20 that Vercel is in the same position ten years from now that Heroku is in today (extant, but a zombie) and I won't have a lot of non-trivial egress options.
+
+Anyway, feel free to use Vercel. They have a nice free tier; their analytics are good; the developer experience, at least for my very basic use case, is top-notch. But that's the part of this stack that feels the most _‌of the year 2022_ to me, and probably the most rickety. I am thankful that NextJS has a [purely static output](https://nextjs.org/docs/advanced-features/static-html-export) mode, so that when I am properly motivated at some point in the future I can just point this at some self-hosted box that regenerates every day.
 
 ### Buttondown
 
@@ -130,6 +175,21 @@ The site, as mentioned above, is [open source](https://github.com/jmduke/new.arc
 The pull quote says it all, right? I am a nosy, metrics-loving simpleton at heart and I want to see how popular this site gets. I am also not a fan of Google Analytics; there are all of the boring and valid privacy considerations, sure, but also the interface is incredibly annoying to use and more than anything else I just want a scalar that tells me how many uniques I'm getting. Fathom does that very well; I originally discovered it as the analytics engine that powers Buttondown.
 
 (There is also [Simple Analytics](https://simpleanalytics.com/), which has a nigh-identical value proposition and boasts a bevy of testimonials from folks who I generally trust. At some point it might be fun to tinker around with it, but I literally cannot think of a single reason why to switch over at this point.)
+
+## What's left
+
+Nothing is ever finished.
+
+This site is more of a garden (or a [campus](https://doriantaylor.com/agile-as-trauma)) than a real project. I do not think there is ever going to be a point at which I can step back and say "okay, this is done", and that is by design: I may strive for a sense of finality in other projects, but that's an anti-goal here.
+
+As of this writing, here's an unabridged list of what I'd like to bring to fruition over the coming years:
+
+1. More catalogs (for cocktails, for countries visited, for recommended products, and so on)
+2. "True" backlinking (I have a very silly hack in place where I use strikethroughs to convey the facade of internal links, but I'd need to do something either very gross or very clever to make those internal links bidirectional)
+3. Tag-based and status-based filtering, so that I can also display an antilibrary of all the books that I want to read but haven't, and so on.
+4. Some fun metrics about how many books I've read and how many words I've written and so on and so forth.
+
+These things may never come; I'm not sure. My own garden — in my backyard, a mere four feet by four feet — has lots of seeds that I haven't yet planted, and perhaps never will. That's okay, too.
 
 ## Coda
 
@@ -166,7 +226,7 @@ Lastly, if there's anything I can convince you of: you should build a personal s
 import MarkdownPage from "components/MarkdownPage";
 export const meta = {
   title: "arcana.computer",
-  date: "7/4/2022",
+  date: "7/14/2022",
 };
 export default ({ items, children }) => (
   <MarkdownPage meta={meta}>{children}</MarkdownPage>

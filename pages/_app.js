@@ -58,8 +58,12 @@ function App({ Component, pageProps }) {
             li: Li,
             ul: Ul,
             ol: Ol,
+            // We double-define these so we can access them in raw MDX as well.
+            // (Just writing <blockquote> does not work, it appears.)
             a: A,
+            A,
             blockquote: Blockquote,
+            Blockquote,
             del: Wikilink,
             table: Table,
           }}
