@@ -11,7 +11,7 @@ const mungeRecord = async (record: any): Promise<Item> => {
     : null;
   return {
     id: record.id,
-    slug: slugify(record.fields.Name),
+    slug: slugify(record.fields.Name || ""),
     title: record.fields.Name,
     type: record.fields.Type || null,
     author: record.fields.Author || null,
@@ -22,6 +22,7 @@ const mungeRecord = async (record: any): Promise<Item> => {
     year: record.fields.Year || null,
     genre: record.fields.Genre ? record.fields.Genre[0] : null,
     image: record.fields.Image ? record.fields.Image[0].url : null,
+    status: record.fields.Status,
   };
 };
 

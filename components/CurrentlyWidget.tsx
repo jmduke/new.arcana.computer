@@ -1,22 +1,20 @@
+import { Item, Type } from "lib/data";
+
 import Widget from "./Widget";
 
-type CurrentItem = {
-  verb: string;
-  title: string;
+const TYPE_TO_VERB = {
+  Book: "Reading",
+  Game: "Playing",
+  Television: "Watching",
 };
 
-type CurrentItemGroup = {
-  verb: string;
-  titles: string[];
-};
-
-const groupItems = (items: CurrentItem[]) => {
-  const verbToItems: { [verb: string]: CurrentItem[] } = {};
+const groupItems = (items: Item[]) => {
+  const verbToItems: { [verb: string]: Item[] } = {};
   items.map((item) => {
-    if (!verbToItems[item.verb]) {
-      verbToItems[item.verb] = [];
+    if (!verbToItems[TYPE_TO_VERB[item.type]]) {
+      verbToItems[TYPE_TO_VERB[item.type]] = [];
     }
-    verbToItems[item.verb].push(item);
+    verbToItems[TYPE_TO_VERB[item.type]].push(item);
   });
   return Object.entries(verbToItems).map(([verb, items]) => ({
     verb,
