@@ -22,7 +22,7 @@ const mungeRecord = async (record: any): Promise<Item> => {
     year: record.fields.Year || null,
     genre: record.fields.Genre ? record.fields.Genre[0] : null,
     image: record.fields.Image ? record.fields.Image[0].url : null,
-    status: record.fields.Status,
+    status: record.fields.Status || "",
   };
 };
 

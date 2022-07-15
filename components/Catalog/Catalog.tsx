@@ -3,7 +3,7 @@ import MetaTags from "components/Scaffolding/MetaTags";
 import { LEFTHAND_COLUMN_SIZE } from "lib/constants";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote";
-import React from "react";
+import React, { ReactNode } from "react";
 
 import Icon from "../../components/Icon";
 import H1 from "../../components/Markdown/H1";
@@ -26,7 +26,10 @@ type CatalogProps = {
 
 type DisplayMode = "list" | "grid";
 
-const DISPLAY_MODES = [
+const DISPLAY_MODES: {
+  mode: DisplayMode;
+  icon: ReactNode;
+}[] = [
   {
     mode: "list",
     icon: <Icon.List />,
