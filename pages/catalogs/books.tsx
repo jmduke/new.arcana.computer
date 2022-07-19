@@ -8,7 +8,7 @@ const filters = [
   {
     id: "all",
     label: "All books",
-    filter: (i: Item) => true,
+    filter: (i: Item) => i.status === "Finished",
     icon: <Icon.Collection />,
   },
   {
@@ -22,6 +22,24 @@ const filters = [
     label: "Poetry",
     filter: (i: Item) => i.genre === "Poetry",
     icon: <Icon.PencilAlt />,
+  },
+  {
+    id: "abandoned",
+    label: "Abandoned books",
+    filter: (i: Item) => i.status === "Abandoned",
+    icon: <Icon.Trash />,
+  },
+  {
+    id: "shelved",
+    label: "Shelved books",
+    filter: (i: Item) => i.status === "Shelved",
+    icon: <Icon.BookmarkAlt />,
+  },
+  {
+    id: "antilibrary",
+    label: "Antilibrary",
+    filter: (i: Item) => i.status === "",
+    icon: <Icon.Document />,
   },
 ];
 

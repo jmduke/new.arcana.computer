@@ -153,9 +153,41 @@ const Annotation = () => (
   </Wrapper>
 );
 
+const Trash = () => (
+  <Wrapper>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+    />
+  </Wrapper>
+);
+
+const BookmarkAlt = () => (
+  <Wrapper>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+    />
+  </Wrapper>
+);
+
+const Document = () => (
+  <Wrapper>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+    />
+  </Wrapper>
+);
+
 const exports = {
   Annotation,
   Star,
+  BookmarkAlt,
+  Document,
   Tag,
   Author,
   Check,
@@ -168,6 +200,7 @@ const exports = {
   List,
   Collection,
   PencilAlt,
+  Trash,
 };
 
 export default exports;

@@ -17,6 +17,24 @@ const filters = [
     filter: (i: Item) => i.rating > 8,
     icon: <Icon.Star />,
   },
+  {
+    id: "abandoned",
+    label: "Abandoned games",
+    filter: (i: Item) => i.status === "Abandoned",
+    icon: <Icon.Trash />,
+  },
+  {
+    id: "shelved",
+    label: "Shelved games",
+    filter: (i: Item) => i.status === "Shelved",
+    icon: <Icon.BookmarkAlt />,
+  },
+  {
+    id: "antilibrary",
+    label: "Antilibrary",
+    filter: (i: Item) => i.status === "",
+    icon: <Icon.Document />,
+  },
 ];
 
 const Preamble = `

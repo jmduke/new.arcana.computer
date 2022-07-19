@@ -8,7 +8,7 @@ const filters = [
   {
     id: "all",
     label: "All television",
-    filter: (i: Item) => true,
+    filter: (i: Item) => i.status === "Finished",
     icon: <Icon.Collection />,
   },
   {
@@ -16,6 +16,24 @@ const filters = [
     label: "Favorite television",
     filter: (i: Item) => i.rating > 8,
     icon: <Icon.Star />,
+  },
+  {
+    id: "abandoned",
+    label: "Abandoned shows",
+    filter: (i: Item) => i.status === "Abandoned",
+    icon: <Icon.Trash />,
+  },
+  {
+    id: "shelved",
+    label: "Shelved shows",
+    filter: (i: Item) => i.status === "Shelved",
+    icon: <Icon.BookmarkAlt />,
+  },
+  {
+    id: "antilibrary",
+    label: "Antilibrary",
+    filter: (i: Item) => i.status === "",
+    icon: <Icon.Document />,
   },
 ];
 

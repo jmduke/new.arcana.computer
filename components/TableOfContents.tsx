@@ -35,6 +35,11 @@ const LINKS: Section[] = [
         status: "published",
       },
       {
+        title: "Television",
+        href: "/catalogs/television",
+        status: "published",
+      },
+      {
         title: "Music",
         href: "/catalogs/music",
         status: "published",
@@ -62,7 +67,7 @@ const LINKS: Section[] = [
       {
         title: "Veuve Clicquot",
         href: "/catalogs/veuve",
-        status: "placeholder",
+        status: "published",
       },
       {
         title: "Words",
