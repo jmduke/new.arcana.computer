@@ -12,7 +12,7 @@ const mungeRecord = async (record: any): Promise<Item> => {
   return {
     id: record.id,
     slug: slugify(record.fields.Name || ""),
-    title: record.fields.Name,
+    title: record.fields.Name || "",
     type: record.fields.Type || null,
     author: record.fields.Author || null,
     rating: record.fields.Rating || null,

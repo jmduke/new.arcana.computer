@@ -1,4 +1,3 @@
-import { Listbox } from "@headlessui/react";
 import MetaTags from "components/Scaffolding/MetaTags";
 import { LEFTHAND_COLUMN_SIZE } from "lib/constants";
 import Link from "next/link";
@@ -8,16 +7,20 @@ import React, { ReactNode } from "react";
 import Icon from "../../components/Icon";
 import H1 from "../../components/Markdown/H1";
 import Notice from "../../components/Notice";
+import Dropdown from "./Dropdown";
 
-type CatalogProps = {
+export type Filter = {
+  id: string;
+  label: string;
+  icon: ReactNode;
+  filter: (item: any) => boolean;
+};
+
+export type Props = {
   title: string;
   rss: string;
   preamble: any;
-  filters: {
-    id: string;
-    label: string;
-    filter: (item: any) => boolean;
-  }[];
+  filters: Filter[];
   items: any[];
   lefthandComponent?: (item: any) => React.ReactNode;
   righthandComponent?: (item: any) => React.ReactNode;
@@ -27,15 +30,18 @@ type CatalogProps = {
 type DisplayMode = "list" | "grid";
 
 const DISPLAY_MODES: {
-  mode: DisplayMode;
+  id: DisplayMode;
+  label: string;
   icon: ReactNode;
 }[] = [
   {
-    mode: "list",
+    id: "list",
+    label: "List",
     icon: <Icon.List />,
   },
   {
-    mode: "grid",
+    id: "grid",
+    label: "Grid",
     icon: <Icon.Grid />,
   },
 ];
@@ -49,12 +55,12 @@ const Catalog = ({
   lefthandComponent,
   righthandComponent,
   allowSwitchingModes = true,
-}: CatalogProps) => {
+}: Props) => {
   const defaultFilter = filters.find((f) => f.id === "all");
   const [filter, setFilter] = React.useState(
-    defaultFilter ? defaultFilter.label : "all"
+    defaultFilter ? defaultFilter.id : "all"
   );
-  const activeFilter = filters.find((f) => f.label === filter);
+  const activeFilter = filters.find((f) => f.id === filter);
   const [mode, setMode] = React.useState("list");
 
   return (
@@ -78,49 +84,14 @@ const Catalog = ({
         <div className="bg-subtle rounded-lg py-2 px-4 text-sm flex relative">
           <div>
             {allowSwitchingModes && (
-              <div className="relative">
-                <Listbox value={mode} onChange={setMode}>
-                  <Listbox.Button>
-                    <div className="hover:bg-subtler relative flex items-center space-x-2 capitalize border border-subtler border-solid px-3 py-1 rounded-lg">
-                      {DISPLAY_MODES.find((m) => m.mode === mode)?.icon}
-                      <div>{mode}</div>
-                    </div>
-                  </Listbox.Button>
-                  <Listbox.Options className="w-full absolute mt-2 overflow-auto bg-subtle border border-subtler border-solid px-3 py-1 rounded-lg z-10">
-                    {DISPLAY_MODES.map((dm) => (
-                      <Listbox.Option key={dm.mode} value={dm.mode}>
-                        <div className="flex items-center space-x-2 capitalize cursor-pointer hover:bg-subtler">
-                          {dm.icon}
-                          <div>{dm.mode}</div>
-                        </div>
-                      </Listbox.Option>
-                    ))}
-                  </Listbox.Options>
-                </Listbox>
-              </div>
+              <Dropdown value={mode} handler={setMode} values={DISPLAY_MODES} />
             )}
           </div>
 
           <div className="flex-1"></div>
 
           <div className="relative">
-            <Listbox value={filter} onChange={setFilter}>
-              <Listbox.Button>
-                <div className="hover:bg-subtler relative flex items-center space-x-2 capitalize border border-subtler border-solid px-3 py-1 rounded-lg">
-                  <Icon.Collection />
-                  <div>{filter}</div>
-                </div>
-              </Listbox.Button>
-              <Listbox.Options className="w-full absolute mt-2 overflow-auto bg-subtle border border-subtler border-solid px-3 py-1 rounded-lg z-10">
-                {filters.map((f) => (
-                  <Listbox.Option key={f.id} value={f.label}>
-                    <div className="flex items-center space-x-2 capitalize cursor-pointer hover:bg-subtler">
-                      <div>{f.label}</div>
-                    </div>
-                  </Listbox.Option>
-                ))}
-              </Listbox.Options>
-            </Listbox>
+            <Dropdown value={filter} handler={setFilter} values={filters} />
           </div>
         </div>
       )}

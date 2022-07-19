@@ -2,22 +2,26 @@ import { Item } from "lib/data";
 
 import Catalog from "../../components/Catalog/ContentCatalog";
 import { getStaticPropsFactory } from "../../components/Catalog/lib";
+import Icon from "../../components/Icon";
 
 const filters = [
   {
     id: "all",
     label: "All books",
     filter: (i: Item) => true,
+    icon: <Icon.Collection />,
   },
   {
     id: "favorites",
     label: "Favorite books",
     filter: (i: Item) => i.rating > 8,
+    icon: <Icon.Star />,
   },
   {
     id: "poetry",
     label: "Poetry",
     filter: (i: Item) => i.genre === "Poetry",
+    icon: <Icon.PencilAlt />,
   },
 ];
 

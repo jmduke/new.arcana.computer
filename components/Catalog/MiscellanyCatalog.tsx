@@ -2,10 +2,26 @@ import { CONTENT_TYPE_TO_TYPE_SLUG } from "lib/data";
 import { MDXRemote } from "next-mdx-remote";
 import Link from "node_modules/next/link";
 
-import Catalog from "./Catalog";
+import Catalog, { Filter } from "./Catalog";
 import ImageColophon from "./SourceImage";
 
-const MiscellanyCatalog = ({ title, rss, preamble, filters, items, name }) => {
+type Props = {
+  title: string;
+  rss: string;
+  preamble: any;
+  filters: Filter[];
+  items: any[];
+  name: string;
+};
+
+const MiscellanyCatalog = ({
+  title,
+  rss,
+  preamble,
+  filters,
+  items,
+  name,
+}: Props) => {
   return (
     <Catalog
       allowSwitchingModes={false}

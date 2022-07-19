@@ -16,6 +16,16 @@ const Wrapper = ({ width, children }: IconProps) => (
   </svg>
 );
 
+const PencilAlt = () => (
+  <Wrapper>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+    />
+  </Wrapper>
+);
+
 const Star = () => (
   <Wrapper>
     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -133,7 +143,18 @@ const Book = () => (
   </Wrapper>
 );
 
+const Annotation = () => (
+  <Wrapper>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+    />
+  </Wrapper>
+);
+
 const exports = {
+  Annotation,
   Star,
   Tag,
   Author,
@@ -146,6 +167,7 @@ const exports = {
   Grid,
   List,
   Collection,
+  PencilAlt,
 };
 
 export default exports;

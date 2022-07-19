@@ -2,17 +2,20 @@ import { Item } from "lib/data";
 
 import Catalog from "../../components/Catalog/ContentCatalog";
 import { getStaticPropsFactory } from "../../components/Catalog/lib";
+import Icon from "../../components/Icon";
 
 const filters = [
   {
     id: "all",
     label: "All television",
     filter: (i: Item) => true,
+    icon: <Icon.Collection />,
   },
   {
     id: "favorites",
     label: "Favorite television",
     filter: (i: Item) => i.rating > 8,
+    icon: <Icon.Star />,
   },
 ];
 
