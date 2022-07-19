@@ -12,7 +12,16 @@ export type Item = {
   genre?: string;
   author?: string;
   image?: string;
+  status: Status;
 };
+
+export type Status =
+  | "Abandoned"
+  | "Not started"
+  | "In progress"
+  | "Finished"
+  | "Shelved"
+  | "";
 
 export type Type = "Book" | "Game" | "Movie" | "Album" | "Play" | "Television";
 

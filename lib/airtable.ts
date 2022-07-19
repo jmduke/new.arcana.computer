@@ -8,7 +8,6 @@ type Table =
   | "Notebook"
   | "Dictionary"
   | "Content"
-  | "Currently"
   | "Veuve"
   | "Press"
   | "Snippets"

@@ -2,22 +2,44 @@ import { Item } from "lib/data";
 
 import Catalog from "../../components/Catalog/ContentCatalog";
 import { getStaticPropsFactory } from "../../components/Catalog/lib";
+import Icon from "../../components/Icon";
 
 const filters = [
   {
     id: "all",
     label: "All books",
-    filter: (i: Item) => true,
+    filter: (i: Item) => i.status === "Finished",
+    icon: <Icon.Collection />,
   },
   {
     id: "favorites",
     label: "Favorite books",
     filter: (i: Item) => i.rating > 8,
+    icon: <Icon.Star />,
   },
   {
     id: "poetry",
     label: "Poetry",
     filter: (i: Item) => i.genre === "Poetry",
+    icon: <Icon.PencilAlt />,
+  },
+  {
+    id: "abandoned",
+    label: "Abandoned books",
+    filter: (i: Item) => i.status === "Abandoned",
+    icon: <Icon.Trash />,
+  },
+  {
+    id: "shelved",
+    label: "Shelved books",
+    filter: (i: Item) => i.status === "Shelved",
+    icon: <Icon.BookmarkAlt />,
+  },
+  {
+    id: "antilibrary",
+    label: "Antilibrary",
+    filter: (i: Item) => i.status === "",
+    icon: <Icon.Document />,
   },
 ];
 

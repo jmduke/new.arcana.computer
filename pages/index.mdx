@@ -116,18 +116,19 @@ export default ({ items, children }) => (
 );
 
 export async function getStaticProps() {
-  const records = await fetchAllRecords("Currently");
-  const mungedRecords = records.map((r) => {
-    return {
-      verb: r.fields.Verb,
-      title: r.fields["Name (from Content)"][0],
-    };
-  });
-  fs.writeFileSync(`./public/currently.json`, JSON.stringify(mungedRecords));
+  const records = await fetchAllRecords("Currently"); // I have no idea why this is necessary.
+  const realRecords = (await fetchAll()).filter(
+    (item) => item.status === "In progress"
+  );
+  fs.writeFileSync(`./public/currently.json`, JSON.stringify(realRecords));
   await generateRSS((await fetchAll()).map(convertItemToRSS), "omnibus");
+  const items = await generateRSS(
+    (await fetchAll()).map(convertItemToRSS),
+    "omnibus"
+  );
   return {
     props: {
-      items: mungedRecords,
+      items: realRecords,
     },
   };
 }

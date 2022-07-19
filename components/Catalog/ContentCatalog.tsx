@@ -4,10 +4,26 @@ import Tag from "components/Tag";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote";
 
-import Catalog from "./Catalog";
+import Catalog, { Filter } from "./Catalog";
 import ImageColophon from "./SourceImage";
 
-const ContentCatalog = ({ title, rss, preamble, filters, items, name }) => {
+type Props = {
+  title: string;
+  rss: string;
+  preamble: any;
+  filters: Filter[];
+  items: any[];
+  name: string;
+};
+
+const ContentCatalog = ({
+  title,
+  rss,
+  preamble,
+  filters,
+  items,
+  name,
+}: Props) => {
   return (
     <Catalog
       title={title}
