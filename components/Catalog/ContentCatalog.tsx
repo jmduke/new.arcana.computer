@@ -53,9 +53,9 @@ const ContentCatalog = ({
       righthandComponent={(item) => (
         <div className="flex-1">
           <Link href={`/catalogs/${name}/${item.slug}`}>
-            <span className="cursor-pointer hover:text-brand">
+            <div className="cursor-pointer hover:text-brand -mt-20">
               <H2>{item.title}</H2>
-            </span>
+            </div>
           </Link>
           {item.author && item.year && (
             <div className="text-lg uppercase text-gray-600 -mt-4">
