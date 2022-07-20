@@ -28,13 +28,15 @@ export const Header = ({ breadcrumbs }) => {
     <div className="border-brand border-solid border-t-4 mb-8 sticky -top-20 z-10 hover:top-0 transition-all">
       <div className="max-w-scaffold mx-4 md:mx-auto">
         <Link href="/">
-          <div
-            className="inline-block bg-brand text-white font-black rounded-b-lg px-3 py-2 text-center cursor-pointer"
-            style={{ width: LEFTHAND_COLUMN_SIZE }}
-          >
-            arcana.computer
-            {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
-          </div>
+          <a href="/">
+            <div
+              className="inline-block bg-brand text-white font-black rounded-b-lg px-3 py-2 text-center cursor-pointer"
+              style={{ width: LEFTHAND_COLUMN_SIZE }}
+            >
+              arcana.computer
+              {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
+            </div>
+          </a>
         </Link>
       </div>
     </div>

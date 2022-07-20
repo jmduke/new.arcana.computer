@@ -197,7 +197,9 @@ const TableOfContents = () => (
                     }
                     key={item.title}
                   >
-                    <Link href={item.href}>{item.title}</Link>
+                    <Link href={item.href}>
+                      <a href={item.href}>{item.title}</a>
+                    </Link>
                   </div>
                 ),
               };
