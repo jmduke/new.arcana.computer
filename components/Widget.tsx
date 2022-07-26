@@ -6,10 +6,7 @@ const Widget = ({ label, items }) => {
       </div>
       <div className="py-2 bg-subtle rounded-b-lg border-b border-x border-subtler">
         {items.map((item) => (
-          <div
-            key={item.type}
-            className="flex bg-subtle hover:bg-subtlest hover:py-2 hover:-my-2 px-4 border-solid"
-          >
+          <div key={item.type} className="flex bg-subtle px-4 border-solid">
             <div className="text-gray-500">{item.left}</div>
             {item.right}
           </div>
