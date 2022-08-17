@@ -25,12 +25,18 @@ const MetaTags = ({ title, description, image, date }: Props) => {
       <meta property="og:site_name" content="arcana.computer" />
       <meta property="og:description" content={description} />
       <meta property="og:title" content={title} />
-      <meta property="og:image" content={image} />
+      <meta
+        property="og:image"
+        content={image || "https://arcana.computer/share.png"}
+      />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@jmduke" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
+      <meta
+        name="twitter:image"
+        content={image || "https://arcana.computer/share.png"}
+      />
       {date && <meta property="article:published_time" content={date} />}
     </Head>
   );
