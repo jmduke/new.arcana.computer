@@ -34,3 +34,7 @@ blockquote p {
 blockquote p:last-of-type {
   margin-bottom: 0;
 }
+
+.redacted {
+  background: #141e30;
+}
