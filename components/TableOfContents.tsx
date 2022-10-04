@@ -40,6 +40,11 @@ const LINKS: Section[] = [
         status: "published",
       },
       {
+        title: "Investments",
+        href: "/catalogs/investments",
+        status: "published",
+      },
+      {
         title: "Music",
         href: "/catalogs/music",
         status: "published",
