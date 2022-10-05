@@ -57,7 +57,7 @@ const filters = [
   },
 ];
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const rawContent = await fetchAllRecords("Content");
   const rawRecords = await fetchAllRecords("Notebook");
   console.log("Started");

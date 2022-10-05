@@ -60,7 +60,7 @@ const mungeRecord = async (record: any, content: any[]): Promise<Word> => {
   };
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const rawContent = await fetchAllRecords("Content");
   const rawRecords = await fetchAllRecords("Dictionary");
   const items = await Promise.all(

@@ -75,7 +75,7 @@ const BookCatalog = ({ preamble, items }) => (
   />
 );
 
-const getStaticProps = getStaticPropsFactory(Preamble, "Book", "books");
-export { getStaticProps };
+const getServerSideProps = getStaticPropsFactory(Preamble, "Book", "books");
+export { getServerSideProps };
 
 export default BookCatalog;

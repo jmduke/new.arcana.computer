@@ -51,11 +51,11 @@ const TelevisionCatalog = ({ preamble, items }) => (
   />
 );
 
-const getStaticProps = getStaticPropsFactory(
+const getServerSideProps = getStaticPropsFactory(
   Preamble,
   "Television",
   "television"
 );
-export { getStaticProps };
+export { getServerSideProps };
 
 export default TelevisionCatalog;

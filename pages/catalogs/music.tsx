@@ -41,7 +41,7 @@ const MusicCatalog = ({ preamble, items }) => (
   />
 );
 
-const getStaticProps = getStaticPropsFactory(Preamble, "Album", "music");
-export { getStaticProps };
+const getServerSideProps = getStaticPropsFactory(Preamble, "Album", "music");
+export { getServerSideProps };
 
 export default MusicCatalog;

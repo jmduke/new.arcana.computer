@@ -67,7 +67,7 @@ const mungeRecord = async (record: any): Promise<Press> => {
   };
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const rawRecords = await await fetchAllRecords("Press");
   const items = await Promise.all(rawRecords.map(mungeRecord));
   return {
