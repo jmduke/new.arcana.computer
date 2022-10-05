@@ -58,7 +58,7 @@ const GamesCatalog = ({ preamble, items }) => (
   />
 );
 
-const getServerSideProps = getStaticPropsFactory(Preamble, "Game", "games");
-export { getServerSideProps };
+const getStaticProps = getStaticPropsFactory(Preamble, "Game", "games");
+export { getStaticProps };
 
 export default GamesCatalog;

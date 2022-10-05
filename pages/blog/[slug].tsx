@@ -15,7 +15,7 @@ const CatalogPage = ({ item }) => (
   />
 );
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   const rawItems = await fetchAllRecords("Snippets");
   const items = await Promise.all(
     rawItems.map(async (record) => mungeRecord(record))
@@ -38,17 +38,17 @@ export async function getServerSideProps({ params }) {
   };
 }
 
-// export async function getStaticPaths() {
-//   const rawRecords = await fetchAllRecords("Snippets");
-//   const items = await Promise.all(
-//     rawRecords.map(async (record) => mungeRecord(record))
-//   );
-//   return {
-//     paths: items
-//       .filter((item) => item.slug)
-//       .map((item) => `/blog/${item.slug}`),
-//     fallback: false,
-//   };
-// }
+export async function getStaticPaths() {
+  const rawRecords = await fetchAllRecords("Snippets");
+  const items = await Promise.all(
+    rawRecords.map(async (record) => mungeRecord(record))
+  );
+  return {
+    paths: items
+      .filter((item) => item.slug)
+      .map((item) => `/blog/${item.slug}`),
+    fallback: false,
+  };
+}
 
 export default CatalogPage;

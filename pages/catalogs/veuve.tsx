@@ -75,7 +75,7 @@ const mungeRecord = async (record: any): Promise<Entry> => {
   };
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const rawRecords = await fetchAllRecords("Veuve");
   const items = await Promise.all(
     rawRecords.map(async (record) => mungeRecord(record))

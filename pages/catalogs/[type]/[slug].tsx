@@ -40,7 +40,7 @@ const CatalogPage = ({ item, quotes }) => (
   />
 );
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   const type = (Object.keys(CONTENT_TYPE_TO_TYPE_SLUG) as Array<Type>).find(
     (k: Type) => CONTENT_TYPE_TO_TYPE_SLUG[k] === params.type
   );
@@ -68,23 +68,23 @@ export async function getServerSideProps({ params }) {
   };
 }
 
-// export async function getStaticPaths() {
-//   const paths: string[] = (
-//     await Promise.all(
-//       (Object.entries(CONTENT_TYPE_TO_TYPE_SLUG) as Array<[Type, string]>).map(
-//         async ([type, slug]) => {
-//           const items = await fetch(type);
-//           return items
-//             .filter((i) => i.slug !== "")
-//             .map((item) => `/catalogs/${slug}/${item.slug}`);
-//         }
-//       )
-//     )
-//   ).flat();
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
+export async function getStaticPaths() {
+  const paths: string[] = (
+    await Promise.all(
+      (Object.entries(CONTENT_TYPE_TO_TYPE_SLUG) as Array<[Type, string]>).map(
+        async ([type, slug]) => {
+          const items = await fetch(type);
+          return items
+            .filter((i) => i.slug !== "")
+            .map((item) => `/catalogs/${slug}/${item.slug}`);
+        }
+      )
+    )
+  ).flat();
+  return {
+    paths,
+    fallback: false,
+  };
+}
 
 export default CatalogPage;
