@@ -40,7 +40,11 @@ const MetaTags = ({ title, description, image, date, catalog }: Props) => {
       <meta name="twitter:description" content={description} />
       <meta
         name="twitter:image"
-        content={image || "https://arcana.computer/share.png"}
+        content={
+          image
+            ? `https://arcana.computer/api/og?data=${title},${catalog},${image}`
+            : "https://arcana.computer/share.png"
+        }
       />
       {date && <meta property="article:published_time" content={date} />}
     </Head>
