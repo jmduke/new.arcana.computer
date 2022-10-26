@@ -1,5 +1,5 @@
 import { ImageResponse } from "@vercel/og";
-import { NextRequest } from "next/server";
+import { NextRequest } from "next/server"; // eslint-disable-line import/no-unresolved
 
 export const config = {
   runtime: "experimental-edge",
@@ -54,7 +54,7 @@ const OG = async function (req: NextRequest) {
     ),
     {
       width: 1200,
-      height: 628,
+      height: 630,
       fonts: [
         {
           name: "IBM Plex Sans",
