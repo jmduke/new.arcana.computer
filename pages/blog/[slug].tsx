@@ -6,6 +6,7 @@ const CatalogPage = ({ item }) => (
   <DetailPage
     title={item.title}
     body={item.description}
+    catalog={"Blog"}
     tags={item.tags}
     colophon={
       <div className="flex-1 italic">

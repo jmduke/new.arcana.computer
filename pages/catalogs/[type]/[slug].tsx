@@ -10,6 +10,7 @@ const CatalogPage = ({ item, quotes }) => (
     subtitle={item.author && item.year && `${item.author} • ${item.year}`}
     body={item.description}
     image={item.image}
+    catalog={item.type}
     tags={item.genre}
     colophon={
       <div className="flex-1 flex items-center space-x-4">

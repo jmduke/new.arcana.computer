@@ -12,6 +12,7 @@ type Props = {
   subtitle?: string;
   body: any;
   image?: string;
+  catalog?: string;
   tags?: string;
   colophon?: ReactNode;
   postscript?: ReactNode;
@@ -21,13 +22,19 @@ const DetailPage = ({
   title,
   body,
   subtitle,
+  catalog,
   tags,
   image,
   colophon,
   postscript,
 }: Props) => (
   <div>
-    <MetaTags title={title} description={subtitle} />
+    <MetaTags
+      title={title}
+      description={subtitle}
+      image={image}
+      catalog={catalog}
+    />
     {image && (
       <div className="float-left mr-8 mb-2">
         <ImageColophon image={image} alt={image} />

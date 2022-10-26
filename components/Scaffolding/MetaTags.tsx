@@ -4,11 +4,12 @@ import { useRouter } from "next/router";
 export type Props = {
   title: string;
   description: string;
+  catalog?: string;
   image?: string;
   date?: string;
 };
 
-const MetaTags = ({ title, description, image, date }: Props) => {
+const MetaTags = ({ title, description, image, date, catalog }: Props) => {
   const router = useRouter();
 
   return (
@@ -27,7 +28,11 @@ const MetaTags = ({ title, description, image, date }: Props) => {
       <meta property="og:title" content={title} />
       <meta
         property="og:image"
-        content={image || "https://arcana.computer/share.png"}
+        content={
+          image
+            ? `https://arcana.computer/api/og?data=${title},${catalog},${image}`
+            : "https://arcana.computer/share.png"
+        }
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@jmduke" />
