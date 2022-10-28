@@ -34,11 +34,12 @@ const OG = async function (req: NextRequest) {
         <div
           style={{
             fontFamily: '"IBM Plex Sans"',
+            background: "#fcf9f4",
             display: "flex",
           }}
           tw="px-6 pb-3 pt-2 text-2xl border border-gray-300 rounded-full bottom-8 left-8 font-bold absolute inline-block"
         >
-          {catalog && `${catalog} →`} {title}
+          {catalog && `${catalog} ·`} {title}
         </div>
 
         <div
