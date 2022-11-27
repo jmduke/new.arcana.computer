@@ -1,6 +1,6 @@
 import DetailPage from "components/DetailPage";
-import { fetchAllRecords } from "lib/airtable";
-import { mungeRecord } from "pages/blog";
+
+import { getItems } from "./lib";
 
 const CatalogPage = ({ item }) => (
   <DetailPage
@@ -17,11 +17,8 @@ const CatalogPage = ({ item }) => (
 );
 
 export async function getStaticProps({ params }) {
-  const rawItems = await fetchAllRecords("Snippets");
-  const items = await Promise.all(
-    rawItems.map(async (record) => mungeRecord(record))
-  );
-  const item = items.filter((i) => i.slug === params.slug)[0];
+  const items = await getItems();
+  const item = items.find((i) => i.id === params.slug);
   return {
     props: {
       item,
@@ -32,7 +29,7 @@ export async function getStaticProps({ params }) {
         },
         {
           text: item.title,
-          href: `/blog/${item.slug}`,
+          href: `/blog/${item.id}`,
         },
       ],
     },
@@ -40,14 +37,10 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const rawRecords = await fetchAllRecords("Snippets");
-  const items = await Promise.all(
-    rawRecords.map(async (record) => mungeRecord(record))
-  );
+  const items = await getItems();
+
   return {
-    paths: items
-      .filter((item) => item.slug)
-      .map((item) => `/blog/${item.slug}`),
+    paths: items.filter((item) => item.id).map((item) => `/blog/${item.id}`),
     fallback: false,
   };
 }

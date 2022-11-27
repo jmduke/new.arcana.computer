@@ -1,0 +1,27 @@
+---
+title: "Friction log: @vercel/og"
+date: 2022-10-27
+tag: tech
+---
+
+This blog is written in `Next.js`. Buttondown's [marketing site](https://buttondown.email) and [docs site](https://docs.buttondown.email) are written in Next.js. One advantage of this shared lineage is I get to tool around with various interesting ideas and learn more about Next.js esoterica in the cozy confines of a personal website before applying them more rigorously and pragmatically in a commercial sense. [^1]
+
+When Vercel [announced a new approach to handling OpenGraph generation](https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation), I was excited to play around with it. I had spent some time sniffing around for solutions for this site and for Buttondown and wasn't excited enough about any of them to dip my toes in the figurative waters.
+
+To start with the conclusion: **I'm really excited about @vercel/og**;. I think it's a very nice library that delivers on a value proposition of "leverage the APIs and routing mechanisms that you're familiar with in `Next.js` and avoid having to hook into Puppeteer or some kludgy rendering engine." I'm looking forward to integrating it with my other Next.js projects.
+
+That being said — I stubbed my toe a number of times. (I think this is pretty reasonable, for what it's worth — it's a pre-v1.0 piece of software.) Here are all the places where I did so:
+
+- Satori (the backing rendering library powering `@vercel/og`) refuses to recognize some external images for reasons passing understanding. I filed an [issue](https://github.com/vercel/satori/issues/265) on this, but it's the scariest thing by far — this blog, for instance, references around two thousand external images and these failures are silent, so I have no way of actually telling the extent of the problem.
+- Similarly, a lot of [CSS silently fails](https://github.com/vercel/satori/issues/41). My anxiety lies more with the "silent" than the "fails"; I think the best way to approach building against the library is to start from scratch rather than to try and port an existing component, since the latter approach might cause you to slowly and painfully debug which style rule isn't working.
+- Satori doesn't support `.woff2` webfonts (a [known issue](https://github.com/vercel/satori/issues/3)) because its backing font library doesn't support them either. Not the end of the world, but it meant I had to spend a few minutes googling around for a `.ttf` version of IBM Plex Sans.
+- The [Satori Playground](https://satori-playground.vercel.app/) is really, really nice, and I ended up just iterating within it until I grabbed a design that I felt happy with.
+- Unfortunately (and this is not a problem with `@vercel/og`, but a problem with Open Graph itself!) the translation layer from "looks good in a playground or as a rendered image" to "looks good on Twitter" is...murky. There are a number of validation tools like [metatags.io](https://metatags.io/) which help _somewhat_, but even then you run into differences: for instance, Twitter zooms in slightly more on the OG image _vertically_ than _horizontally_, meaning borders will look skewed. (There should really be a tool that makes this easier.)
+- Next.JS (or perhaps more accurately React) does some [fuckery](https://github.com/vercel/next.js/issues/2006) with automatically escaping ampersands in request parameters. This is problematic because you need to pass data to your `OG` endpoint through GET params, and if you want to pass more than one distinct datum React makes it very hard. (I kludged my away around this by passing a single key-value pair, where the `key` is `"data"` and the `value` is a CSV.)
+- I spent an embarrassing amount of time tracking down an `eslint` issue that arose from me upgrading Next to `12.2` while leaving `eslint-config-next` at `12.1` So if you are googling around a solution for `next/server should not be imported outside of pages/_middleware.js` — **update your eslint-config-next, too!**
+
+If this sounds like a lot of nits and drawbacks, don't let it distract you from the larger point: I was able to get this up and running and deployed to production in around ninety minutes. I'm very happy with how it turned out, and excited to use it in other projects.
+
+Here's a link to the [final implementation](https://github.com/jmduke/new.arcana.computer/blob/main/pages/api/og.tsx) of the route as well as [how I invoke it](https://github.com/jmduke/new.arcana.computer/blob/main/components/Scaffolding/MetaTags.tsx). Please let me know if you have any questions, and thanks to [@shuding](https://github.com/shuding) for leading this project!
+
+[^1]: This is one of the biggest advantages of sticking to a few core technologies when building; knowledge transfers across codebases!
