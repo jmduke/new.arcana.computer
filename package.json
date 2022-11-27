@@ -19,6 +19,7 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "fathom-client": "^3.5.0",
     "feed": "^4.2.2",
+    "gray-matter": "^4.0.3",
     "littlefoot": "^3.4.1",
     "marked": "^4.0.17",
     "next": "^12.2.6",

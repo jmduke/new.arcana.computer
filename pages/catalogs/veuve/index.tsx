@@ -1,8 +1,11 @@
 import Catalog from "components/Catalog/Catalog";
 import TextColophon from "components/Catalog/TextColophon";
-import { fetchAllRecords } from "lib/airtable";
+import fs from "fs";
+import matter from "gray-matter";
 import compile from "lib/compile";
 import { MDXRemote } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
+import path from "path";
 
 const BaseCatalog = ({ title, rss, preamble, filters, items }) => {
   return (
@@ -13,7 +16,7 @@ const BaseCatalog = ({ title, rss, preamble, filters, items }) => {
       filters={filters}
       items={items}
       lefthandComponent={(item) => (
-        <TextColophon>🍾 #{items.indexOf(item)}</TextColophon>
+        <TextColophon>🍾 #{items.indexOf(item) + 1}</TextColophon>
       )}
       righthandComponent={(item) => (
         <div>
@@ -65,21 +68,29 @@ const VeuveCatalog = ({ preamble, items }) => (
   />
 );
 
-const mungeRecord = async (record: any): Promise<Entry> => {
-  return {
-    id: record.id,
-    description: record.fields.Definition
-      ? await compile(record.fields.Definition)
-      : null,
-    date: record.fields.Date ? Date.parse(record.fields.Date) : null,
-  };
-};
+const DIRECTORY = path.join(process.cwd(), "pages/catalogs/veuve");
 
 export async function getStaticProps() {
-  const rawRecords = await fetchAllRecords("Veuve");
+  const fileNames = fs.readdirSync(DIRECTORY);
   const items = await Promise.all(
-    rawRecords.map(async (record) => mungeRecord(record))
+    fileNames
+      .filter((filename) => filename.endsWith("mdx"))
+      .map(async function (fileName) {
+        const id = fileName.replace(/\.mdx$/, "");
+
+        const fullPath = path.join(DIRECTORY, fileName);
+        const fileContents = fs.readFileSync(fullPath, "utf8");
+        const matterResult = matter(fileContents);
+
+        // Combine the data with the id
+        return {
+          id,
+          date: matterResult.data.date || id.replace(".mdx", ""),
+          description: await serialize(matterResult.content),
+        };
+      })
   );
+
   return {
     props: {
       items,
