@@ -1,0 +1,6 @@
+---
+title: "Beastiary"
+type: Book
+---
+
+

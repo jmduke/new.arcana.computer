@@ -1,12 +1,11 @@
 import DetailPage from "components/DetailPage";
-import { fetchAllRecords } from "lib/airtable";
+import { fetchAll, fetchAllQuotes } from "lib/content";
 import { CONTENT_TYPE_TO_TYPE_SLUG } from "lib/data";
-import { munge, Quote } from "lib/quotes";
 import Link from "node_modules/next/link";
 
 const CatalogPage = ({ item }) => (
   <DetailPage
-    title={`Quote #${item.name}`}
+    title={`Quote #${item.id}`}
     body={item.description}
     image={item.source && item.source.image}
     colophon={
@@ -45,12 +44,12 @@ const CatalogPage = ({ item }) => (
 );
 
 export async function getStaticProps({ params }) {
-  const rawContent = await fetchAllRecords("Content");
-  const rawRecords = await fetchAllRecords("Notebook");
-  const items = await Promise.all(
-    rawRecords.map(async (record) => munge(record, rawContent))
-  );
-  const item = items.filter((i) => i.name == params.slug)[0];
+  const items = await fetchAll();
+  const quotes = await fetchAllQuotes();
+  const item = quotes.filter((i) => i.id == params.slug)[0];
+  item.source = items.filter((i) => i.title === item.source)[0] || {
+    name: item.author,
+  };
   return {
     props: {
       item,
@@ -60,8 +59,8 @@ export async function getStaticProps({ params }) {
           href: `/catalogs/quotes`,
         },
         {
-          text: `#${item.name}`,
-          href: `/catalogs/quotes/${item.name}`,
+          text: `#${item.id}`,
+          href: `/catalogs/quotes/${item.id}`,
         },
       ],
     },
@@ -69,12 +68,8 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const rawContent = await fetchAllRecords("Content");
-  const rawRecords = await fetchAllRecords("Notebook");
-  const items = await Promise.all(
-    rawRecords.map(async (record) => munge(record, rawContent))
-  );
-  const paths = items.map((item) => `/catalogs/quotes/${item.name}`);
+  const items = await fetchAllQuotes();
+  const paths = items.map((item) => `/catalogs/quotes/${item.id}`);
   return {
     paths,
     fallback: false,

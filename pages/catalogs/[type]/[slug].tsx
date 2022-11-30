@@ -1,7 +1,6 @@
 import DetailPage from "components/DetailPage";
 import H3 from "components/Markdown/H3";
-import { fetchAllRecords } from "lib/airtable";
-import { fetch } from "lib/content";
+import { fetchAll, fetchAllQuotes } from "lib/content";
 import { CONTENT_TYPE_TO_TYPE_SLUG, Type } from "lib/data";
 
 const CatalogPage = ({ item, quotes }) => (
@@ -45,12 +44,12 @@ export async function getStaticProps({ params }) {
   const type = (Object.keys(CONTENT_TYPE_TO_TYPE_SLUG) as Array<Type>).find(
     (k: Type) => CONTENT_TYPE_TO_TYPE_SLUG[k] === params.type
   );
-  const items = await fetch(type);
-  const quotes = await fetchAllRecords("Notebook");
+  const items = await fetchAll();
+  const quotes = await fetchAllQuotes();
   const item = items.filter((i) => i.slug === params.slug)[0];
   const relevantQuotes = quotes
-    .filter((q) => (q.fields.Source ? q.fields.Source[0] == item.id : false))
-    .map((q) => q.fields.Text);
+    .filter((q) => (q.source ? q.source === item.title : false))
+    .map((q) => q.content);
   return {
     props: {
       item,
@@ -74,10 +73,11 @@ export async function getStaticPaths() {
     await Promise.all(
       (Object.entries(CONTENT_TYPE_TO_TYPE_SLUG) as Array<[Type, string]>).map(
         async ([type, slug]) => {
-          const items = await fetch(type);
+          const items = await fetchAll();
           return items
-            .filter((i) => i.slug !== "")
-            .map((item) => `/catalogs/${slug}/${item.slug}`);
+            .filter((i) => i.type === type)
+            .filter((i) => i.id !== "")
+            .map((item) => `/catalogs/${slug}/${item.id}`);
         }
       )
     )

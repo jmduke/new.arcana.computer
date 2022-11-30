@@ -1,0 +1,6 @@
+---
+title: "Newsies"
+type: Movie
+---
+
+
