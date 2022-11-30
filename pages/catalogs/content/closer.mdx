@@ -1,0 +1,6 @@
+---
+title: "Closer"
+type: Movie
+---
+
+

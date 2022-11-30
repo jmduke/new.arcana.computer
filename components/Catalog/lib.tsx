@@ -1,8 +1,8 @@
 import compile from "lib/compile";
 import { SITE_URL } from "lib/constants";
+import { fetchAll } from "lib/content";
 import { generate as generateRSS, RSSItem } from "lib/rss";
 
-import { fetch } from "../../lib/content";
 import { CONTENT_TYPE_TO_TYPE_SLUG, Item, Type } from "../../lib/data";
 
 export const convertItemToRSS = (i: Item): RSSItem => {
@@ -17,7 +17,11 @@ export const convertItemToRSS = (i: Item): RSSItem => {
 
 const getStaticPropsFactory = (preamble: string, type: Type, path: string) => {
   async function getStaticProps() {
-    const items = await fetch(type);
+    const items = (await fetchAll())
+      .filter((i) => i.type === type && i.status === "Finished")
+      .sort((a, b) => {
+        return new Date(a.date) > new Date(b.date) ? -1 : 1;
+      });
     await generateRSS(items.map(convertItemToRSS), path);
     return {
       props: {

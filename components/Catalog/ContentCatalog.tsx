@@ -36,7 +36,10 @@ const ContentCatalog = ({
           <a href={`/catalogs/${name}/${item.slug}`}>
             <div className="cursor-pointer relative group">
               <a className="group-hover:brightness-0">
-                <ImageColophon image={item.image} alt={item.title} />
+                <ImageColophon
+                  image={`/content/${item.id}.jpg`}
+                  alt={item.title}
+                />
               </a>
               <div className="absolute top-4 bottom-4 left-8 right-8 invisible group-hover:visible">
                 <div className="items-center text-center flex h-48">

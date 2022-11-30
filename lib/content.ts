@@ -1,43 +1,95 @@
+import fs from "fs";
+import matter from "gray-matter";
 import { marked } from "marked";
+import { serialize } from "next-mdx-remote/serialize";
+import path from "path";
 
-import { fetchAllRecords } from "./airtable";
-import compile from "./compile";
-import type { Item, Type } from "./data";
-import slugify from "./slugify";
+const CONTENT_DIRECTORY = path.join(process.cwd(), "pages/catalogs/content");
+const QUOTES_DIRECTORY = path.join(process.cwd(), "pages/catalogs/notebook");
 
-const mungeRecord = async (record: any): Promise<Item> => {
-  const summary = record.fields.Summary
-    ? record.fields.Summary.replace(/\[\[/g, "~~").replace(/\]\]/g, "~~")
-    : null;
-  return {
-    id: record.id,
-    slug: slugify(record.fields.Name || ""),
-    title: record.fields.Name || "",
-    type: record.fields.Type || null,
-    author: record.fields.Author || null,
-    rating: record.fields.Rating || null,
-    date: record.fields.Date ? Date.parse(record.fields.Date) : null,
-    description: summary ? await compile(summary) : null,
-    htmlDescription: record.fields.Summary ? marked.parse(summary) : "",
-    year: record.fields.Year || null,
-    genre: record.fields.Genre ? record.fields.Genre[0] : null,
-    image: record.fields.Image ? record.fields.Image[0].url : null,
-    status: record.fields.Status || "",
-  };
+export const fetchAll = async () => {
+  const fileNames = fs.readdirSync(CONTENT_DIRECTORY);
+  return await Promise.all(
+    fileNames
+      .filter((filename) => filename.endsWith("mdx"))
+      .map(async function (fileName) {
+        const id = fileName.replace(/\.mdx$/, "");
+
+        const fullPath = path.join(CONTENT_DIRECTORY, fileName);
+        const fileContents = fs.readFileSync(fullPath, "utf8");
+        const matterResult = matter(fileContents);
+
+        return {
+          id,
+          title: matterResult.data.title,
+          slug: id,
+          status: matterResult.data.status || "",
+          date: matterResult.data.date
+            ? matterResult.data.date.toString()
+            : id.replace(".mdx", ""),
+          description: await serialize(matterResult.content),
+          type: matterResult.data.type || "",
+          source: matterResult.data.content || matterResult.data.source || "",
+        };
+      })
+  );
 };
 
-const fetchAll = async (): Promise<Item[]> => {
-  const records = await fetchAllRecords("Content");
-  const items = await Promise.all(
-    records.map(async (record) => mungeRecord(record))
+export const fetchAllQuotes = async () => {
+  const fileNames = fs.readdirSync(QUOTES_DIRECTORY);
+  return await Promise.all(
+    fileNames
+      .filter((filename) => filename.endsWith("mdx"))
+      .map(async function (fileName) {
+        const id = fileName.replace(/\.mdx$/, "");
+
+        const fullPath = path.join(QUOTES_DIRECTORY, fileName);
+        const fileContents = fs.readFileSync(fullPath, "utf8");
+        const matterResult = matter(fileContents);
+
+        return {
+          id,
+          date: matterResult.data.date
+            ? matterResult.data.date.toString()
+            : id.replace(".mdx", ""),
+          content: matterResult.content || "",
+          description: await serialize(matterResult.content),
+          author: matterResult.data.author || "",
+          source: matterResult.data.content || matterResult.data.source || "",
+        };
+      })
   );
-  return items.sort(function (a, b) {
-    return b.date - a.date;
+};
+
+const DIRECTORY = path.join(process.cwd(), "pages/blog/posts");
+export const fetchAllPosts = async () => {
+  const fileNames = fs.readdirSync(DIRECTORY);
+  const items = await Promise.all(
+    fileNames
+      .filter((filename) => filename.endsWith("mdx"))
+      .map(async function (fileName) {
+        const id = fileName.replace(/\.mdx$/, "");
+
+        const fullPath = path.join(DIRECTORY, fileName);
+        const fileContents = fs.readFileSync(fullPath, "utf8");
+        const matterResult = matter(fileContents);
+
+        // Combine the data with the id
+        return {
+          id,
+          slug: id,
+          title: matterResult.data.title,
+          date: matterResult.data.date.toString(),
+          description: await serialize(matterResult.content),
+          htmlDescription: marked.parse(matterResult.content),
+        };
+      })
+  );
+  return items.sort((a, b) => {
+    if (new Date(a.date) < new Date(b.date)) {
+      return 1;
+    } else {
+      return -1;
+    }
   });
 };
-
-const fetch = async (type: Type): Promise<Item[]> => {
-  return (await fetchAll()).filter((item) => item.type === type);
-};
-
-export { fetch, fetchAll, mungeRecord };

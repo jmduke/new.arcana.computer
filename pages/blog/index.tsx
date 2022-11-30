@@ -3,13 +3,10 @@ import H2 from "components/Markdown/H2";
 import Tag from "components/Tag";
 import compile from "lib/compile";
 import { SITE_URL } from "lib/constants";
+import { fetchAllPosts } from "lib/content";
 import { generate as generateRSS } from "lib/rss";
-import slugify from "lib/slugify";
-import { marked } from "marked";
 import { MDXRemote } from "next-mdx-remote";
 import Link from "node_modules/next/link";
-
-import { getItems } from "./lib";
 
 export type BlogPost = {
   id: string;
@@ -59,22 +56,8 @@ const Blog = ({ preamble, items }) => {
   );
 };
 
-export const mungeRecord = async (record: any): Promise<BlogPost> => {
-  return {
-    id: record.id,
-    description: record.fields.Content
-      ? await compile(record.fields.Content)
-      : null,
-    htmlDescription: marked.parse(record.fields.Content),
-    date: record.fields.Date ? Date.parse(record.fields.Date) : null,
-    title: record.fields.Name,
-    slug: slugify(record.fields.Name),
-    tags: record.fields.Tags,
-  };
-};
-
 export async function getStaticProps() {
-  const items = await getItems();
+  const items = await fetchAllPosts();
   await generateRSS(
     items.map((i) => {
       return {

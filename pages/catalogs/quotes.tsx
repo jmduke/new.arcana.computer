@@ -1,7 +1,6 @@
 import Catalog from "components/Catalog/MiscellanyCatalog";
-import { fetchAllRecords } from "lib/airtable";
 import compile from "lib/compile";
-import { munge, Quote } from "lib/quotes";
+import { fetchAllQuotes } from "lib/content";
 
 import Icon from "../../components/Icon";
 
@@ -24,13 +23,13 @@ const filters = [
   {
     id: "all",
     label: "All quotes",
-    filter: (i: Quote) => true,
+    filter: (i) => true,
     icon: <Icon.Collection />,
   },
   {
     id: "books",
     label: "From books",
-    filter: (i: Quote) => {
+    filter: (i) => {
       if (!i.source) {
         return false;
       }
@@ -44,7 +43,7 @@ const filters = [
   {
     id: "tweets",
     label: "Tweets",
-    filter: (i: Quote) => {
+    filter: (i) => {
       if (!i.source) {
         return false;
       }
@@ -58,19 +57,15 @@ const filters = [
 ];
 
 export async function getStaticProps() {
-  const rawContent = await fetchAllRecords("Content");
-  const rawRecords = await fetchAllRecords("Notebook");
-  console.log("Started");
-  const items = await Promise.all(
-    rawRecords.map(async (record) => munge(record, rawContent))
-  );
-  console.log("Finished");
+  const items = await fetchAllQuotes();
+
   return {
     props: {
-      items,
+      items: items.sort((a, b) => {
+        return new Number(a.id) > new Number(b.id) ? -1 : 1;
+      }),
       preamble: await compile(Preamble),
     },
   };
 }
-
 export default QuotesCatalog;

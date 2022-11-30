@@ -1,20 +1,16 @@
 import Catalog from "components/Catalog/MiscellanyCatalog";
-import { fetchAllRecords } from "lib/airtable";
+import fs from "fs";
+import matter from "gray-matter";
 import compile from "lib/compile";
-import { mungeRecord as mungeContentRecord } from "lib/content";
-import { Item } from "lib/data";
+import { serialize } from "next-mdx-remote/serialize";
+import path from "path";
 
 type Word = {
   id: string;
   title: string;
   description: any;
   date: number;
-  source:
-    | {
-        name: string;
-        url: string;
-      }
-    | Item;
+  source: string;
 };
 
 const Preamble = `
@@ -39,36 +35,44 @@ const WordsCatalog = ({ preamble, items }) => (
   />
 );
 
-const mungeRecord = async (record: any, content: any[]): Promise<Word> => {
-  const sourceId = record.fields.Content ? record.fields.Content[0] : null;
-  const source = sourceId
-    ? content.filter((c) => c.id === sourceId)[0]
-      ? await mungeContentRecord(content.filter((c) => c.id === sourceId)[0])
-      : null
-    : null;
-  return {
-    id: record.id,
-    description: record.fields.Definition
-      ? await compile(record.fields.Definition)
-      : null,
-    date: record.fields.Date ? Date.parse(record.fields.Date) : null,
-    title: record.fields.Name,
-    source: source || {
-      name: record.fields.Source || null,
-      url: null,
-    },
-  };
-};
+const DIRECTORY = path.join(process.cwd(), "pages/catalogs/words");
 
 export async function getStaticProps() {
-  const rawContent = await fetchAllRecords("Content");
-  const rawRecords = await fetchAllRecords("Dictionary");
+  const fileNames = fs.readdirSync(DIRECTORY);
   const items = await Promise.all(
-    rawRecords.map(async (record) => mungeRecord(record, rawContent))
+    fileNames
+      .filter((filename) => filename.endsWith("mdx"))
+      .sort((a, b) => {
+        const aDate = new Date(
+          matter.read(path.join(DIRECTORY, a)).data.date
+        ).getTime();
+        const bDate = new Date(
+          matter.read(path.join(DIRECTORY, b)).data.date
+        ).getTime();
+        return bDate - aDate;
+      })
+      .map(async function (fileName) {
+        const id = fileName.replace(/\.mdx$/, "");
+
+        const fullPath = path.join(DIRECTORY, fileName);
+        const fileContents = fs.readFileSync(fullPath, "utf8");
+        const matterResult = matter(fileContents);
+
+        return {
+          id,
+          title: matterResult.data.title,
+          date: matterResult.data.date
+            ? matterResult.data.date.toString()
+            : id.replace(".mdx", ""),
+          description: await serialize(matterResult.content),
+          source: matterResult.data.content || matterResult.data.source || "",
+        };
+      })
   );
+
   return {
     props: {
-      items,
+      items: items.filter((item) => item.title !== undefined),
       preamble: await compile(Preamble),
     },
   };

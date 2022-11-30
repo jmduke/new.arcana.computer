@@ -2,10 +2,9 @@ import TableOfContents from "../components/TableOfContents";
 import CurrentlyWidget from "../components/CurrentlyWidget";
 import SubscribeForm from "../components/SubscribeForm";
 import Widget from "../components/Widget";
-import { fetchAllRecords } from "lib/airtable";
+import currently from "../public/currently.json";
 import { fetchAll } from "lib/content";
 import fs from "fs";
-import currently from "../public/currently.json";
 import { generate as generateRSS } from "lib/rss";
 import { convertItemToRSS } from "components/Catalog/lib";
 
@@ -134,7 +133,6 @@ export default ({ items, children }) => (
 );
 
 export async function getStaticProps() {
-  const records = await fetchAllRecords("Currently"); // I have no idea why this is necessary.
   const realRecords = (await fetchAll()).filter(
     (item) => item.status === "In progress"
   );

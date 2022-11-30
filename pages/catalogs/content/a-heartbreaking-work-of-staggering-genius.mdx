@@ -1,0 +1,10 @@
+---
+title: "A Heartbreaking Work of Staggering Genius"
+type: Book
+date: 2014-09-01
+rating: 10
+genre: ['Non-Fiction']
+status: Finished
+---
+
+

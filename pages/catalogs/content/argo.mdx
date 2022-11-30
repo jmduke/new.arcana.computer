@@ -1,0 +1,6 @@
+---
+title: "Argo"
+type: Movie
+---
+
+

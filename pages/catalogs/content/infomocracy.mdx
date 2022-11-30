@@ -1,0 +1,6 @@
+---
+title: "Infomocracy"
+type: Book
+---
+
+

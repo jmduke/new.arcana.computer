@@ -1,0 +1,6 @@
+---
+title: "Precious"
+type: Movie
+---
+
+

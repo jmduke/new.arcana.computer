@@ -1,0 +1,6 @@
+---
+title: "Detroit"
+type: Movie
+---
+
+

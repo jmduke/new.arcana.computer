@@ -32,12 +32,6 @@ const BaseCatalog = ({ title, rss, preamble, filters, items }) => {
   );
 };
 
-type Entry = {
-  id: string;
-  description: any;
-  date: number;
-};
-
 const Preamble = `
 > I wouldn’t take the time to celebrate the achievement.
 > I’m an achiever by nature, the kind who feels like every day starts at zero.

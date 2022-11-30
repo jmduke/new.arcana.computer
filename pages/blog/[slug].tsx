@@ -1,6 +1,5 @@
 import DetailPage from "components/DetailPage";
-
-import { getItems } from "./lib";
+import { fetchAllPosts } from "lib/content";
 
 const CatalogPage = ({ item }) => (
   <DetailPage
@@ -17,7 +16,7 @@ const CatalogPage = ({ item }) => (
 );
 
 export async function getStaticProps({ params }) {
-  const items = await getItems();
+  const items = await fetchAllPosts();
   const item = items.find((i) => i.id === params.slug);
   return {
     props: {
@@ -37,7 +36,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const items = await getItems();
+  const items = await fetchAllPosts();
 
   return {
     paths: items.filter((item) => item.id).map((item) => `/blog/${item.id}`),
