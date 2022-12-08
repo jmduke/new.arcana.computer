@@ -32,7 +32,9 @@ const MiscellanyCatalog = ({
       items={items}
       lefthandComponent={(item) => (
         <ImageColophon
-          image={item.source && item.source.image}
+          image={
+            item.source && item.source.id && `/content/${item.source.id}.jpg`
+          }
           alt={item.title}
         />
       )}
