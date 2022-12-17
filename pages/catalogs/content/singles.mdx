@@ -1,0 +1,4 @@
+---
+title: "Singles"
+type: Movie
+---

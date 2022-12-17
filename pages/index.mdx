@@ -137,14 +137,21 @@ export async function getStaticProps() {
     (item) => item.status === "In progress"
   );
   fs.writeFileSync(`./public/currently.json`, JSON.stringify(realRecords));
-  await generateRSS((await fetchAll()).map(convertItemToRSS), "omnibus");
   const items = await generateRSS(
-    (await fetchAll()).map(convertItemToRSS),
+    (
+      await fetchAll()
+    )
+      .filter((i) => i.status === "Finished")
+      .sort((a, b) => {
+          return new Date(b.date) - new Date(a.date);
+      })
+      .map(convertItemToRSS),
     "omnibus"
-  );
-  return {
-    props: {
-      items: realRecords,
-    },
-  };
+
+);
+return {
+props: {
+items: realRecords,
+},
+};
 }

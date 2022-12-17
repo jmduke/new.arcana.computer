@@ -1,8 +1,9 @@
 import fs from "fs";
 import matter from "gray-matter";
 import { marked } from "marked";
-import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
+
+import serialize from "./compile";
 
 const CONTENT_DIRECTORY = path.join(process.cwd(), "pages/catalogs/content");
 const QUOTES_DIRECTORY = path.join(process.cwd(), "pages/catalogs/notebook");
@@ -24,6 +25,7 @@ export const fetchAll = async () => {
           title: matterResult.data.title,
           slug: id,
           status: matterResult.data.status || "",
+          rating: matterResult.data.rating || "",
           date: matterResult.data.date
             ? matterResult.data.date.toString()
             : id.replace(".mdx", ""),
