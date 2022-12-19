@@ -37,9 +37,13 @@ export const fetchAll = async () => {
   );
 };
 
-export const fetchAllQuotes = async () => {
+export const fetchAllQuotes = async (backingContent: any[]) => {
   const fileNames = fs.readdirSync(QUOTES_DIRECTORY);
-  const backingContent = await fetchAll();
+
+  const titleToContent = backingContent.reduce((acc, item) => {
+    acc[item.title] = item;
+    return acc;
+  }, {});
 
   return await Promise.all(
     fileNames
@@ -52,9 +56,7 @@ export const fetchAllQuotes = async () => {
         const matterResult = matter(fileContents);
 
         const backingContentForSource = matterResult.data.source
-          ? backingContent.find(
-              (item) => item.title === matterResult.data.source
-            )
+          ? titleToContent[matterResult.data.source] || null
           : null;
 
         return {
@@ -65,11 +67,9 @@ export const fetchAllQuotes = async () => {
           content: matterResult.content || "",
           description: await serialize(matterResult.content),
           author: matterResult.data.author || "",
-          source:
-            matterResult.data.content ||
-            backingContentForSource ||
-            matterResult.data.source ||
-            "",
+          source: backingContentForSource || {
+            name: matterResult.data.source || matterResult.data.author || "",
+          },
         };
       })
   );

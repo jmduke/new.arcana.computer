@@ -45,7 +45,7 @@ export async function getStaticProps({ params }) {
     (k: Type) => CONTENT_TYPE_TO_TYPE_SLUG[k] === params.type
   );
   const items = await fetchAll();
-  const quotes = await fetchAllQuotes();
+  const quotes = await fetchAllQuotes(items);
   const item = items.filter((i) => i.slug === params.slug)[0];
   const relevantQuotes = quotes
     .filter((q) => (q.source ? q.source === item.title : false))
@@ -65,26 +65,26 @@ export async function getStaticProps({ params }) {
         },
       ],
     },
+    revalidate: 1000,
   };
 }
 
 export async function getStaticPaths() {
+  const allItems = await fetchAll();
   const paths: string[] = (
-    await Promise.all(
-      (Object.entries(CONTENT_TYPE_TO_TYPE_SLUG) as Array<[Type, string]>).map(
-        async ([type, slug]) => {
-          const items = await fetchAll();
-          return items
-            .filter((i) => i.type === type)
-            .filter((i) => i.id !== "")
-            .map((item) => `/catalogs/${slug}/${item.id}`);
-        }
-      )
-    )
-  ).flat();
+    Object.entries(CONTENT_TYPE_TO_TYPE_SLUG) as Array<[Type, string]>
+  )
+    .map(([type, slug]) => {
+      return allItems
+        .filter((i) => i.type === type)
+        .filter((i) => i.id !== "")
+        .filter((i) => i.status !== "")
+        .map((item) => `/catalogs/${slug}/${item.id}`);
+    })
+    .flat();
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
 

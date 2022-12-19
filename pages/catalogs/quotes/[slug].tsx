@@ -45,11 +45,8 @@ const CatalogPage = ({ item }) => (
 
 export async function getStaticProps({ params }) {
   const items = await fetchAll();
-  const quotes = await fetchAllQuotes();
+  const quotes = await fetchAllQuotes(items);
   const item = quotes.filter((i) => i.id == params.slug)[0];
-  item.source = items.filter((i) => i.title === item.source)[0] || {
-    name: item.author,
-  };
   return {
     props: {
       item,
@@ -64,15 +61,17 @@ export async function getStaticProps({ params }) {
         },
       ],
     },
+    revalidate: 1000,
   };
 }
 
 export async function getStaticPaths() {
-  const items = await fetchAllQuotes();
-  const paths = items.map((item) => `/catalogs/quotes/${item.id}`);
+  const items = await fetchAll();
+  const quotes = await fetchAllQuotes(items);
+  const paths = quotes.map((item) => `/catalogs/quotes/${item.id}`);
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
 

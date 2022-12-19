@@ -1,6 +1,6 @@
 import Catalog from "components/Catalog/MiscellanyCatalog";
 import compile from "lib/compile";
-import { fetchAllQuotes } from "lib/content";
+import { fetchAll, fetchAllQuotes } from "lib/content";
 
 import Icon from "../../components/Icon";
 
@@ -57,7 +57,8 @@ const filters = [
 ];
 
 export async function getStaticProps() {
-  const items = await fetchAllQuotes();
+  const backingContent = await fetchAll();
+  const items = await fetchAllQuotes(backingContent);
 
   return {
     props: {
