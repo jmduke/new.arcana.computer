@@ -20,7 +20,10 @@ const getStaticPropsFactory = (preamble: string, type: Type, path: string) => {
     const items = (await fetchAll())
       .filter((i) => i.type === type && i.status === "Finished")
       .sort((a, b) => {
-        return new Date(a.date) > new Date(b.date) ? -1 : 1;
+        return new Date(a.date || "1970-01-01") >
+          new Date(b.date || "1970-01-01")
+          ? -1
+          : 1;
       });
     await generateRSS(items.map(convertItemToRSS), path);
     return {

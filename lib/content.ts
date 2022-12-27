@@ -25,10 +25,9 @@ export const fetchAll = async () => {
           title: matterResult.data.title,
           slug: id,
           status: matterResult.data.status || "",
+          image: matterResult.data.image || "",
           rating: matterResult.data.rating || "",
-          date: matterResult.data.date
-            ? matterResult.data.date.toString()
-            : id.replace(".mdx", ""),
+          date: matterResult.data.date ? matterResult.data.date.toString() : "",
           description: await serialize(matterResult.content),
           type: matterResult.data.type || "",
           source: matterResult.data.content || matterResult.data.source || "",

@@ -1,8 +1,8 @@
 import H2 from "components/Markdown/H2";
 import H3 from "components/Markdown/H3";
 import Tag from "components/Tag";
-import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote";
+import Link from "next/link";
 
 import Catalog, { Filter } from "./Catalog";
 import ImageColophon from "./SourceImage";
@@ -37,7 +37,7 @@ const ContentCatalog = ({
             <div className="cursor-pointer relative group">
               <a className="group-hover:brightness-0">
                 <ImageColophon
-                  image={`/content/${item.id}.jpg`}
+                  image={`/content/${item.image || item.id + ".jpg"}`}
                   alt={item.title}
                 />
               </a>
