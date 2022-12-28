@@ -1,8 +1,8 @@
 import H2 from "components/Markdown/H2";
 import H3 from "components/Markdown/H3";
 import Tag from "components/Tag";
-import { MDXRemote } from "next-mdx-remote";
 import Link from "next/link";
+import { MDXRemote } from "next-mdx-remote";
 
 import Catalog, { Filter } from "./Catalog";
 import ImageColophon from "./SourceImage";

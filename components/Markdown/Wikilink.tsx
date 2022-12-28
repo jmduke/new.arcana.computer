@@ -1,16 +1,17 @@
-import slugify from "lib/slugify";
-import { useRouter } from "next/router";
+import items from "../../public/allItems.json";
 
 const Wikilink = (props) => {
-  const { asPath } = useRouter();
+  const item = items.find((i) => i.title === props.children);
 
-  const [_, __, catalog, ___] = asPath.split("/");
+  if (!item) {
+    return <span>{props.children}</span>;
+  }
 
   return (
     <a
       className="hover:text-brand cursor-pointer bg-red-100 px-1 inline-block"
       {...props}
-      href={`/catalogs/${catalog}/${slugify(props.children)}`}
+      href={`/catalogs/${item.catalog}/${item.slug}`}
     >
       {props.children}&nbsp;↗
     </a>

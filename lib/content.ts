@@ -26,6 +26,11 @@ export const fetchAll = async () => {
           slug: id,
           status: matterResult.data.status || "",
           image: matterResult.data.image || "",
+          catalog:
+            {
+              Book: "books",
+              Movie: "movies",
+            }[matterResult.data.type] || "content",
           rating: matterResult.data.rating || "",
           date: matterResult.data.date ? matterResult.data.date.toString() : "",
           description: await serialize(matterResult.content),
