@@ -144,7 +144,7 @@ export default ({ items, children }) => (
 
 export async function getStaticProps() {
   const allItems = await fetchAll();
-  const realRecords = allItems.filter((item) => item.status !== "");
+  const realRecords = allItems.filter((item) => item.status === "In progress");
   fs.writeFileSync(`./public/currently.json`, JSON.stringify(realRecords));
   await generateRSS(
     allItems
