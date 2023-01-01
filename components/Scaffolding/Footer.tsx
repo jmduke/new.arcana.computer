@@ -22,7 +22,7 @@ const Footer = () => {
       >
         Let me know.
       </a>
-      <br />© 2022 Justin Duke •{" "}
+      <br />© 2023 Justin Duke •{" "}
       {FOOTER_STRINGS[(path.length - 1) % FOOTER_STRINGS.length]}
     </div>
   );
