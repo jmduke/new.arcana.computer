@@ -81,7 +81,7 @@ const LINKS: Section[] = [
       },
       {
         title: "Years in review",
-        href: "/catalogs/years",
+        href: "/years",
         status: "placeholder",
       },
     ],

@@ -12,6 +12,7 @@ type Props = {
   filters: Filter[];
   items: any[];
   name: string;
+  hideImage?: boolean;
 };
 
 const MiscellanyCatalog = ({
@@ -21,6 +22,7 @@ const MiscellanyCatalog = ({
   filters,
   items,
   name,
+  hideImage,
 }: Props) => {
   return (
     <Catalog
@@ -30,12 +32,16 @@ const MiscellanyCatalog = ({
       preamble={preamble}
       filters={filters}
       items={items}
-      lefthandComponent={(item) => (
-        <ImageColophon
-          image={`/content/${item.image || item.id + ".jpg"}`}
-          alt={item.title}
-        />
-      )}
+      lefthandComponent={(item) =>
+        hideImage ? (
+          false
+        ) : (
+          <ImageColophon
+            image={`/content/${item.image || item.id + ".jpg"}`}
+            alt={item.title}
+          />
+        )
+      }
       righthandComponent={(item) => (
         <div className="flex-1">
           {item.title && <div className="text-lg font-bold">{item.title}</div>}

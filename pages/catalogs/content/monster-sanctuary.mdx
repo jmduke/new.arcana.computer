@@ -1,5 +1,5 @@
 ---
 title: "Monster Sanctuary"
-status: Shelved
+status: In progress
 type: Game
 ---

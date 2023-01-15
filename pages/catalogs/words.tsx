@@ -32,6 +32,7 @@ const WordsCatalog = ({ preamble, items }) => (
     items={items}
     filters={[]}
     name="words"
+    hideImage={true}
   />
 );
 

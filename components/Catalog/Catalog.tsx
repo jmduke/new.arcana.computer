@@ -110,7 +110,7 @@ const Catalog = ({
               key={item.id}
               className="md:flex md:space-x-8 md:items-start clear-left"
             >
-              {lefthandComponent && (
+              {lefthandComponent && lefthandComponent(item) && (
                 <div
                   style={{ maxWidth: LEFTHAND_COLUMN_SIZE }}
                   className={
