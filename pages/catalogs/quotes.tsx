@@ -16,6 +16,7 @@ const QuotesCatalog = ({ preamble, items }) => (
     items={items}
     filters={filters}
     name="quotes"
+    hideImage={true}
   />
 );
 

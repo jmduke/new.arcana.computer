@@ -8,7 +8,7 @@ const CatalogPage = ({ item, quotes }) => (
     title={item.title}
     subtitle={item.author && item.year && `${item.author} • ${item.year}`}
     body={item.description}
-    image={item.image}
+    image={`/content/${item.image || item.id + ".jpg"}`}
     catalog={item.type}
     tags={item.genre}
     colophon={
