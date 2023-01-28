@@ -13,6 +13,7 @@ export type RSSItem = {
   html: string;
   url: string;
   date: Date;
+  category: string;
 };
 
 export const generate = async (items: RSSItem[], name: string) => {
@@ -25,7 +26,7 @@ export const generate = async (items: RSSItem[], name: string) => {
     favicon: `${SITE_URL}/favicon.ico`,
     updated: date,
     generator: "Feed for node.js",
-    copyright: "2022 Justin Duke",
+    copyright: "2023 Justin Duke",
     author: AUTHOR,
     feedLinks: {
       rss2: `${SITE_URL}/rss/${name}.xml`,
@@ -36,11 +37,16 @@ export const generate = async (items: RSSItem[], name: string) => {
       title: item.title || "",
       id: item.url,
       link: item.url,
-      description: item.html,
+      description: item.html || "",
       content: item.html,
       author: [AUTHOR],
       contributor: [AUTHOR],
       date: item.date,
+      category: [
+        {
+          name: item.category,
+        },
+      ],
     });
   });
   fs.mkdirSync("./public/rss", { recursive: true });

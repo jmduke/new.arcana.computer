@@ -12,6 +12,7 @@ export const convertItemToRSS = (i: Item): RSSItem => {
     date: new Date(i.date),
     html: i.htmlDescription,
     url: `${SITE_URL}/catalogs/${catalogSlug}/${i.slug}`,
+    category: i.type,
   };
 };
 

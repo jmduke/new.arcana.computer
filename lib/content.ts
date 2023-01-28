@@ -34,6 +34,7 @@ export const fetchAll = async () => {
           rating: matterResult.data.rating || "",
           date: matterResult.data.date ? matterResult.data.date.toString() : "",
           description: await serialize(matterResult.content),
+          htmlDescription: marked.parse(matterResult.content),
           type: matterResult.data.type || "",
           source: matterResult.data.content || matterResult.data.source || "",
         };
