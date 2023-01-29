@@ -65,6 +65,7 @@ export async function getStaticProps() {
         date: new Date(i.date),
         html: i.htmlDescription,
         url: `${SITE_URL}/blog/${i.id}`,
+        category: "Essay",
       };
     }),
     "blog"
