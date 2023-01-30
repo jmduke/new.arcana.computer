@@ -32,23 +32,26 @@ export const generate = async (items: RSSItem[], name: string) => {
       rss2: `${SITE_URL}/rss/${name}.xml`,
     },
   });
-  items.map((item) => {
-    feed.addItem({
-      title: item.title || "",
-      id: item.url,
-      link: item.url,
-      description: item.html || "",
-      content: item.html,
-      author: [AUTHOR],
-      contributor: [AUTHOR],
-      date: item.date,
-      category: [
-        {
-          name: item.category,
-        },
-      ],
+  items
+    // @ts-ignore
+    .filter((item) => !isNaN(item.date))
+    .map((item) => {
+      feed.addItem({
+        title: item.title || "",
+        id: item.url,
+        link: item.url,
+        description: item.html || "",
+        content: item.html,
+        author: [AUTHOR],
+        contributor: [AUTHOR],
+        date: item.date,
+        category: [
+          {
+            name: item.category,
+          },
+        ],
+      });
     });
-  });
   fs.mkdirSync("./public/rss", { recursive: true });
   fs.writeFileSync(`./public/rss/${name}.xml`, feed.rss2());
 };
