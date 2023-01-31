@@ -1,0 +1,19 @@
+import requests
+
+url = 'https://www.figma.com/api/feed/plugins?sort_by=all_time&tags=&pagination=null&editor_type=all&category=null&price=all&include_tags=true&include_versions=true'
+data = []
+while url:
+    response = requests.get(url)
+    json = response.json()
+    data.append(json['meta']['resources'])
+    url = json['pagination'].get('next_page')
+    print(url)
+
+flattened = []
+
+for r in data:
+    for j in r:
+        flattened.append(j)
+
+for f in flattened:
+    print(",".join(['"' + list(f['versions'].values())[0]['name'] + '"', f['id'], f.get('third_party_m10n_status') or 'no', str(f['view_count']), str(f['like_count']), str(f['install_count']), f['created_at']]))
